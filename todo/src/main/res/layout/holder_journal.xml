@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.king.todo.inject.data.sql.JournalEntity" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:afterTextChanged="@{vm::afterTextChanged}"
+                android:background="@null"
+                android:hint="@string/year"
+                android:inputType="number"
+                android:text="@={vm.yearOb}" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/year" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:afterTextChanged="@{vm::afterTextChanged}"
+                android:background="@null"
+                android:hint="@string/month"
+                android:inputType="number"
+                android:text="@={vm.monthOb}" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/month" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:afterTextChanged="@{vm::afterTextChanged}"
+                android:background="@null"
+                android:hint="@string/day"
+                android:inputType="number"
+                android:text="@={vm.dayOb}" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day" />
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white_1f"
+            android:gravity="center"
+            android:inputType="number"
+            android:afterTextChanged="@{vm::afterTextChanged}"
+            android:hint="@string/money"
+            android:text="@={vm.moneyOb}" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white_1f"
+            android:gravity="center"
+            android:hint="@string/describe"
+            android:text="@{vm.describe}" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:onClick="@{vm::onSaveClick}"
+            android:text="@string/save" />
+    </LinearLayout>
+
+</layout>

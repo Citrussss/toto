@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.king.todo.ui.home.calendar.CalendarModel" />
+    </data>
+
+    <com.haibin.calendarview.CalendarLayout
+        android:id="@+id/calendarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:orientation="vertical"
+        app:default_status="expand">
+
+        <com.haibin.calendarview.CalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            app:calendar_padding="10dp"
+            app:current_day_lunar_text_color="#ff0000"
+            app:current_day_text_color="#ff0000"
+            app:current_month_lunar_text_color="#CFCFCF"
+            app:current_month_text_color="#333333"
+            app:lunar_text_size="10sp"
+            app:max_year="2030"
+            app:max_year_month="12"
+            app:max_year_day="31"
+            app:min_year="2017"
+            app:min_year_month="1"
+            app:min_year_day="1"
+            app:month_view_show_mode="mode_all"
+            app:calendar_height="50dp"
+            app:month_view="com.king.todo.independent.base.view.haibin.CheeseMonthView"
+            app:week_view="com.king.todo.base.view.calendar.custom.CustomWeekView"
+            app:week_bar_view="com.king.todo.base.view.calendar.custom.CustomWeekBar"
+            app:week_line_background="#00000000"
+            app:week_line_margin="16dp"
+            app:week_start_with="mon"
+            app:week_text_size="10sp"
+            app:year_view_week_height="0dp"
+            app:year_view_week_text_color="#666666"
+            app:year_view_week_text_size="7sp"
+            app:year_view_background="#f6f6f6"
+            app:year_view_day_text_color="#333333"
+            app:year_view_day_text_size="8sp"
+            app:year_view_month_text_color="#ff0000"
+            app:year_view_month_text_size="20sp"
+            app:year_view_scheme_color="#f17706" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#d4d4d4" />
+    </com.haibin.calendarview.CalendarLayout>
+
+</layout>

@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">TODO</string>
+    <string name="home">首页</string>
+    <string name="calendar">日历</string>
+    <string name="record">记录</string>
+    <string name="year">年</string>
+    <string name="month">月</string>
+    <string name="day">日</string>
+    <string name="describe">描述</string>
+    <string name="money">金额</string>
+    <string name="save">保存</string>
+    <string-array name="chinese_week_string_array">
+        <item>周日</item>
+        <item>周一</item>
+        <item>周二</item>
+        <item>周三</item>
+        <item>周四</item>
+        <item>周五</item>
+        <item>周六</item>
+    </string-array>
+</resources>
