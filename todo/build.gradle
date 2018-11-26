@@ -117,6 +117,7 @@ dependencies {
     implementation 'com.amap.api:location:4.3.0'
 //_________________________________________________________
 //    implementation 'org.projectlombok:lombok:latest.release'
+    implementation 'com.github.goldze:MVVMHabit:3.0.6'
 
 //        force = true
 //    }

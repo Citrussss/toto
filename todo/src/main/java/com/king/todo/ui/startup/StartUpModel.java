@@ -1,7 +1,9 @@
 package com.king.todo.ui.startup;
 
 
+import android.app.Application;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 
 import com.binding.model.Config;
 import com.binding.model.model.ModelView;
@@ -12,23 +14,12 @@ import com.king.todo.databinding.ActivityStartupBinding;
 
 import javax.inject.Inject;
 
+import me.goldze.mvvmhabit.base.BaseViewModel;
+
 import static com.king.todo.inject.component.ActivityComponent.Router.login;
 
-@ModelView(R.layout.activity_startup)
-public class StartUpModel extends ViewModel<StartUpActivity, ActivityStartupBinding> {
-    @Inject
-    StartUpModel() {
-    }
-
-    @Override
-    public void attachView(Bundle savedInstanceState, StartUpActivity activity) {
-        super.attachView(savedInstanceState, activity);
-//        Intent intent = new Intent();
-//        intent.setClass(getT(), HomeActivity.class);
-//        getT().startActivity(intent);
-        Bundle bundle =new Bundle();
-        bundle.putString(Config.title,"用户登录");
-        ArouterUtil.navigation(login,bundle);
-        finish();
+public class StartUpModel extends BaseViewModel {
+    public StartUpModel(@NonNull Application application) {
+        super(application);
     }
 }
