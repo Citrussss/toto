@@ -54,7 +54,7 @@ ext {
     anko_version = '0.10.1'
     gson = '2.8.1'
     retrofit = '2.2.0'
-    binding_model = "1.2.17"
+    binding_model = "1.2.19"
     dbflow_version = "4.2.4"
     butterknifeVersion = '8.4.0'
     dagger_version = '2.16'

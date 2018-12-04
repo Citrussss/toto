@@ -1,1 +1,2 @@
-include ':jojo', ':todokotlin', ':testapp',':todo'
+include ':jojo', ':todokotlin', ':testapp'
+//,':todo'
