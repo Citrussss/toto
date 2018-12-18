@@ -1,4 +1,4 @@
-package com.union.bangbang.todokotlin;
+package com.union.bangbang.todokotlin
 
 import android.app.Application
 import com.union.bangbang.zero.AppUtil
@@ -13,9 +13,10 @@ import com.union.bangbang.zero.AppUtil
  * @chang time
  * @class describe
  */
-class TodoApplication : Application(){
-    val appUtil =AppUtil.getInstance();
-    init {
+class TodoApplication : Application() {
+    val appUtil = AppUtil.getInstance();
+    override fun onCreate() {
+        super.onCreate()
         appUtil.init(this)
     }
 }

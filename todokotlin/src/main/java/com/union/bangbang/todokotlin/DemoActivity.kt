@@ -6,11 +6,12 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
+
 import com.union.bangbang.zero.toast.JoJoToast
 import com.union.bangbang.zero.util.photo.RxFileViewer
 import com.union.bangbang.zero.util.photo.RxFileViewerFragment
-
 import kotlinx.android.synthetic.main.activity_demo.*
+
 
 class DemoActivity : AppCompatActivity() {
 
@@ -35,6 +36,7 @@ class DemoActivity : AppCompatActivity() {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+
          return when (item.itemId) {
             R.id.action_settings -> { JoJoToast.message("ss") ;true }
             else  -> super.onOptionsItemSelected(item)

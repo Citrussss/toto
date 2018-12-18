@@ -15,6 +15,9 @@
                 android:label="@string/app_name"
                 android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ui.startup.StartUpActivity">
+
+        </activity>
+        <activity android:name=".ui.test.DatabindingTestActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
