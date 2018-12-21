@@ -63,5 +63,5 @@ ext {
     rx_android_version="1.2.1"
     rx_java = "2.1.16"
     jojo_util = "0.05"
-
+    dagger_version ="2.16"
 }
