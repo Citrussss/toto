@@ -26,5 +26,6 @@ class StartUpActivity : BaseActivity() {
         viewModel = ViewModelProviders.of(this, factory).get(StartUpModel::class.java)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_startup)
         binding.vm = viewModel
+        viewModel.setTourist()
     }
 }
