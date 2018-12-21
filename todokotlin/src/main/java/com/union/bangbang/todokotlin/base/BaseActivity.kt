@@ -1,8 +1,13 @@
 package com.union.bangbang.todokotlin.base
 
 import android.arch.lifecycle.ViewModelProvider
+import android.arch.lifecycle.ViewModelProviders
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.union.bangbang.todokotlin.R
+import com.union.bangbang.todokotlin.ui.startup.StartUpModel
+import dagger.android.AndroidInjection
 import java.lang.reflect.ParameterizedType
 
 /**
@@ -11,29 +16,10 @@ import java.lang.reflect.ParameterizedType
  * @time 2018/12/16 3:45 PM
  * 只有编译器可能不骗你。
  */
-abstract class BaseActivity<vm : BaseModel> : AppCompatActivity() {
-    protected lateinit var viewModel: vm
+abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(application)).get(viewModel::class.java)
-    }
-
-    abstract fun getLayoutId()
-
-    fun <T> getT(o: Any, i: Int): T? {
-        try {
-            return ((o.javaClass
-                    .genericSuperclass as ParameterizedType).getActualTypeArguments()[i] as Class<T>)
-                    .newInstance()
-        } catch (e: InstantiationException) {
-            e.printStackTrace()
-        } catch (e: IllegalAccessException) {
-            e.printStackTrace()
-        } catch (e: ClassCastException) {
-            e.printStackTrace()
-        }
-
-        return null
     }
 }

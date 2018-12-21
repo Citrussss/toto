@@ -3,6 +3,9 @@ package io.ditclear.app.di.module
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import io.ditclear.app.view.PaoActivity
+import java.lang.annotation.Retention
+import java.lang.annotation.RetentionPolicy
+import javax.inject.Scope
 
 /**
  * 页面描述：ActivityModule
@@ -16,3 +19,7 @@ abstract class ActivityModule {
     abstract fun contributePaoActivity(): PaoActivity
 
 }
+
+@Scope
+@Retention(RetentionPolicy.RUNTIME)
+annotation class ActivityScope

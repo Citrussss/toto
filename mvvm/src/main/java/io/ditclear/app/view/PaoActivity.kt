@@ -35,7 +35,7 @@ class PaoActivity : RxAppCompatActivity() {
         mBinding=DataBindingUtil.setContentView(this,R.layout.pao_activity)
         setSupportActionBar(mBinding.toolbar)
         mBinding.webView.setOnLongClickListener { true }
-        mViewModel=ViewModelProviders.of(this,factory).get(PaoViewModel::class.java)
+            mViewModel=ViewModelProviders.of(this,factory).get(PaoViewModel::class.java)
         ////binding
         mBinding.vm=mViewModel
     }

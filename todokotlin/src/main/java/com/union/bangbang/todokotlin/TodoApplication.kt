@@ -1,7 +1,14 @@
 package com.union.bangbang.todokotlin
 
+import android.app.Activity
 import android.app.Application
+import com.union.bangbang.todokotlin.dagger.module.AppModule
 import com.union.bangbang.zero.AppUtil
+import dagger.android.AndroidInjector
+import dagger.android.DaggerApplication
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
+import javax.inject.Inject
 
 /**
  * @name zero
@@ -13,10 +20,21 @@ import com.union.bangbang.zero.AppUtil
  * @chang time
  * @class describe
  */
-class TodoApplication : Application() {
+class TodoApplication : Application(), HasActivityInjector {
+
+    @Inject
+    lateinit var activityInjector: DispatchingAndroidInjector<Activity>
+
+    override fun activityInjector(): DispatchingAndroidInjector<Activity> = activityInjector
+
+
     val appUtil = AppUtil.getInstance();
     override fun onCreate() {
         super.onCreate()
+        DaggerAppComponent.builder()
+                .application(this)
+                .build()
+                .inject(this)
         appUtil.init(this)
     }
 }

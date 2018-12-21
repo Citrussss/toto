@@ -1,7 +1,8 @@
-package com.union.bangbang.todokotlin.base
+package com.union.bangbang.todokotlin.base.model
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
+import android.arch.lifecycle.ViewModel
 
 /**
  * @name toto
@@ -9,8 +10,6 @@ import android.arch.lifecycle.AndroidViewModel
  * @time 2018/12/16 3:37 PM
  * 只有编译器可能不骗你。
  */
-open class BaseModel(application: Application) : AndroidViewModel(application) {
-    fun f(){
+open class BaseModel : ViewModel() {
 
-    }
 }
