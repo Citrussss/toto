@@ -8,27 +8,27 @@ package com.union.bangbang.todokotlin.base.data.pojo
  */
 
 data class InfoEntity(
-        val code: Int,
-        val `data`: Data
+    val code: Int,
+    val `data`: Data
 )
 
 data class Data(
-        val token: Token,
-        val user: User
+    val token: Token,
+    val user: User
 )
 
 data class Token(
-        val id: Int,
-        val token: String,
-        val userEntity: UserEntity
+    val id: Int,
+    val token: String,
+    val userEntity: UserEntity
 )
 
 data class UserEntity(
-        val id: Int,
-        val name: String
+    val id: Int,
+    val name: String
 )
 
 data class User(
-        val id: Int,
-        val name: String
+    val id: Int,
+    val name: String
 )

@@ -2,6 +2,7 @@ package com.union.bangbang.todokotlin
 
 import android.app.Activity
 import android.app.Application
+import com.facebook.stetho.Stetho
 import com.union.bangbang.todokotlin.dagger.module.AppModule
 import com.union.bangbang.zero.AppUtil
 import dagger.android.AndroidInjector
@@ -31,10 +32,9 @@ class TodoApplication : Application(), HasActivityInjector {
     val appUtil = AppUtil.getInstance();
     override fun onCreate() {
         super.onCreate()
-        DaggerAppComponent.builder()
-                .application(this)
-                .build()
-                .inject(this)
+        DaggerAppComponent.builder().application(this).build().inject(this)
         appUtil.init(this)
+        Stetho.initializeWithDefaults(this);
+
     }
 }

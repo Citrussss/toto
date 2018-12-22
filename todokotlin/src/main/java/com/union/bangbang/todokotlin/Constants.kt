@@ -7,5 +7,5 @@ package com.union.bangbang.todokotlin
  * 只有编译器可能不骗你。
  */
 object Constants {
-    val HOST_API ="http://localhost:8080/"
+    val HOST_API ="http://192.168.1.160:8080/"
 }
