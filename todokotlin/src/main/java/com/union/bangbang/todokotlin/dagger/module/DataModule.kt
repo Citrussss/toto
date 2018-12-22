@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
-class AppModule {
+class DataModule {
 
     //提供 Retrofit 实例
     @Provides
@@ -24,7 +24,7 @@ class AppModule {
     fun provideRemoteClient(): Retrofit {
 
         val httpClientBuilder = OkHttpClient.Builder()
-                .readTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(120, TimeUnit.SECONDS)
                 .build().newBuilder()
         if (BuildConfig.DEBUG) {
             val loggingInterceptor = HttpLoggingInterceptor()

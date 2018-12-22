@@ -11,4 +11,5 @@ import javax.inject.Inject
  */
 class DataService @Inject constructor(private val net: Api) {
     fun tourist() = net.tourist()
+    fun userList()=net.userFindAll()
 }

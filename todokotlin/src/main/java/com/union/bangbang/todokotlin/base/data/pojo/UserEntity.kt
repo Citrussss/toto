@@ -24,6 +24,6 @@ data class Token(
 )
 
 data class User(
-    val id: Int,
-    val name: String
+        var id: Int,
+        val name: String
 )

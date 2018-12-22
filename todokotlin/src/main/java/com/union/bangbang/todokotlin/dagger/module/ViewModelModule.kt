@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProvider
 import com.union.bangbang.todokotlin.base.model.ViewModelFactory
 import com.union.bangbang.todokotlin.dagger.ViewModelKey
 import com.union.bangbang.todokotlin.ui.startup.StartUpModel
+import com.union.bangbang.todokotlin.ui.user.UserListModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -21,7 +22,12 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(StartUpModel::class)
-    abstract fun inject(viewModel: StartUpModel): ViewModel
+    abstract fun injectStartUpModel(viewModel: StartUpModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(UserListModel::class)
+    abstract fun injectUserListModel(viewModel: UserListModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory

@@ -2,6 +2,7 @@ package com.union.bangbang.todokotlin.dagger.module
 
 import com.union.bangbang.todokotlin.dagger.annotation.ActivityScope
 import com.union.bangbang.todokotlin.ui.startup.StartUpActivity
+import com.union.bangbang.todokotlin.ui.user.UserListActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -15,5 +16,9 @@ abstract class ActivityModule {
     @ActivityScope
     @ContributesAndroidInjector
     abstract fun contributeStartUpActivityInjector(): StartUpActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector
+    abstract fun contributeUserListActivityInjector(): UserListActivity
 
 }

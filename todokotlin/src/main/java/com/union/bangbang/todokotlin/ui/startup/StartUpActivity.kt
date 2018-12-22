@@ -2,17 +2,20 @@ package com.union.bangbang.todokotlin.ui.startup
 
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.union.bangbang.todokotlin.R
 import com.union.bangbang.todokotlin.base.BaseActivity
 import com.union.bangbang.todokotlin.databinding.ActivityStartupBinding
+import com.union.bangbang.todokotlin.ui.user.UserListActivity
 
-import dagger.android.AndroidInjection
-import dagger.android.support.DaggerAppCompatActivity
+
+import kotlinx.android.synthetic.main.activity_startup.*
 
 import javax.inject.Inject
+
 
 class StartUpActivity : BaseActivity() {
 
@@ -27,5 +30,9 @@ class StartUpActivity : BaseActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_startup)
         binding.vm = viewModel
         viewModel.setTourist()
+        next.setOnClickListener {
+            val intent = Intent(this, UserListActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

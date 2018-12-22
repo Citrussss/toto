@@ -4,10 +4,7 @@ import android.app.Activity
 import android.app.Application
 import android.support.multidex.MultiDex
 import com.facebook.stetho.Stetho
-import com.union.bangbang.todokotlin.dagger.module.AppModule
 import com.union.bangbang.zero.AppUtil
-import dagger.android.AndroidInjector
-import dagger.android.DaggerApplication
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import javax.inject.Inject
