@@ -15,5 +15,5 @@ interface Api {
      * 游客登录
      */
     @GET("user/tourist")
-    fun tourist():Observable<List<InfoEntity>>
+    fun tourist():Observable<InfoEntity>
 }
