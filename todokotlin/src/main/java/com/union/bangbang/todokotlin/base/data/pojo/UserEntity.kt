@@ -7,12 +7,12 @@ package com.union.bangbang.todokotlin.base.data.pojo
  * 只有编译器可能不骗你。
  */
 
-data class InfoEntity(
+data class InfoEntity<T>(
     val code: Int,
-    val `data`: Data
+    val `data`: T
 )
 
-data class Data(
+data class TouristEntity(
     val token: Token,
     val user: User
 )
@@ -20,12 +20,7 @@ data class Data(
 data class Token(
     val id: Int,
     val token: String,
-    val userEntity: UserEntity
-)
-
-data class UserEntity(
-    val id: Int,
-    val name: String
+    val userEntity: User
 )
 
 data class User(
