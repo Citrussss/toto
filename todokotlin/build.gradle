@@ -17,6 +17,7 @@ android {
         targetSdkVersion target_sdk_version
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -76,5 +77,7 @@ dependencies {
     implementation 'com.facebook.stetho:stetho-okhttp3:1.4.2'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
 
+    //65536
+    implementation 'com.android.support:multidex:1.0.3'
 
 }

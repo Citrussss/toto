@@ -25,7 +25,7 @@ class StartUpModel @Inject constructor(private val dataService: DataService) : B
     var visible: ObservableBoolean = ObservableBoolean()
 
     fun setTourist() = dataService.tourist().subscribeOn(Schedulers.newThread()).observeOn(Schedulers.trampoline())
-            .subscribe ({ text.set(it[0].data.token.token)}, {Log.e("StartUpModel",it.message)})
+            .subscribe ({ text.set(it.data.token.token)}, {Log.e("StartUpModel",it.message)})
 
     public fun onNetClick(view:View){
         setTourist()
