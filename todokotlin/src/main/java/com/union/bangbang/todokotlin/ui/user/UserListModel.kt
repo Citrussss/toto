@@ -3,13 +3,17 @@ package com.union.bangbang.todokotlin.ui.user
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.Observer
+import android.content.Context
+import android.content.Intent
 
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.view.View
 import com.union.bangbang.todokotlin.base.data.model.DataService
 import com.union.bangbang.todokotlin.base.data.pojo.User
 
 import com.union.bangbang.todokotlin.base.recycle.adapter.UserListAdapter
+import com.union.bangbang.zero.AppUtil
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 
@@ -32,4 +36,6 @@ class UserListModel @Inject constructor(private val dataService: DataService, ap
 
     fun getDefList() = Observable.range(0, 10).map { User(it, "name") }
             .toList().toObservable().subscribe { adapter.addData(it) }
+
+
 }
