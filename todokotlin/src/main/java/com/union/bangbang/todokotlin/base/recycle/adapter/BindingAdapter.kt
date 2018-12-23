@@ -27,14 +27,7 @@ class BindingAdapter(data: MutableList<out ViewSelectHelper<ViewDataBinding>>?) 
      * @param helper A fully initialized helper.
      * @param item   The item that needs to be displayed.
      */
-    override fun convert(helper: BaseHolder?, item: ViewSelectHelper<ViewDataBinding>?) {
-        helper?.binding?.setVariable(BR.vm, item)
-//        if (helper != null && item != null) {
-//            helper.setText(R.id.nickname, item.name)
-//                    .setText(R.id.token, item.id.toString())
-//        }
-    }
-
+    override fun convert(helper: BaseHolder?, item: ViewSelectHelper<ViewDataBinding>?) { helper?.binding?.setVariable(BR.vm, item) }
     init {
         multiTypeDelegate = object : MultiTypeDelegate<ViewSelectHelper<ViewDataBinding>>() {
             override fun getItemType(entity: ViewSelectHelper<ViewDataBinding>): Int {
@@ -43,9 +36,7 @@ class BindingAdapter(data: MutableList<out ViewSelectHelper<ViewDataBinding>>?) 
                 return entity.getLayoutId()
             }
         }
-//        multiTypeDelegate.registerItemType(127, R.layout.holder_user)
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHolder {
         val entity = modelList.get(viewType)
         return if (entity != null)
@@ -53,5 +44,4 @@ class BindingAdapter(data: MutableList<out ViewSelectHelper<ViewDataBinding>>?) 
         else
             super.onCreateViewHolder(parent, viewType)
     }
-
 }
