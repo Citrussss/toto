@@ -17,22 +17,19 @@ import javax.inject.Inject
  * @time 2018/12/22 6:14 PM
  * 只有编译器可能不骗你。
  */
-class UserListActivity : BaseActivity() {
+class UserListActivity : BaseActivity<ActivityUserListBinding>() {
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory
     lateinit var viewModel: UserListModel
-    lateinit var binding: ActivityUserListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProviders.of(this, factory).get(UserListModel::class.java)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_user_list)
         binding.vm = viewModel
         recycle_view.adapter = viewModel.adapter
         recycle_view.layoutManager = viewModel.linearLayoutManager
         viewModel.getDefList()
-
     }
 
     companion object Route {
@@ -40,4 +37,6 @@ class UserListActivity : BaseActivity() {
             onStartActivity(context, UserListActivity::class.java)
         }
     }
+    override fun getLayoutId(): Int =R.layout.activity_user_list
+
 }

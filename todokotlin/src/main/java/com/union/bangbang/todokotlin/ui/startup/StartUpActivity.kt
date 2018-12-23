@@ -17,17 +17,16 @@ import kotlinx.android.synthetic.main.activity_startup.*
 import javax.inject.Inject
 
 
-class StartUpActivity : BaseActivity() {
+class StartUpActivity : BaseActivity<ActivityStartupBinding>() {
+    override fun getLayoutId(): Int = R.layout.activity_startup
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory
     lateinit var viewModel: StartUpModel
-    lateinit var binding: ActivityStartupBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProviders.of(this, factory).get(StartUpModel::class.java)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_startup)
         binding.vm = viewModel
         viewModel.setTourist()
         next.setOnClickListener {
