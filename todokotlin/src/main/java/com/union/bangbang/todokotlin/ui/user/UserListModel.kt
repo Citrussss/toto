@@ -24,10 +24,5 @@ class UserListModel @Inject constructor(private val dataService: DataService, ap
     fun getUserList() = dataService.userList()
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ adapter.addData(it.data) }, { Log.e("StartUpModel", it.message) })
-
-    fun getDefList() = Observable.range(0, 100).map { User(it, "name") }
-            .toList().toObservable().subscribe { adapter.addData(it) }
-
-
+            .subscribe({ adapter.addData(it) }, { Log.e("StartUpModel", it.message) })
 }
