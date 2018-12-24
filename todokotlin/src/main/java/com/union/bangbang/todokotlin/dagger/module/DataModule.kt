@@ -21,19 +21,7 @@ class DataModule {
     //提供 Retrofit 实例
     @Provides
     @Singleton
-    fun provideRemoteClient(): Retrofit {
-
-        val httpClientBuilder = OkHttpClient.Builder()
-                .readTimeout(120, TimeUnit.SECONDS)
-                .build().newBuilder()
-        if (BuildConfig.DEBUG) {
-            val loggingInterceptor = HttpLoggingInterceptor()
-            loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-            httpClientBuilder.
-                    addInterceptor(loggingInterceptor).
-                    addInterceptor(StethoInterceptor())
-
-        }
+    fun provideRemoteClient(httpClientBuilder: OkHttpClient.Builder): Retrofit {
         return Retrofit.Builder()
                 .baseUrl(Constants.HOST_API)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -41,8 +29,6 @@ class DataModule {
                 .callFactory(httpClientBuilder.build())
                 .build()
     }
-
-
     //提供 PaoService 实例
     @Provides
     @Singleton
@@ -56,4 +42,19 @@ class DataModule {
     @Provides
     @Singleton
     fun dataService(api: Api) = DataService(api)
+
+    @Provides
+    @Singleton
+    fun okhttpBuilder(): OkHttpClient.Builder {
+        val builder = OkHttpClient.Builder()
+                .readTimeout(30, TimeUnit.SECONDS)
+                .build().newBuilder()
+        if (BuildConfig.DEBUG) {
+            val loggingInterceptor = HttpLoggingInterceptor()
+            loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+            builder.addInterceptor(loggingInterceptor).addInterceptor(StethoInterceptor())
+        }
+        return builder
+    }
+
 }
