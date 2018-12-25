@@ -22,6 +22,7 @@ class UserListActivity : BaseActivity<ActivityUserListBinding>() {
     @Inject
     lateinit var factory: ViewModelProvider.Factory
     lateinit var viewModel: UserListModel
+    private lateinit var s: UserListModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +30,8 @@ class UserListActivity : BaseActivity<ActivityUserListBinding>() {
         binding.vm = viewModel
         recycle_view.adapter = viewModel.adapter
         recycle_view.layoutManager = viewModel.linearLayoutManager
-        viewModel.getDefList()
+        viewModel.getUserList()
+
     }
 
     companion object Route {
