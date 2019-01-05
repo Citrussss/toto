@@ -1,11 +1,13 @@
 package com.union.bangbang.todokotlin.base
 
+import android.arch.lifecycle.AndroidViewModel
 import android.content.Context
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.union.bangbang.todokotlin.BR
 import dagger.android.AndroidInjection
 
 /**
@@ -19,7 +21,7 @@ abstract class BaseActivity<Binding:ViewDataBinding> : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, getLayoutId())
+        initViewDataBinding()
     }
 
     companion object Route {
@@ -28,5 +30,10 @@ abstract class BaseActivity<Binding:ViewDataBinding> : AppCompatActivity() {
             context.startActivity(intent)
         }
     }
+    fun initViewDataBinding(){
+        binding = DataBindingUtil.setContentView(this, getLayoutId())
+        binding.setVariable(BR.vm,initViewModel())
+    }
     abstract fun getLayoutId():Int
+    abstract fun initViewModel():AndroidViewModel
 }

@@ -1,5 +1,6 @@
 package com.union.bangbang.todokotlin.ui.user
 
+import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
@@ -18,6 +19,13 @@ import javax.inject.Inject
  * 只有编译器可能不骗你。
  */
 class UserListActivity : BaseActivity<ActivityUserListBinding>() {
+    override fun initViewModel(): AndroidViewModel {
+        viewModel = ViewModelProviders.of(this, factory).get(UserListModel::class.java)
+        recycle_view.adapter = viewModel.adapter
+        recycle_view.layoutManager = viewModel.linearLayoutManager
+        viewModel.getUserList()
+        return viewModel
+    }
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory
@@ -26,11 +34,7 @@ class UserListActivity : BaseActivity<ActivityUserListBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProviders.of(this, factory).get(UserListModel::class.java)
-        binding.vm = viewModel
-        recycle_view.adapter = viewModel.adapter
-        recycle_view.layoutManager = viewModel.linearLayoutManager
-        viewModel.getUserList()
+
 
     }
 
@@ -40,5 +44,4 @@ class UserListActivity : BaseActivity<ActivityUserListBinding>() {
         }
     }
     override fun getLayoutId(): Int =R.layout.activity_user_list
-
 }
