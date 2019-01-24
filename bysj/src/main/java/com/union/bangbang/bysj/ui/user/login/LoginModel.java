@@ -1,6 +1,7 @@
 package com.union.bangbang.bysj.ui.user.login;
 
 import android.app.Application;
+import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -18,7 +19,8 @@ public class LoginModel extends BaseViewModel {
     public LoginModel(@NonNull Application application) {
         super(application);
     }
-
+    public ObservableField<String> mobile=new ObservableField<>();
+    public ObservableField<String> password=new ObservableField<>();
     public BindingCommand loginOnClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
