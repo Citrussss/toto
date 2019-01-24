@@ -6,6 +6,7 @@ import com.union.bangbang.todokotlin.base.model.ViewModelFactory
 import com.union.bangbang.todokotlin.dagger.ViewModelKey
 import com.union.bangbang.todokotlin.ui.startup.StartUpModel
 import com.union.bangbang.todokotlin.ui.user.UserListModel
+import com.union.bangbang.todokotlin.ui.user.login.LoginModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -28,6 +29,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(UserListModel::class)
     abstract fun injectUserListModel(viewModel: UserListModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(LoginModel::class)
+    abstract fun injectLoginModel(viewModel: LoginModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory

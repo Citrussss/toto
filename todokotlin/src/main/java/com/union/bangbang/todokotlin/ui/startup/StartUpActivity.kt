@@ -9,8 +9,11 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.union.bangbang.todokotlin.R
 import com.union.bangbang.todokotlin.base.BaseActivity
+import com.union.bangbang.todokotlin.base.utils.ArouterUtil
+import com.union.bangbang.todokotlin.dagger.module.ActivityModule.Companion.user_login
 import com.union.bangbang.todokotlin.databinding.ActivityStartupBinding
 import com.union.bangbang.todokotlin.ui.user.UserListActivity
+import com.union.bangbang.todokotlin.ui.user.login.LoginActivity
 
 
 import kotlinx.android.synthetic.main.activity_startup.*
@@ -30,6 +33,12 @@ class StartUpActivity : BaseActivity<ActivityStartupBinding>() {
             startActivity(intent)
         }
         return viewModel;
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        ArouterUtil.navigation(user_login)
+        finish()
     }
     override fun getLayoutId(): Int = R.layout.activity_startup
 }

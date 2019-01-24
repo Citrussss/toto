@@ -30,6 +30,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.user.UserListActivity" />
+        <activity android:name=".ui.user.login.LoginActivity" />
     </application>
 
 </manifest>

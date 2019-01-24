@@ -36,4 +36,5 @@ class StartUpModel @Inject constructor(private val dataService: DataService,priv
     fun onNextClick(view :View){
         UserListActivity.onStartActivity(getApplication())
     }
+
 }
