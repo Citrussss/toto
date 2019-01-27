@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        Disposable subscribe = RxFileViewer.build(this, RxFileViewerFragment.ALL).start().subscribe((file -> JoJoToast.makeText(this, file.getAbsolutePath(), 1000, SUCCESS)));
+//        Disposable subscribe = RxFileViewer.build(this, RxFileViewerFragment.ALL).start().subscribe((file -> JoJoToast.makeText(this, file.getAbsolutePath(), 1000, SUCCESS)));
     }
 
     @Override
