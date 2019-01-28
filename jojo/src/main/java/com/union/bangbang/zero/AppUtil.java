@@ -2,7 +2,10 @@ package com.union.bangbang.zero;
 
 import android.app.Activity;
 import android.app.Application;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 
 import java.util.Stack;
 
@@ -17,14 +20,17 @@ import java.util.Stack;
  * @class describe
  */
 public class AppUtil implements Application.ActivityLifecycleCallbacks {
-    private static final AppUtil manage=new AppUtil();
-    private static Stack<Activity> activityStack =new Stack<>();
+    private static final AppUtil manage = new AppUtil();
+    private static Stack<Activity> activityStack = new Stack<>();
 
-    private AppUtil(){}
-    public static AppUtil getInstance(){
+    private AppUtil() {
+    }
+
+    public static AppUtil getInstance() {
         return manage;
     }
-    public void init(Application application){
+
+    public void init(Application application) {
         application.registerActivityLifecycleCallbacks(manage);
     }
 
@@ -35,7 +41,7 @@ public class AppUtil implements Application.ActivityLifecycleCallbacks {
         try {
             return activityStack.peek();
         } catch (Exception e) {
-           throw new RuntimeException("没有在主程序中添加监听：请在主程序中调用init方法:"+e.toString());
+            throw new RuntimeException("没有在主程序中添加监听：请在主程序中调用init方法:" + e.toString());
         }
     }
 
@@ -72,5 +78,13 @@ public class AppUtil implements Application.ActivityLifecycleCallbacks {
     @Override
     public void onActivityDestroyed(Activity activity) {
         activityStack.remove(activity);
+    }
+
+    public static Drawable getDrawable(@DrawableRes int id) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            return peekActivity().getDrawable(id);
+        } else {
+            return peekActivity().getResources().getDrawable(id);
+        }
     }
 }
