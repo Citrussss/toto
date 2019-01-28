@@ -73,7 +73,9 @@ public class XModelView extends View {
         canvas.saveLayer(0,0,getRight(),getBottom(),null,Canvas.ALL_SAVE_FLAG);
 //        canvas.drawPath(circlePath, rectPaint);
         canvas.drawPath(rectPath, rectPaint);
+//        canvas.drawBitmap(loadBitmapFromView);
         canvas.drawBitmap(drawingCache, new Matrix(),circlePaint);
+//        canvas.drawBitmap(loadBitmapFromView(),new Matrix(),rectPaint);
         canvas.restore();
 //        setBackground(null);
     }
@@ -91,7 +93,6 @@ public class XModelView extends View {
         rectPaint.setStrokeWidth(10);
         rectPaint.setColor(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M ? context.getColor(R.color.colorPrimary) : context.getResources().getColor(R.color.colorPrimary));
         setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-
     }
 
     /**
@@ -115,5 +116,11 @@ public class XModelView extends View {
         circlePath.addCircle(rectF.left + size, rectF.top + size, (rectF.right - rectF.left) / 4, Path.Direction.CCW);
         rectPath.addRect(new RectF(rectF.left, rectF.top, (rectF.left + rectF.right) / 2, (rectF.top + rectF.bottom) / 2), Path.Direction.CCW);
     }
-
+    private Bitmap loadBitmapFromView() {
+        Bitmap screenshot;
+        screenshot = Bitmap.createBitmap(this.getWidth()/3, this.getHeight()/3, Bitmap.Config.RGB_565);
+        Canvas c = new Canvas(screenshot);
+        this.getResources().getDrawable(R.drawable.chat_dialog_blue_right).draw(c);
+        return screenshot;
+    }
 }

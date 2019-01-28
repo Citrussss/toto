@@ -2,6 +2,7 @@ package com.union.bangbang.zero.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -36,6 +37,8 @@ public class ClipLayout extends FrameLayout {
         super(context, attrs);
         setWillNotDraw(false);
         init(context, attrs);
+        setDrawingCacheEnabled(true);
+
     }
 
     private void init(Context context, AttributeSet attrs) {
@@ -83,6 +86,9 @@ public class ClipLayout extends FrameLayout {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        Bitmap drawingCache = getDrawingCache();
+        setDrawingCacheEnabled(false);
+
     }
 
 
