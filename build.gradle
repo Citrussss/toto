@@ -66,4 +66,5 @@ ext {
     dagger_version ="2.16"
 
     anko_version = "0.10.8"
+    var = '28.0.3'
 }
