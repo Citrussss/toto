@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
@@ -11,6 +12,7 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 
@@ -28,16 +30,18 @@ public class ClipLayout extends FrameLayout {
     private RectF rectF = new RectF();
     private Paint paint = new Paint();
     private final String TAG = "ClipLayout";
-
+    private Bitmap drawingCache;
+    private Paint circlePaint = new Paint();
     public ClipLayout(Context context) {
         this(context, null);
     }
 
     public ClipLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setWillNotDraw(false);
+//        setWillNotDraw(false);
         init(context, attrs);
         setDrawingCacheEnabled(true);
+        setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 
     }
 
@@ -63,6 +67,14 @@ public class ClipLayout extends FrameLayout {
         paint.setAntiAlias(true);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
+
+
+        circlePaint.setAntiAlias(true);
+        circlePaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+        circlePaint.setStyle(Paint.Style.FILL_AND_STROKE);
+        circlePaint.setStrokeWidth(10);
+        circlePaint.setColor(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M ? getContext().getColor(R.color.colorAccent) : getContext().getResources().getColor(R.color.colorAccent));
+
     }
 
     @Override
@@ -74,7 +86,13 @@ public class ClipLayout extends FrameLayout {
                     .ALL_SAVE_FLAG);
         }
         super.dispatchDraw(canvas);
-        canvas.drawPath(path, paint);
+      try {
+//          if(drawingCache!=null)
+//              canvas.drawBitmap(drawingCache,new Matrix(),paint);
+      }catch (Exception e){
+          Log.e(TAG, "dispatchDraw: ", e);
+      }
+//        canvas.drawPath(path, paint);
         canvas.restore();
     }
 
@@ -86,7 +104,7 @@ public class ClipLayout extends FrameLayout {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Bitmap drawingCache = getDrawingCache();
+        drawingCache = getDrawingCache();
         setDrawingCacheEnabled(false);
 
     }

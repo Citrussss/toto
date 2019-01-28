@@ -14,6 +14,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.union.bangbang.testapp.R;
 
@@ -23,19 +24,15 @@ import com.union.bangbang.testapp.R;
  * @time 2019-01-28 20:08
  * 只有编译器可能不骗你。
  */
-public class XModelView extends View {
+public class DstInImageView extends android.support.v7.widget.AppCompatImageView {
     private Paint circlePaint = new Paint();
-    private Paint rectPaint = new Paint();
-    private Path circlePath = new Path(), rectPath = new Path();
-    private RectF rectF = new RectF();
-
     /**
      * Simple constructor to use when creating a view from code.
      *
      * @param context The Context the view is running in, through which it can
      *                access the current theme, resources, etc.
      */
-    public XModelView(Context context) {
+    public DstInImageView(Context context) {
         this(context, null);
     }
 
@@ -55,7 +52,7 @@ public class XModelView extends View {
      * @param attrs   The attributes of the XML tag that is inflating the view.
      * @see #View(Context, AttributeSet, int)
      */
-    public XModelView(Context context, AttributeSet attrs) {
+    public DstInImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
@@ -68,59 +65,22 @@ public class XModelView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         setDrawingCacheEnabled(true);
-        super.onDraw(canvas);
         Bitmap drawingCache = getDrawingCache();
         canvas.saveLayer(0,0,getRight(),getBottom(),null,Canvas.ALL_SAVE_FLAG);
-//        canvas.drawPath(circlePath, rectPaint);
-        canvas.drawPath(rectPath, rectPaint);
-//        canvas.drawBitmap(loadBitmapFromView);
+        super.onDraw(canvas);
         canvas.drawBitmap(drawingCache, new Matrix(),circlePaint);
-//        canvas.drawBitmap(loadBitmapFromView(),new Matrix(),rectPaint);
         canvas.restore();
-//        setBackground(null);
     }
 
     public void init(Context context) {
         circlePaint.setAntiAlias(true);
         circlePaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
         circlePaint.setStyle(Paint.Style.FILL_AND_STROKE);
-        circlePaint.setStrokeWidth(10);
-        circlePaint.setColor(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M ? context.getColor(R.color.colorAccent) : context.getResources().getColor(R.color.colorAccent));
+//        circlePaint.setStrokeWidth(10);
+//        circlePaint.setColor(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M ? context.getColor(R.color.colorAccent) : context.getResources().getColor(R.color.colorAccent));
 
-        rectPaint.setAntiAlias(true);
-//        rectPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-        rectPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-        rectPaint.setStrokeWidth(10);
-        rectPaint.setColor(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M ? context.getColor(R.color.colorPrimary) : context.getResources().getColor(R.color.colorPrimary));
         setLayerType(View.LAYER_TYPE_SOFTWARE, null);
     }
 
-    /**
-     * This is called during layout when the size of this view has changed. If
-     * you were just added to the view hierarchy, you're called with the old
-     * values of 0.
-     *
-     * @param w    Current width of this view.
-     * @param h    Current height of this view.
-     * @param oldw Old width of this view.
-     * @param oldh Old height of this view.
-     */
-    @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-        rectF.left = getPaddingLeft();
-        rectF.top = getPaddingTop();
-        rectF.right = w - getPaddingRight();
-        rectF.bottom = h - getPaddingBottom();
-        float size = (rectF.right - rectF.left) / 2;
-        circlePath.addCircle(rectF.left + size, rectF.top + size, (rectF.right - rectF.left) / 4, Path.Direction.CCW);
-        rectPath.addRect(new RectF(rectF.left, rectF.top, (rectF.left + rectF.right) / 2, (rectF.top + rectF.bottom) / 2), Path.Direction.CCW);
-    }
-    private Bitmap loadBitmapFromView() {
-        Bitmap screenshot;
-        screenshot = Bitmap.createBitmap(this.getWidth()/3, this.getHeight()/3, Bitmap.Config.RGB_565);
-        Canvas c = new Canvas(screenshot);
-        this.getResources().getDrawable(R.drawable.chat_dialog_blue_right).draw(c);
-        return screenshot;
-    }
+
 }
