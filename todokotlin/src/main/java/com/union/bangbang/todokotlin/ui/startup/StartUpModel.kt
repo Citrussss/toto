@@ -2,18 +2,14 @@ package com.union.bangbang.todokotlin.ui.startup
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
-import android.arch.lifecycle.ViewModel
-import android.content.Intent
 import android.databinding.ObservableBoolean
 import android.databinding.ObservableField
-import android.support.v4.content.ContextCompat.startActivity
 import android.util.Log
 import android.view.View
-import com.union.bangbang.todokotlin.base.BaseActivity
 import com.union.bangbang.todokotlin.base.data.model.DataService
-import com.union.bangbang.todokotlin.base.data.pojo.User
+import com.union.bangbang.todokotlin.base.utils.ArouterUtil
+import com.union.bangbang.todokotlin.dagger.module.ActivityModule
 import com.union.bangbang.todokotlin.ui.user.UserListActivity
-import com.union.bangbang.zero.AppUtil
 
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -36,5 +32,7 @@ class StartUpModel @Inject constructor(private val dataService: DataService,priv
     fun onNextClick(view :View){
         UserListActivity.onStartActivity(getApplication())
     }
-
+    fun goHome()={
+        ArouterUtil.navigation(ActivityModule.user_login)
+    }
 }

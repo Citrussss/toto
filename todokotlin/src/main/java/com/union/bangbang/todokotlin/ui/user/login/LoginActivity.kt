@@ -5,7 +5,7 @@ import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.union.bangbang.todokotlin.R
-import com.union.bangbang.todokotlin.base.BaseActivity
+import com.union.bangbang.todokotlin.base.activity.BaseActivity
 import com.union.bangbang.todokotlin.dagger.module.ActivityModule.Companion.user_login
 import com.union.bangbang.todokotlin.databinding.ActivityLoginBinding
 import javax.inject.Inject

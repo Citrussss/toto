@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.union.bangbang.todokotlin.base.model.ViewModelFactory
 import com.union.bangbang.todokotlin.dagger.ViewModelKey
+import com.union.bangbang.todokotlin.ui.home.HomeModel
 import com.union.bangbang.todokotlin.ui.startup.StartUpModel
 import com.union.bangbang.todokotlin.ui.user.UserListModel
 import com.union.bangbang.todokotlin.ui.user.login.LoginModel
@@ -37,4 +38,8 @@ abstract class ViewModelModule {
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
-}
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(HomeModel::class)
+    abstract fun bindHomeModel(viewModel: HomeModel): ViewModel}

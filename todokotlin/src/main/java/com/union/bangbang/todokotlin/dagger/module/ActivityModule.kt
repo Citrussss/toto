@@ -2,6 +2,7 @@ package com.union.bangbang.todokotlin.dagger.module
 
 import com.union.bangbang.todokotlin.BuildConfig
 import com.union.bangbang.todokotlin.dagger.annotation.ActivityScope
+import com.union.bangbang.todokotlin.ui.home.HomeActivity
 import com.union.bangbang.todokotlin.ui.startup.StartUpActivity
 import com.union.bangbang.todokotlin.ui.user.UserListActivity
 import com.union.bangbang.todokotlin.ui.user.login.LoginActivity
@@ -27,9 +28,15 @@ abstract class ActivityModule {
     @ContributesAndroidInjector
     abstract fun contributeLoginActivityInjecttor(): LoginActivity
 
+    @ActivityScope
+    @ContributesAndroidInjector
+    abstract fun contributeHomeActivityInjecttor(): HomeActivity
+
     companion object {
         const val app ="/todo/"
         const val user = app+"user/"
+        const val home = app+"home/"
         const val user_login= app+"login"
+        const val home_page = home+"home"
     }
 }

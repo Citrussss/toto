@@ -4,10 +4,9 @@ import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
-import android.databinding.DataBindingUtil
 import android.os.Bundle
 import com.union.bangbang.todokotlin.R
-import com.union.bangbang.todokotlin.base.BaseActivity
+import com.union.bangbang.todokotlin.base.activity.BaseActivity
 import com.union.bangbang.todokotlin.databinding.ActivityUserListBinding
 import kotlinx.android.synthetic.main.activity_user_list.*
 import javax.inject.Inject
