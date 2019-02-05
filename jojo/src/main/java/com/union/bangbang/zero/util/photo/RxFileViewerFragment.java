@@ -13,24 +13,21 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringDef;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringDef;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.union.bangbang.zero.AppUtil;
-import com.union.bangbang.zero.util.JimUtils;
-import io.reactivex.Observable;
+
 import io.reactivex.ObservableEmitter;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 
 import java.io.File;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-
-import static com.union.bangbang.zero.AppUtil.peekActivity;
 
 /**
  * @name zero

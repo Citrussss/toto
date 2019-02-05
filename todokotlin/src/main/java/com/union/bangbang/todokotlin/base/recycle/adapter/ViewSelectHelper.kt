@@ -1,9 +1,9 @@
 package com.union.bangbang.todokotlin.base.recycle.adapter
 
 import android.content.Context
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
-import android.support.annotation.IdRes
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import androidx.annotation.IdRes
 import android.view.LayoutInflater
 import android.view.ViewGroup
 

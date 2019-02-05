@@ -1,21 +1,16 @@
 package com.union.bangbang.zero.util.photo;
 
-import android.Manifest;
-import android.app.Activity;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import com.union.bangbang.zero.R;
-import com.union.bangbang.zero.util.JimUtils;
+
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
 import io.reactivex.functions.Consumer;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
 
 import static android.content.ContentValues.TAG;
-import static com.union.bangbang.zero.AppUtil.peekActivity;
 
 /**
  * @name zero

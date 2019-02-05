@@ -1,20 +1,13 @@
 package com.union.bangbang.testapp;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import com.union.bangbang.zero.toast.JoJoToast;
-import com.union.bangbang.zero.util.photo.FileViewManager;
-import com.union.bangbang.zero.util.photo.RxFileViewer;
-import com.union.bangbang.zero.util.photo.RxFileViewerFragment;
-import io.reactivex.disposables.Disposable;
-
-import static com.union.bangbang.zero.toast.tastytoast.TastyToast.SUCCESS;
 
 public class MainActivity extends AppCompatActivity {
 

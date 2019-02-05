@@ -5,18 +5,10 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.ImageView;
-
-import com.union.bangbang.testapp.R;
 
 /**
  * @name toto
@@ -24,7 +16,7 @@ import com.union.bangbang.testapp.R;
  * @time 2019-01-28 20:08
  * 只有编译器可能不骗你。
  */
-public class DstInImageView extends android.support.v7.widget.AppCompatImageView {
+public class DstInImageView extends androidx.appcompat.widget.AppCompatImageView {
     private Paint circlePaint = new Paint();
     /**
      * Simple constructor to use when creating a view from code.

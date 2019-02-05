@@ -1,7 +1,7 @@
 package com.union.bangbang.todokotlin.dagger.module
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.union.bangbang.todokotlin.base.model.ViewModelFactory
 import com.union.bangbang.todokotlin.dagger.ViewModelKey
 import com.union.bangbang.todokotlin.ui.startup.StartUpModel

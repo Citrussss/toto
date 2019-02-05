@@ -1,6 +1,6 @@
 package com.union.bangbang.todokotlin.base.recycle.adapter
 
-import android.databinding.ViewDataBinding
+import androidx.databinding.ViewDataBinding
 import android.util.SparseArray
 import android.view.LayoutInflater
 import android.view.View
