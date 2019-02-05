@@ -2,11 +2,15 @@ package com.union.bangbang.bs.ui.user.login;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
 import com.union.bangbang.base.base.BaseActivity;
+import com.union.bangbang.base.base.BaseModel;
 import com.union.bangbang.bs.R;
+
+import javax.inject.Inject;
 
 /**
  * 不乱于心，不困于情。不畏将来，不念过往。如此，安好!
@@ -20,10 +24,12 @@ import com.union.bangbang.bs.R;
  * 无愧于天，无愧于地。无怍于人，无惧于鬼。这样，人生!
  */
 public class LoginActivity extends BaseActivity {
-
+    @Inject BaseModel baseModel;
+    private String TAG ="LoginActivity";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i(TAG, "onCreate: "+baseModel.getS());
     }
 
     @Override

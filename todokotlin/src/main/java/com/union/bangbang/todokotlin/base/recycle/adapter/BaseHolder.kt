@@ -1,6 +1,6 @@
 package com.union.bangbang.todokotlin.base.recycle.adapter
 
-import androidx.databinding.ViewDataBinding
+import android.databinding.ViewDataBinding
 import android.view.View
 import com.chad.library.adapter.base.BaseViewHolder
 

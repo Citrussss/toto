@@ -1,11 +1,11 @@
 package com.union.bangbang.todokotlin.ui.startup
 
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
+import android.arch.lifecycle.AndroidViewModel
+import android.arch.lifecycle.ViewModelProvider
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
-import androidx.databinding.DataBindingUtil
-import androidx.appcompat.app.AppCompatActivity
+import android.databinding.DataBindingUtil
+import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.union.bangbang.todokotlin.R
 import com.union.bangbang.todokotlin.base.BaseActivity

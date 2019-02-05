@@ -1,14 +1,12 @@
 package com.union.bangbang.todokotlin.base
 
-import androidx.lifecycle.AndroidViewModel
+import android.arch.lifecycle.AndroidViewModel
 import android.content.Context
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.support.v7.app.AppCompatActivity
 import com.union.bangbang.todokotlin.BR
 import dagger.android.AndroidInjection
 
@@ -18,7 +16,7 @@ import dagger.android.AndroidInjection
  * @time 2018/12/16 3:45 PM
  * 只有编译器可能不骗你。
  */
-abstract class BaseActivity<Binding: ViewDataBinding> : AppCompatActivity() {
+abstract class BaseActivity<Binding:ViewDataBinding> : AppCompatActivity() {
     lateinit var binding: Binding
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)

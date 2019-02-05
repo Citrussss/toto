@@ -1,6 +1,6 @@
 package com.union.bangbang.todokotlin.dagger
 
-import androidx.lifecycle.ViewModel
+import android.arch.lifecycle.ViewModel
 import dagger.MapKey
 import kotlin.reflect.KClass
 

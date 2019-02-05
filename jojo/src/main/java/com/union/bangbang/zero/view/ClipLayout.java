@@ -106,6 +106,7 @@ public class ClipLayout extends FrameLayout {
         super.onDraw(canvas);
         drawingCache = getDrawingCache();
         setDrawingCacheEnabled(false);
+        canvas.drawBitmap(drawingCache,new Matrix(),circlePaint);
 
     }
 

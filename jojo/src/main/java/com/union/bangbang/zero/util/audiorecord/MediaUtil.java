@@ -1,7 +1,7 @@
 package com.union.bangbang.zero.util.audiorecord;
 
 import android.media.MediaPlayer;
-import androidx.annotation.IntDef;
+import android.support.annotation.IntDef;
 
 import java.io.File;
 import java.io.IOException;

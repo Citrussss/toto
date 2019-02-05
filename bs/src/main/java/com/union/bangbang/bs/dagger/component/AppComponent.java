@@ -1,6 +1,13 @@
-package com.union.bangbang.base.base;
+package com.union.bangbang.bs.dagger.component;
 
-import javax.inject.Inject;
+import android.app.Application;
+
+import com.union.bangbang.bs.BangApplication;
+
+import javax.inject.Singleton;
+
+import dagger.BindsInstance;
+import dagger.Component;
 
 /**
  * 不乱于心，不困于情。不畏将来，不念过往。如此，安好!
@@ -13,16 +20,8 @@ import javax.inject.Inject;
  * <p>
  * 无愧于天，无愧于地。无怍于人，无惧于鬼。这样，人生!
  */
-public class BaseModel {
-    @Inject BaseModel() {}
-
-    private String s="haoniua";
-
-    public String getS() {
-        return s;
-    }
-
-    public void setS(String s) {
-        this.s = s;
-    }
+@Singleton
+@Component()
+public interface AppComponent {
+//    void inject(BangApplication application);
 }

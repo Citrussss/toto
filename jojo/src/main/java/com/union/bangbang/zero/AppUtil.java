@@ -5,7 +5,7 @@ import android.app.Application;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.DrawableRes;
+import android.support.annotation.DrawableRes;
 
 import java.util.Stack;
 

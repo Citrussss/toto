@@ -1,3 +1,3 @@
-include ':bs', ':base'
+include  ':todokotlin',':jojo'
 //':jojo', ':todokotlin','testapp'
 //,':todo'

@@ -8,6 +8,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
+
+import dagger.android.AndroidInjection;
+import dagger.android.support.DaggerAppCompatActivity;
+
 /**
  * @name toto
  * @anthor bangbang QQ:740090077
@@ -15,10 +19,11 @@ import androidx.databinding.ViewDataBinding;
  * 只有编译器可能不骗你。
  */
 
-public abstract class BaseActivity<Binding extends ViewDataBinding> extends FragmentActivity {
+public abstract class BaseActivity<Binding extends ViewDataBinding> extends DaggerAppCompatActivity {
     protected Binding binding;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         initView();
     }
@@ -31,4 +36,9 @@ public abstract class BaseActivity<Binding extends ViewDataBinding> extends Frag
         super.onDestroy();
     }
     protected abstract  int getLayoutId();
+
+    public Binding getBinding() {
+        if(binding==null)initView();
+        return binding;
+    }
 }

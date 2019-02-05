@@ -1,8 +1,8 @@
 package com.union.bangbang.todokotlin.ui.user
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.arch.lifecycle.AndroidViewModel
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import com.union.bangbang.todokotlin.base.data.model.DataService
 import com.union.bangbang.todokotlin.base.data.pojo.User
@@ -20,7 +20,7 @@ import javax.inject.Inject
  */
 class UserListModel @Inject constructor(private val dataService: DataService, app: Application) : AndroidViewModel(app) {
     val adapter: BindingAdapter = BindingAdapter(null)
-    val linearLayoutManager: androidx.recyclerview.widget.LinearLayoutManager = androidx.recyclerview.widget.LinearLayoutManager(getApplication(), androidx.recyclerview.widget.LinearLayoutManager.VERTICAL, false)
+    val linearLayoutManager: LinearLayoutManager = LinearLayoutManager(getApplication(), LinearLayoutManager.VERTICAL, false)
     fun getUserList() = dataService.userList()
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())

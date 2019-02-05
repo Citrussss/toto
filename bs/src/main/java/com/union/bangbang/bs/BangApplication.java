@@ -1,8 +1,17 @@
 package com.union.bangbang.bs;
 
+import android.app.Activity;
 import android.app.Application;
 
 import com.union.bangbang.base.AppUtil;
+import com.union.bangbang.bs.dagger.component.DaggerAppComponent;
+
+import javax.inject.Inject;
+
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasActivityInjector;
+import dagger.android.support.DaggerApplication;
 
 /**
  * 不乱于心，不困于情。不畏将来，不念过往。如此，安好!
@@ -15,11 +24,18 @@ import com.union.bangbang.base.AppUtil;
  * <p>
  * 无愧于天，无愧于地。无怍于人，无惧于鬼。这样，人生!
  */
-public class BangApplication extends Application {
+public class BangApplication {
+//    @Inject
+    DispatchingAndroidInjector<Activity> activityInjector;
 
     @Override
     public void onCreate() {
         super.onCreate();
+//        DaggerAppComponent.builder().application(this).build().inject(this)
         AppUtil.getInstance().init(this);
     }
+    /**
+     * Returns an {@link AndroidInjector} of {@link Activity}s.
+     */
+
 }

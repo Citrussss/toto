@@ -1,7 +1,7 @@
 package com.union.bangbang.todokotlin.ui.user.login
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import android.arch.lifecycle.AndroidViewModel
 import javax.inject.Inject
 
 /**

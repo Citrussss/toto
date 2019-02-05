@@ -1,6 +1,6 @@
 package com.union.bangbang.todokotlin.base.data.pojo
 
-import androidx.databinding.ViewDataBinding
+import android.databinding.ViewDataBinding
 import com.union.bangbang.todokotlin.R
 import com.union.bangbang.todokotlin.base.recycle.adapter.ViewSelectHelper
 

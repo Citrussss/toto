@@ -1,12 +1,12 @@
 package com.union.bangbang.todokotlin.ui.startup
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
+import android.arch.lifecycle.AndroidViewModel
+import android.arch.lifecycle.ViewModel
 import android.content.Intent
-import androidx.databinding.ObservableBoolean
-import androidx.databinding.ObservableField
-import androidx.core.content.ContextCompat.startActivity
+import android.databinding.ObservableBoolean
+import android.databinding.ObservableField
+import android.support.v4.content.ContextCompat.startActivity
 import android.util.Log
 import android.view.View
 import com.union.bangbang.todokotlin.base.BaseActivity

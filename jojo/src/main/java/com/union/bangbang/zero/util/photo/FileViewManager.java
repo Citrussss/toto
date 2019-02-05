@@ -13,12 +13,12 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import androidx.annotation.Nullable;
-import androidx.annotation.StringDef;
+import android.support.annotation.Nullable;
+import android.support.annotation.StringDef;
 
 import android.support.v4.app.FragmentActivity;
-import androidx.core.content.FileProvider;
-import androidx.core.util.Consumer;
+import android.support.v4.content.FileProvider;
+import android.support.v4.util.Consumer;
 import com.union.bangbang.zero.BuildConfig;
 import com.union.bangbang.zero.util.JimUtils;
 
