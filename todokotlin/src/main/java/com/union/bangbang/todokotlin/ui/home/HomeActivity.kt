@@ -3,15 +3,21 @@ package com.union.bangbang.todokotlin.ui.home
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Context
 import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.util.Log
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.union.bangbang.todokotlin.BuildConfig
+import com.union.bangbang.todokotlin.Constants
 import com.union.bangbang.todokotlin.R
 import com.union.bangbang.todokotlin.base.activity.BaseActivity
+import com.union.bangbang.todokotlin.base.data.net.Api
 import com.union.bangbang.todokotlin.base.fragment.BaseFragment
+import com.union.bangbang.todokotlin.base.utils.ArouterUtil
 import com.union.bangbang.todokotlin.dagger.module.ActivityModule.Companion.home_page
+import com.union.bangbang.todokotlin.dagger.module.ActivityModule.Companion.user_login
 import com.union.bangbang.todokotlin.databinding.ActivityHomeBinding
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -31,22 +37,22 @@ import javax.inject.Inject
  */
 @Route(path = home_page)
 class HomeActivity : BaseActivity<ActivityHomeBinding>() {
-    @Inject
-    lateinit var factory: ViewModelProvider.Factory
+
     @Inject
     lateinit var viewModel: HomeModel
     private val fragments: ArrayList<BaseFragment<ViewDataBinding>> = ArrayList()
     private var currentTab: Int = -1
     override fun getLayoutId() = R.layout.activity_home
     override fun initViewModel(): AndroidViewModel {
-        viewModel = ViewModelProviders.of(this, factory).get(HomeModel::class.java)
         return viewModel
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
-//        tab_layout.addOnLayoutChangeListener()
         super.onCreate(savedInstanceState)
+        if (!getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE).getBoolean(Constants.isLogin, false)) {
+            ArouterUtil.navigation(user_login)
+            finish()
+        }
         addDisposable(
                 Observable.range(0, 3)
                         .map { viewModel.getFragment(it) }.toList().toObservable()
@@ -54,19 +60,19 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe { checkFragment(0) }
         )
-        tab_layout.addOnTabSelectedListener(object :  TabLayout.BaseOnTabSelectedListener<TabLayout.Tab>{
+        tab_layout.addOnTabSelectedListener(object : TabLayout.BaseOnTabSelectedListener<TabLayout.Tab> {
             override fun onTabReselected(p0: TabLayout.Tab?) {
-                Log.i("HomeActivity","onTabReselected")
+                Log.i("HomeActivity", "onTabReselected")
             }
 
             override fun onTabUnselected(p0: TabLayout.Tab?) {
-                Log.i("HomeActivity","onTabUnselected")
+                Log.i("HomeActivity", "onTabUnselected")
             }
 
             override fun onTabSelected(p0: TabLayout.Tab?) {
-                (p0?.let {checkFragment(it.position) })
+                (p0?.let { checkFragment(it.position) })
             }
-        } )
+        })
     }
 
     private fun checkFragment(position: Int?) {
@@ -87,7 +93,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
             fragment.onResume()
         else
             ft.add(R.id.fragment_content, fragment)
-        Log.e("HomeActivity","checkFragment")
+        Log.e("HomeActivity", "checkFragment")
 
         ft.show(fragment)
         ft.commitAllowingStateLoss()

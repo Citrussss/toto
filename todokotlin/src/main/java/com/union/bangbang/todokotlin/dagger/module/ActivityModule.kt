@@ -6,6 +6,7 @@ import com.union.bangbang.todokotlin.ui.home.HomeActivity
 import com.union.bangbang.todokotlin.ui.startup.StartUpActivity
 import com.union.bangbang.todokotlin.ui.user.UserListActivity
 import com.union.bangbang.todokotlin.ui.user.login.LoginActivity
+import com.union.bangbang.todokotlin.ui.user.register.RegisterActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -32,11 +33,16 @@ abstract class ActivityModule {
     @ContributesAndroidInjector
     abstract fun contributeHomeActivityInjecttor(): HomeActivity
 
+    @ActivityScope
+    @ContributesAndroidInjector
+    abstract fun bindRegisterActivity() : RegisterActivity
     companion object {
         const val app ="/todo/"
         const val user = app+"user/"
         const val home = app+"home/"
         const val user_login= app+"login"
+        const val user_register=app+"register"
+
         const val home_page = home+"home"
     }
 }

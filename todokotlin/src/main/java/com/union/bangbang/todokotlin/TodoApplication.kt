@@ -3,11 +3,15 @@ package com.union.bangbang.todokotlin
 import android.app.Activity
 import android.app.Application
 import android.support.multidex.MultiDex
+import android.support.v4.app.Fragment
 import com.alibaba.android.arouter.launcher.ARouter
 import com.facebook.stetho.Stetho
 import com.union.bangbang.zero.AppUtil
+import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
+import dagger.android.HasFragmentInjector
+import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
 /**
@@ -20,10 +24,15 @@ import javax.inject.Inject
  * @chang time
  * @class describe
  */
-class TodoApplication : Application(), HasActivityInjector {
+class TodoApplication : Application(), HasActivityInjector, HasSupportFragmentInjector {
+
 
     @Inject
+    lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
+    @Inject
     lateinit var activityInjector: DispatchingAndroidInjector<Activity>
+
+    override fun supportFragmentInjector(): AndroidInjector<Fragment> =fragmentInjector
 
     override fun activityInjector(): DispatchingAndroidInjector<Activity> = activityInjector
 

@@ -33,6 +33,7 @@
         <activity android:name=".ui.user.UserListActivity" />
         <activity android:name=".ui.user.login.LoginActivity" />
         <activity android:name=".ui.home.HomeActivity" />
+        <activity android:name=".ui.user.register.RegisterActivity" />
     </application>
 
 </manifest>

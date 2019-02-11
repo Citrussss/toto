@@ -4,7 +4,10 @@ import android.util.Config
 import com.union.bangbang.todokotlin.BuildConfig
 import com.union.bangbang.todokotlin.base.data.net.Api
 import com.union.bangbang.todokotlin.base.data.pojo.User
+import com.union.bangbang.todokotlin.base.data.pojo.UserEntity
 import io.reactivex.Observable
+import io.reactivex.Scheduler
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 /**
@@ -16,7 +19,7 @@ import javax.inject.Inject
 class DataService @Inject constructor(private val net: Api) {
     fun tourist() = net.tourist()
     fun userList() = if (BuildConfig.DEBUG) getDefList() else net.userFindAll().map { it.data }
-
-    fun getDefList() = Observable.range(0, 100).map { User(it, "name") }
+    fun getDefList() = Observable.range(0, 100).map { User(it, 17857025659,"tony") }
             .toList().toObservable()
+    fun login(user: UserEntity) = net.login(user).subscribeOn(Schedulers.io())
 }

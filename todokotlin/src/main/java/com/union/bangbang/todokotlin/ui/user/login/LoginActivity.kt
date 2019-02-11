@@ -24,7 +24,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     override fun getLayoutId(): Int = R.layout.activity_login
     override fun initViewModel(): AndroidViewModel {
         viewModel = ViewModelProviders.of(this, factory).get(LoginModel::class.java)
-        return viewModel;
+        return viewModel
     }
 
 }

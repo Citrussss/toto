@@ -87,4 +87,8 @@ public class AppUtil implements Application.ActivityLifecycleCallbacks {
             return peekActivity().getResources().getDrawable(id);
         }
     }
+
+//    public boolean saveValue(String key,Object value){
+//
+//    }
 }

@@ -67,4 +67,5 @@ ext {
 
     anko_version = "0.10.8"
     var = '28.0.3'
+    dbflow_version = '5.0.0-alpha1'
 }

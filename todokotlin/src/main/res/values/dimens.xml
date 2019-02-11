@@ -2,4 +2,12 @@
     <dimen name="text_title">18sp</dimen>
     <dimen name="text_deep">16sp</dimen>
     <dimen name="text_content">14sp</dimen>
+    <dimen name="def_height">52dp</dimen>
+    <dimen name="dp_10">10dp</dimen>
+    <dimen name="dp_4">4dp</dimen>
+    <dimen name="dp_40">40dp</dimen>
+    <dimen name="dp_72">72dp</dimen>
+    <dimen name="sp_12">12sp</dimen>
+    <dimen name="sp_14">14sp</dimen>
+    <dimen name="sp_16">16sp</dimen>
 </resources>

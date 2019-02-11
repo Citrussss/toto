@@ -1,10 +1,10 @@
 package com.union.bangbang.todokotlin.base.data.net
 
-import com.union.bangbang.todokotlin.base.data.pojo.InfoEntity
-import com.union.bangbang.todokotlin.base.data.pojo.TouristEntity
-import com.union.bangbang.todokotlin.base.data.pojo.User
+import com.union.bangbang.todokotlin.base.data.pojo.*
 import io.reactivex.Observable
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 
 /**
  * @name toto
@@ -17,7 +17,12 @@ interface Api {
      * 游客登录
      */
     @GET("user/tourist")
-    fun tourist():Observable<InfoEntity<TouristEntity>>
+    fun tourist(): Observable<InfoEntity<TouristEntity>>
+
     @GET("user/findAll")
-    fun userFindAll():Observable<InfoEntity<List<User>>>
+    fun userFindAll(): Observable<InfoEntity<List<User>>>
+
+    @POST("user/login")
+    fun login(@Body user: UserEntity): Observable<InfoEntity<LoginEntity>>
+
 }

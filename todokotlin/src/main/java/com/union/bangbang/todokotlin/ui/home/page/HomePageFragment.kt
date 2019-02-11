@@ -1,5 +1,6 @@
 package com.union.bangbang.todokotlin.ui.home.page
 
+import android.arch.lifecycle.AndroidViewModel
 import com.union.bangbang.todokotlin.R
 import com.union.bangbang.todokotlin.base.fragment.BaseFragment
 
@@ -15,6 +16,9 @@ import com.union.bangbang.todokotlin.base.fragment.BaseFragment
 无愧于天，无愧于地。无怍于人，无惧于鬼。这样，人生!
  */
 class HomePageFragment : BaseFragment<com.union.bangbang.todokotlin.databinding.FragmentHomePageBinding>() {
+
+    override fun initViewModel(): AndroidViewModel? =null
+
     override fun getLayoutId(): Int {
        return  R.layout.fragment_home_page
     }

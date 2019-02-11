@@ -3,16 +3,20 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="com.union.bangbang.todokotlin.ui.user.UserListModel" />
     </data>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycle_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="瞬间" />
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
     </FrameLayout>
 </layout>
