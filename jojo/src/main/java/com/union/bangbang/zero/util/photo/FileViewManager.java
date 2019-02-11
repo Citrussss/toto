@@ -15,10 +15,11 @@ import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringDef;
-
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.FileProvider;
 import android.support.v4.util.Consumer;
+import android.text.TextUtils;
+
 import com.union.bangbang.zero.BuildConfig;
 import com.union.bangbang.zero.util.JimUtils;
 
@@ -103,7 +104,7 @@ public class FileViewManager extends Activity {
             String[] proj = {MediaStore.Images.Media.DATA};
             if (consumer != null && uri != null) {
                 try {
-                    String path = UriTofilePath.getFilePathByUri(this, uri);
+                    String path = getPath(uri);
                     consumer.accept(new File(path));
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -111,6 +112,15 @@ public class FileViewManager extends Activity {
             }
         }
         finish();
+    }
+
+    private String getPath(Uri uri) {
+        String path = "";
+        path = FileUtil.getRealPathFromURI(this, uri);
+        if (TextUtils.isEmpty(path)) {
+            path = FileUtil.getImageAbsolutePath(this, uri);
+        }
+        return path;
     }
 
     private static class UriTofilePath {

@@ -1,4 +1,4 @@
-package com.tbruyelle.rxpermissions2;
+package com.union.bangbang.rxpermissions2;
 
 import java.util.List;
 

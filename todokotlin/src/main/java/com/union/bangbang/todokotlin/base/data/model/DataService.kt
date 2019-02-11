@@ -1,12 +1,10 @@
 package com.union.bangbang.todokotlin.base.data.model
 
-import android.util.Config
 import com.union.bangbang.todokotlin.BuildConfig
 import com.union.bangbang.todokotlin.base.data.net.Api
 import com.union.bangbang.todokotlin.base.data.pojo.User
 import com.union.bangbang.todokotlin.base.data.pojo.UserEntity
 import io.reactivex.Observable
-import io.reactivex.Scheduler
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 

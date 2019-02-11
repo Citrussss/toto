@@ -2,6 +2,7 @@ package com.union.bangbang.todokotlin.ui.home.moment
 
 import android.arch.lifecycle.AndroidViewModel
 import android.os.Bundle
+import com.union.bangbang.rxpermissions2.RxPermissions
 import com.union.bangbang.todokotlin.R
 import com.union.bangbang.todokotlin.base.fragment.BaseFragment
 import com.union.bangbang.todokotlin.databinding.FragmentHomeMomentBinding
@@ -33,5 +34,7 @@ class HomeMomentFragment : BaseFragment<FragmentHomeMomentBinding>() {
         recycle_view.adapter = viewModel.adapter
         recycle_view.layoutManager = viewModel.linearLayoutManager
         viewModel.getUserList()
+        val rxPermissions=RxPermissions(this)
+        rxPermissions.ensureEach
     }
 }

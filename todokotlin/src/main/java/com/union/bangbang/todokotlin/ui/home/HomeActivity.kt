@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.util.Log
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.union.bangbang.rxpermissions2.RxPermissions
 import com.union.bangbang.todokotlin.BuildConfig
 import com.union.bangbang.todokotlin.Constants
 import com.union.bangbang.todokotlin.R
@@ -51,6 +52,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
         super.onCreate(savedInstanceState)
         if (!getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE).getBoolean(Constants.isLogin, false)) {
             ArouterUtil.navigation(user_login)
+
             finish()
         }
         addDisposable(
@@ -77,10 +79,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 
     private fun checkFragment(position: Int?) {
         val ft = supportFragmentManager.beginTransaction()
-        //UI建议不要设置这个转场动画
-        //        if (position < currentTab)
-        //            ft.setCustomAnimations(R.anim.push_left_in, R.anim.push_right_out);
-        //        else ft.setCustomAnimations(R.anim.push_right_in, R.anim.push_left_out);
         if (currentTab >= 0) {
             val beforeFragment = fragments.get(currentTab)
             beforeFragment.onPause()
