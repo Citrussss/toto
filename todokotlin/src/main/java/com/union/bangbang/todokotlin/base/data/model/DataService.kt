@@ -20,4 +20,5 @@ class DataService @Inject constructor(private val net: Api) {
     fun getDefList() = Observable.range(0, 100).map { User(it, 17857025659,"tony") }
             .toList().toObservable()
     fun login(user: UserEntity) = net.login(user).subscribeOn(Schedulers.io())
+    fun register(user: UserEntity)=net.register(user).subscribeOn(Schedulers.io())
 }

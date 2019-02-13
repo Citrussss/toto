@@ -5,9 +5,14 @@ import android.databinding.ObservableField
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.union.bangbang.todokotlin.base.data.model.DataService
 import com.union.bangbang.todokotlin.base.data.pojo.UserEntity
 import com.union.bangbang.todokotlin.base.model.BaseModel
+import com.union.bangbang.todokotlin.base.utils.ArouterUtil
+import com.union.bangbang.todokotlin.dagger.module.ActivityModule.Companion.user_register
+import es.dmoral.toasty.Toasty
+import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
 /**
@@ -20,15 +25,32 @@ class LoginModel @Inject constructor(private val dataService: DataService, app: 
     var mobile = ObservableField<String>()
     var password = ObservableField<String>()
     fun onLoginClick(view: View) {
-        Log.i("LoginModel", "onLoginClick")
         if (!TextUtils.isEmpty(mobile.get()) && !TextUtils.isEmpty(password.get())) {
             val user = UserEntity(0, mobile.get()!!, password.get()!!)
-            addDisposable(dataService.login(user).subscribe(
+            addDisposable(dataService.login(user).observeOn(AndroidSchedulers.mainThread()).subscribe(
                     {
-                        finish()
-                    }, {
+                        if(it.code==0) Toasty.success(getApplication(), it.toString(), Toast.LENGTH_SHORT, true).show()
+                        else  Toasty.error(getApplication(), it.toString(), Toast.LENGTH_SHORT, true).show()
+                    },
+                    {
                 Log.e("LoginModel", it.message)
-            }
+                    }
+            ))
+        }
+    }
+    fun onGoRegisterClick(view:View){
+        ArouterUtil.navigation(user_register)
+    }
+    fun onRegisterClick(view :View){
+        if (!TextUtils.isEmpty(mobile.get()) && !TextUtils.isEmpty(password.get())) {
+            val user = UserEntity(0, mobile.get()!!, password.get()!!)
+            addDisposable(dataService.register(user).subscribe(
+                    {
+                        Toasty.success(getApplication(), it.toString(), Toast.LENGTH_SHORT, true).show();
+                    },
+                    {
+                        Log.e("LoginModel", it.message)
+                    }
             ))
         }
     }

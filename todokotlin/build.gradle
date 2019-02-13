@@ -115,4 +115,7 @@ dependencies {
     // adds generated content provider annotations + support.
     implementation "com.github.agrosner.dbflow:contentprovider:${dbflow_version}"
 
+    //toast
+    implementation 'com.github.GrenderG:Toasty:1.4.0'
+
 }

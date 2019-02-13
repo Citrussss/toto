@@ -25,4 +25,6 @@ interface Api {
     @POST("user/login")
     fun login(@Body user: UserEntity): Observable<InfoEntity<LoginEntity>>
 
+    @POST("user/register")
+    fun register(@Body user:UserEntity):Observable<InfoEntity<String>>
 }

@@ -40,6 +40,7 @@ abstract class ActivityModule {
         const val app ="/todo/"
         const val user = app+"user/"
         const val home = app+"home/"
+
         const val user_login= app+"login"
         const val user_register=app+"register"
 
