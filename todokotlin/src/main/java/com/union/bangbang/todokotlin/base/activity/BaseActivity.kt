@@ -1,6 +1,7 @@
 package com.union.bangbang.todokotlin.base.activity
 
 import android.arch.lifecycle.AndroidViewModel
+import android.arch.lifecycle.Observer
 import android.content.Context
 import android.content.Intent
 import android.databinding.DataBindingUtil
@@ -8,6 +9,7 @@ import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.union.bangbang.todokotlin.BR
+import com.union.bangbang.todokotlin.base.model.BaseModel
 import dagger.android.AndroidInjection
 import io.reactivex.disposables.Disposable
 import java.util.function.Consumer
@@ -36,11 +38,13 @@ abstract class BaseActivity<Binding : ViewDataBinding> : AppCompatActivity() {
 
     fun initViewDataBinding() {
         binding = DataBindingUtil.setContentView(this, getLayoutId())
-        binding.setVariable(BR.vm, initViewModel())
+        val viewModel = initViewModel()
+        viewModel?.let { it.shouldFinish.observe(this, Observer { t->if(t==true)finish() })}
+        binding.setVariable(BR.vm,viewModel)
     }
 
     abstract fun getLayoutId(): Int
-    abstract fun initViewModel(): AndroidViewModel?
+    abstract fun initViewModel(): BaseModel?
     fun addDisposable(disposable: Disposable) {
         rxList.add(disposable)
     }

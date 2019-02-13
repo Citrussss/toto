@@ -44,7 +44,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     private val fragments: ArrayList<BaseFragment<ViewDataBinding>> = ArrayList()
     private var currentTab: Int = -1
     override fun getLayoutId() = R.layout.activity_home
-    override fun initViewModel(): AndroidViewModel {
+    override fun initViewModel(): HomeModel {
         return viewModel
     }
 

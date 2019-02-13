@@ -7,6 +7,7 @@ import android.content.Context
 import android.os.Bundle
 import com.union.bangbang.todokotlin.R
 import com.union.bangbang.todokotlin.base.activity.BaseActivity
+import com.union.bangbang.todokotlin.base.model.BaseModel
 import com.union.bangbang.todokotlin.databinding.ActivityUserListBinding
 import kotlinx.android.synthetic.main.activity_user_list.*
 import javax.inject.Inject
@@ -18,8 +19,7 @@ import javax.inject.Inject
  * 只有编译器可能不骗你。
  */
 class UserListActivity : BaseActivity<ActivityUserListBinding>() {
-    override fun initViewModel(): AndroidViewModel {
-        viewModel = ViewModelProviders.of(this, factory).get(UserListModel::class.java)
+    override fun initViewModel(): BaseModel {
         recycle_view.adapter = viewModel.adapter
         recycle_view.layoutManager = viewModel.linearLayoutManager
         viewModel.getUserList()
@@ -27,7 +27,6 @@ class UserListActivity : BaseActivity<ActivityUserListBinding>() {
     }
 
     @Inject
-    lateinit var factory: ViewModelProvider.Factory
     lateinit var viewModel: UserListModel
     private lateinit var s: UserListModel
 

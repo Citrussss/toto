@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import com.union.bangbang.todokotlin.base.data.model.DataService
 import com.union.bangbang.todokotlin.base.data.pojo.User
+import com.union.bangbang.todokotlin.base.model.BaseModel
 import com.union.bangbang.todokotlin.base.recycle.adapter.BindingAdapter
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -18,7 +19,7 @@ import javax.inject.Inject
  * @time 2018/12/22 6:16 PM
  * 只有编译器可能不骗你。
  */
-class UserListModel @Inject constructor(private val dataService: DataService, app: Application) : AndroidViewModel(app) {
+class UserListModel @Inject constructor(private val dataService: DataService, app: Application) : BaseModel(app) {
     val adapter: BindingAdapter = BindingAdapter(null)
     val linearLayoutManager: LinearLayoutManager = LinearLayoutManager(getApplication(), LinearLayoutManager.VERTICAL, false)
     fun getUserList() = dataService.userList()

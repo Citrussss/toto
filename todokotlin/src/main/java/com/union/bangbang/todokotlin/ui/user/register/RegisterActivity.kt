@@ -4,6 +4,7 @@ import android.arch.lifecycle.AndroidViewModel
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.union.bangbang.todokotlin.R
 import com.union.bangbang.todokotlin.base.activity.BaseActivity
+import com.union.bangbang.todokotlin.base.model.BaseModel
 import com.union.bangbang.todokotlin.dagger.module.ActivityModule.Companion.user_register
 import com.union.bangbang.todokotlin.databinding.ActivityRegisterBinding
 import com.union.bangbang.todokotlin.ui.user.login.LoginModel
@@ -26,5 +27,5 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
     lateinit var viewModel: LoginModel
 
     override fun getLayoutId(): Int = R.layout.activity_register
-    override fun initViewModel(): AndroidViewModel? = viewModel
+    override fun initViewModel(): BaseModel? = viewModel
 }

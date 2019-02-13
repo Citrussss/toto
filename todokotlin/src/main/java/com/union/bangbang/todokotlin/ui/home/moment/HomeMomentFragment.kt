@@ -34,7 +34,7 @@ class HomeMomentFragment : BaseFragment<FragmentHomeMomentBinding>() {
         recycle_view.adapter = viewModel.adapter
         recycle_view.layoutManager = viewModel.linearLayoutManager
         viewModel.getUserList()
-        val rxPermissions=RxPermissions(this)
-        rxPermissions.ensureEach
+//        val rxPermissions=RxPermissions(this)
+//        rxPermissions.ensureEach
     }
 }

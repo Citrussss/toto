@@ -5,6 +5,7 @@ import android.arch.lifecycle.AndroidViewModel
 import android.databinding.ViewDataBinding
 import com.union.bangbang.todokotlin.base.data.model.DataService
 import com.union.bangbang.todokotlin.base.fragment.BaseFragment
+import com.union.bangbang.todokotlin.base.model.BaseModel
 import com.union.bangbang.todokotlin.ui.home.mine.HomeMineFragment
 import com.union.bangbang.todokotlin.ui.home.moment.HomeMomentFragment
 import com.union.bangbang.todokotlin.ui.home.page.HomePageFragment
@@ -21,7 +22,7 @@ import javax.inject.Inject
 
 无愧于天，无愧于地。无怍于人，无惧于鬼。这样，人生!
  */
-class HomeModel @Inject constructor(private val dataService: DataService, private val app: Application) : AndroidViewModel(app) {
+class HomeModel @Inject constructor(private val dataService: DataService, private val app: Application) : BaseModel(app) {
     fun getFragment(position: Int): BaseFragment<ViewDataBinding> {
         return when (position) {
             0 -> HomePageFragment()

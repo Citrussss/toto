@@ -25,7 +25,7 @@ class LoginModel @Inject constructor(private val dataService: DataService, app: 
             val user = UserEntity(0, mobile.get()!!, password.get()!!)
             addDisposable(dataService.login(user).subscribe(
                     {
-                        Log.i("LoginModel", it.toString())
+                        finish()
                     }, {
                 Log.e("LoginModel", it.message)
             }

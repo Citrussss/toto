@@ -3,6 +3,9 @@ package com.union.bangbang.todokotlin.base.model
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import io.reactivex.disposables.Disposable
+import android.arch.lifecycle.MutableLiveData
+
+
 
 /**
 不乱于心，不困于情。不畏将来，不念过往。如此，安好!
@@ -17,6 +20,8 @@ import io.reactivex.disposables.Disposable
  */
 open class BaseModel constructor(app: Application) : AndroidViewModel(app) {
     private val rxList: ArrayList<Disposable> = ArrayList()
+    public val shouldFinish: MutableLiveData<Boolean> = MutableLiveData()
+
     fun addDisposable(disposable: Disposable) {
         rxList.add(disposable)
     }
@@ -29,4 +34,5 @@ open class BaseModel constructor(app: Application) : AndroidViewModel(app) {
         stopAllDisposable()
         super.onCleared()
     }
+    open fun finish()=shouldFinish.postValue(true)
 }

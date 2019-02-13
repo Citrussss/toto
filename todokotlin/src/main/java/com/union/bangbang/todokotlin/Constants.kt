@@ -8,7 +8,7 @@ package com.union.bangbang.todokotlin
  */
 object Constants {
     //    const val HOST_API ="http://149.129.102.158:8080/"
-    const val HOST_API = "http://192.168.0.102:8080/"
+    const val HOST_API = "http://149.129.102.158:8080/"
 
     const val isLogin = "isLogin"
 }
