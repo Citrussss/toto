@@ -33,6 +33,6 @@ class StartUpModel @Inject constructor(private val dataService: DataService,priv
         UserListActivity.onStartActivity(getApplication())
     }
     fun goHome()={
-        ArouterUtil.navigation(ActivityModule.user_login)
+        ArouterUtil.navigation(ActivityModule.home_page)
     }
 }

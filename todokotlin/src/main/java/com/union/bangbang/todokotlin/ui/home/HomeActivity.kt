@@ -50,11 +50,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (!getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE).getBoolean(Constants.isLogin, false)) {
-            ArouterUtil.navigation(user_login)
-
-            finish()
-        }
         addDisposable(
                 Observable.range(0, 3)
                         .map { viewModel.getFragment(it) }.toList().toObservable()

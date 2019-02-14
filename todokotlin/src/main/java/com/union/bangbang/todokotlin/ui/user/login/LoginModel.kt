@@ -1,18 +1,20 @@
 package com.union.bangbang.todokotlin.ui.user.login
 
 import android.app.Application
+import android.content.Context.MODE_PRIVATE
 import android.databinding.ObservableField
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import com.dbflow5.query.list
-import com.dbflow5.query.select
-import com.dbflow5.structure.save
+import com.union.bangbang.todokotlin.BuildConfig
+import com.union.bangbang.todokotlin.TodoApplication
 import com.union.bangbang.todokotlin.base.data.model.DataService
 import com.union.bangbang.todokotlin.base.data.pojo.UserEntity
 import com.union.bangbang.todokotlin.base.model.BaseModel
 import com.union.bangbang.todokotlin.base.utils.ArouterUtil
+import com.union.bangbang.todokotlin.base.utils.UserUtil.setToken
+import com.union.bangbang.todokotlin.dagger.module.ActivityModule.Companion.home_page
 import com.union.bangbang.todokotlin.dagger.module.ActivityModule.Companion.user_register
 import es.dmoral.toasty.Toasty
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -25,27 +27,26 @@ import javax.inject.Inject
  * Date:   2019-01-21
  * Time:   13:53
  */
-class LoginModel @Inject constructor(private val dataService: DataService, app: Application) : BaseModel(app) {
+class LoginModel @Inject constructor(private val dataService: DataService, val app: Application) : BaseModel(app) {
 
     var mobile = ObservableField<String>()
     var password = ObservableField<String>()
     fun onLoginClick(view: View) {
         if (!TextUtils.isEmpty(mobile.get()) && !TextUtils.isEmpty(password.get())) {
             val user = UserEntity(0, mobile.get()!!, password.get()!!)
-            user.save()
             addDisposable(dataService.login(user).observeOn(AndroidSchedulers.mainThread()).subscribe(
                     {
-                        if (it.code == 0) Toasty.success(getApplication(), it.toString(), Toast.LENGTH_SHORT, true).show()
-                        else Toasty.error(getApplication(), it.toString(), Toast.LENGTH_SHORT, true).show()
+                        if (it.code == 0) {
+                            setToken(app,it.data.token.token)
+                            Toasty.success(getApplication(), "登录成功", Toast.LENGTH_SHORT, true).show()
+                            ArouterUtil.navigation(home_page)
+                            finish()
+                        } else Toasty.error(getApplication(), it.toString(), Toast.LENGTH_SHORT, true).show()
                     },
                     {
                         Log.e("LoginModel", it.message)
                     }
             ))
-        } else{
-            val userEntity = select.from(UserEntity::class.java).list[0]
-            mobile.set(userEntity.mobile)
-            password.set(userEntity.password)
         }
     }
 

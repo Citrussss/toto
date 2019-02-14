@@ -5,10 +5,7 @@ import android.app.Application
 import android.support.multidex.MultiDex
 import android.support.v4.app.Fragment
 import com.alibaba.android.arouter.launcher.ARouter
-import com.dbflow5.config.*
-import com.dbflow5.database.AndroidSQLiteOpenHelper
 import com.facebook.stetho.Stetho
-import com.union.bangbang.todokotlin.base.data.model.AppDatabase
 import com.union.bangbang.zero.AppUtil
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -48,12 +45,7 @@ class TodoApplication : Application(), HasActivityInjector, HasSupportFragmentIn
         DaggerAppComponent.builder().application(this).build().inject(this)
         appUtil.init(this)
         Stetho.initializeWithDefaults(this)
-        //下面是DBFlow初始化的依赖
-        FlowManager.init(
-                FlowConfig.builder(this).database(
-                        DatabaseConfig.builder(AppDatabase::class.java, AndroidSQLiteOpenHelper.createHelperCreator(this)).databaseName("AppDatabase`").build())
-                        .build()
-        )
+
         if (BuildConfig.DEBUG) {           // 这两行必须写在init之前，否则这些配置在init过程中将无效
             ARouter.openLog()    // 打印日志
             ARouter.openDebug()  // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
