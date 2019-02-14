@@ -1,6 +1,12 @@
 package com.union.bangbang.todokotlin.base.data.model
 
 import com.dbflow5.annotation.Database
+import com.dbflow5.query.From
+import com.dbflow5.structure.BaseModel
+import io.reactivex.Observable
+
+
+
 
 /**
 不乱于心，不困于情。不畏将来，不念过往。如此，安好!
@@ -16,4 +22,17 @@ import com.dbflow5.annotation.Database
 @Database(version = AppDatabase.VERSION)
 object AppDatabase {
     const val VERSION = 1
+    /*inline fun doSomething(action: () -> Unit) {
+        println("Before doSomething...")
+        action()
+        println("After doSomething...")
+    }
+    fun <T:Any> From<T>.rx(): Observable = RXSQLite.rx(
+            this
+            .queryList()
+            .subscribe({ list ->
+
+            });*/
+
 }
+

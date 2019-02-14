@@ -48,6 +48,7 @@ class TodoApplication : Application(), HasActivityInjector, HasSupportFragmentIn
         DaggerAppComponent.builder().application(this).build().inject(this)
         appUtil.init(this)
         Stetho.initializeWithDefaults(this)
+        //下面是DBFlow初始化的依赖
         FlowManager.init(
                 FlowConfig.builder(this).database(
                         DatabaseConfig.builder(AppDatabase::class.java, AndroidSQLiteOpenHelper.createHelperCreator(this)).databaseName("AppDatabase`").build())

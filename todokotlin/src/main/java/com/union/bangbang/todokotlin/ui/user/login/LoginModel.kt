@@ -6,6 +6,9 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.dbflow5.query.list
+import com.dbflow5.query.select
+import com.dbflow5.structure.save
 import com.union.bangbang.todokotlin.base.data.model.DataService
 import com.union.bangbang.todokotlin.base.data.pojo.UserEntity
 import com.union.bangbang.todokotlin.base.model.BaseModel
@@ -15,6 +18,7 @@ import es.dmoral.toasty.Toasty
 import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
+
 /**
  * Rabies
  * @author USER
@@ -22,26 +26,34 @@ import javax.inject.Inject
  * Time:   13:53
  */
 class LoginModel @Inject constructor(private val dataService: DataService, app: Application) : BaseModel(app) {
+
     var mobile = ObservableField<String>()
     var password = ObservableField<String>()
     fun onLoginClick(view: View) {
         if (!TextUtils.isEmpty(mobile.get()) && !TextUtils.isEmpty(password.get())) {
             val user = UserEntity(0, mobile.get()!!, password.get()!!)
+            user.save()
             addDisposable(dataService.login(user).observeOn(AndroidSchedulers.mainThread()).subscribe(
                     {
-                        if(it.code==0) Toasty.success(getApplication(), it.toString(), Toast.LENGTH_SHORT, true).show()
-                        else  Toasty.error(getApplication(), it.toString(), Toast.LENGTH_SHORT, true).show()
+                        if (it.code == 0) Toasty.success(getApplication(), it.toString(), Toast.LENGTH_SHORT, true).show()
+                        else Toasty.error(getApplication(), it.toString(), Toast.LENGTH_SHORT, true).show()
                     },
                     {
-                Log.e("LoginModel", it.message)
+                        Log.e("LoginModel", it.message)
                     }
             ))
+        } else{
+            val userEntity = select.from(UserEntity::class.java).list[0]
+            mobile.set(userEntity.mobile)
+            password.set(userEntity.password)
         }
     }
-    fun onGoRegisterClick(view:View){
+
+    fun onGoRegisterClick(view: View) {
         ArouterUtil.navigation(user_register)
     }
-    fun onRegisterClick(view :View){
+
+    fun onRegisterClick(view: View) {
         if (!TextUtils.isEmpty(mobile.get()) && !TextUtils.isEmpty(password.get())) {
             val user = UserEntity(0, mobile.get()!!, password.get()!!)
             addDisposable(dataService.register(user).subscribe(

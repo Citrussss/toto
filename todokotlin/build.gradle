@@ -100,7 +100,7 @@ dependencies {
     implementation 'com.alibaba:arouter-api:1.2.4'
     kapt 'com.alibaba:arouter-compiler:1.2.0'
 
-//    //dbflow
+//-----//dbflow
     // Use if Kotlin user.
     kapt "com.github.agrosner.dbflow:processor:${dbflow_version}"
     // core set of libraries
@@ -114,6 +114,7 @@ dependencies {
     implementation "com.github.agrosner.dbflow:paging:${dbflow_version}"
     // adds generated content provider annotations + support.
     implementation "com.github.agrosner.dbflow:contentprovider:${dbflow_version}"
+
 
     //toast
     implementation 'com.github.GrenderG:Toasty:1.4.0'
