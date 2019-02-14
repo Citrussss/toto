@@ -119,4 +119,7 @@ dependencies {
     //toast
     implementation 'com.github.GrenderG:Toasty:1.4.0'
 
+    //calendarview
+    implementation 'com.haibin:calendarview:3.5.3'
+
 }

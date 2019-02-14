@@ -4,28 +4,21 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="com.union.bangbang.todokotlin.ui.home.page.TipEntity" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/text_black"
         android:orientation="vertical">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/tool_bar"
+        <com.haibin.calendarview.CalendarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="@string/password_tip"
-            app:titleTextAppearance="@style/style_normal_toolbar" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#d4d4d4" />
-        <!--<com.haibin.calendarview.CalendarLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
             android:orientation="vertical"
             app:calendar_content_view_id="@+id/recyclerView"
             app:calendar_show_mode="only_week_view"
@@ -63,11 +56,12 @@
                 app:month_view_show_mode="mode_only_current"
                 app:year_view_scheme_color="#f17706"/>
 
-            <android.support.v7.widget.RecyclerView
+            <FrameLayout
                 android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#d4d4d4" />
-        </com.haibin.calendarview.CalendarLayout>-->
+                android:visibility="gone"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+               />
+        </com.haibin.calendarview.CalendarLayout>
     </LinearLayout>
 </layout>

@@ -1,6 +1,5 @@
 package com.union.bangbang.todokotlin.base.activity
 
-import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.Observer
 import android.content.Context
 import android.content.Intent
@@ -8,11 +7,16 @@ import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.text.TextUtils
+import android.view.Gravity
+import android.widget.FrameLayout
+import android.widget.TextView
+import android.widget.Toolbar
 import com.union.bangbang.todokotlin.BR
+import com.union.bangbang.todokotlin.R
 import com.union.bangbang.todokotlin.base.model.BaseModel
 import dagger.android.AndroidInjection
 import io.reactivex.disposables.Disposable
-import java.util.function.Consumer
 
 /**
  * @name toto
@@ -39,8 +43,8 @@ abstract class BaseActivity<Binding : ViewDataBinding> : AppCompatActivity() {
     fun initViewDataBinding() {
         binding = DataBindingUtil.setContentView(this, getLayoutId())
         val viewModel = initViewModel()
-        viewModel?.let { it.shouldFinish.observe(this, Observer { t->if(t==true)finish() })}
-        binding.setVariable(BR.vm,viewModel)
+        viewModel?.let { it.shouldFinish.observe(this, Observer { t -> if (t == true) finish() }) }
+        binding.setVariable(BR.vm, viewModel)
     }
 
     abstract fun getLayoutId(): Int
@@ -57,4 +61,26 @@ abstract class BaseActivity<Binding : ViewDataBinding> : AppCompatActivity() {
         stopAllDisposable()
         super.onDestroy()
     }
+
+    fun initToolbar() {
+        val toolbar = findViewById<Toolbar>(R.id.tool_bar)
+        toolbar?.let { it.setTitleCenter() }
+    }
+
+    open fun Toolbar.setTitleCenter() {
+        childCount
+        for (index in 0..childCount) {
+            val view = getChildAt(index)
+            if (view is TextView) {
+                val textView = view;
+                if (!TextUtils.isEmpty(textView.getText())) {
+                    textView.setGravity(Gravity.CENTER);
+                    val params = FrameLayout.LayoutParams(Toolbar.LayoutParams.WRAP_CONTENT, Toolbar.LayoutParams.MATCH_PARENT);
+                    params.gravity = Gravity.CENTER;
+                    textView.setLayoutParams(params);
+                }
+            }
+        }
+    }
+
 }
