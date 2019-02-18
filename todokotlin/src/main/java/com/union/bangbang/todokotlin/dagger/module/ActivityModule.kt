@@ -44,6 +44,6 @@ abstract class ActivityModule {
         const val user_login= app+"login"
         const val user_register=app+"register"
 
-        const val home_page = home+"home"
+        const val home_page = home+"page"
     }
 }

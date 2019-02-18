@@ -4,6 +4,7 @@ import android.os.Bundle
 import com.alibaba.android.arouter.facade.Postcard
 import com.alibaba.android.arouter.launcher.ARouter
 import com.union.bangbang.todokotlin.R
+import com.union.bangbang.zero.AppUtil
 
 /**
  * Rabies
@@ -23,6 +24,6 @@ object  ArouterUtil {
         build(url, bundle).navigation()
     }
     fun navigation(url: String) {
-        build(url, null).navigation()
+        build(url, null).navigation(AppUtil.peekActivity())
     }
 }

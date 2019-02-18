@@ -34,6 +34,10 @@ public class AppUtil implements Application.ActivityLifecycleCallbacks {
         application.registerActivityLifecycleCallbacks(manage);
     }
 
+    public static Stack<Activity> getActivityStack() {
+        return activityStack;
+    }
+
     /**
      * @return 返回栈顶的 @ Activity activity
      */
