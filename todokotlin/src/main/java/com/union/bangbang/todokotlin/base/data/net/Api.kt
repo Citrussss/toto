@@ -5,6 +5,7 @@ import io.reactivex.Observable
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 /**
  * @name toto
@@ -26,5 +27,12 @@ interface Api {
     fun login(@Body user: UserEntity): Observable<InfoEntity<LoginEntity>>
 
     @POST("user/register")
-    fun register(@Body user:UserEntity):Observable<InfoEntity<String>>
+    fun register(@Body user: UserEntity): Observable<InfoEntity<String>>
+
+    @POST("memo/add")
+    fun addMemo(@Body memo: Memo): Observable<InfoEntity<Memo>>
+
+    @GET("memo/findMemoByLocation")
+    fun findMemoByLocation(@Query("longitude") longitude: Float, @Query("latitude") latitude: Float, @Query("distance") distance: Float): Observable<InfoEntity<Memo>>
+
 }

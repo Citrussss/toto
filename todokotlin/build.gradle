@@ -121,6 +121,8 @@ dependencies {
 
     //calendarview
     implementation 'com.haibin:calendarview:3.5.3'
+    //eventbus
+    implementation 'org.greenrobot:eventbus:3.0.0'
 
     //高德地图
     implementation 'com.amap.api:location:4.3.0'

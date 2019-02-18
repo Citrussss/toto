@@ -5,7 +5,9 @@ import android.arch.lifecycle.ViewModelProvider
 import com.union.bangbang.todokotlin.base.model.ViewModelFactory
 import com.union.bangbang.todokotlin.dagger.ViewModelKey
 import com.union.bangbang.todokotlin.ui.home.HomeModel
+import com.union.bangbang.todokotlin.ui.home.moment.HomeMomentModel
 import com.union.bangbang.todokotlin.ui.home.page.HomePageModel
+import com.union.bangbang.todokotlin.ui.home.surrounding.HomeSurroundingModel
 import com.union.bangbang.todokotlin.ui.startup.StartUpModel
 import com.union.bangbang.todokotlin.ui.user.UserListModel
 import com.union.bangbang.todokotlin.ui.user.login.LoginModel
@@ -27,26 +29,35 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(StartUpModel::class)
-    abstract fun injectStartUpModel(viewModel: StartUpModel): ViewModel
+    abstract fun bind(viewModel: StartUpModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(UserListModel::class)
-    abstract fun injectUserListModel(viewModel: UserListModel): ViewModel
+    abstract fun bind(viewModel: UserListModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(LoginModel::class)
-    abstract fun injectLoginModel(viewModel: LoginModel): ViewModel
+    abstract fun bind(viewModel: LoginModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(HomeModel::class)
-    abstract fun bindHomeModel(viewModel: HomeModel): ViewModel
+    abstract fun bind(viewModel: HomeModel): ViewModel
 
     @Binds
     @IntoMap
-    @ViewModelKey(HomeModel::class)
-    abstract fun bindHomePageModel(viewModel: HomePageModel): ViewModel
+    @ViewModelKey(HomePageModel::class)
+    abstract fun bind(viewModel: HomePageModel): ViewModel
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(HomeMomentModel::class)
+    abstract fun bind(viewModel: HomeMomentModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(HomeSurroundingModel::class)
+    abstract fun bind(viewModel: HomeSurroundingModel): ViewModel
 }

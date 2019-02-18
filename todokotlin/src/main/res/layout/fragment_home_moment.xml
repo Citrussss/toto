@@ -1,20 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
             name="vm"
-            type="com.union.bangbang.todokotlin.ui.user.UserListModel" />
+            type="com.union.bangbang.todokotlin.ui.home.moment.HomeMomentModel" />
     </data>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycle_view"
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </FrameLayout>
+            android:layout_height="@dimen/def_height">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/record"
+                android:textSize="@dimen/sp_18" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:layout_margin="5dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/publish"
+                android:onClick="@{vm::onSendClick}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_16" />
+        </android.support.v7.widget.CardView>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="156dp"
+            android:background="@color/white"
+            android:gravity="top"
+            android:hint="记录下你此时的事情"
+            android:padding="15dp"
+            android:text="@={vm.memo.content}" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/def_height"
+            android:orientation="horizontal">
+
+            <com.union.bangbang.zero.view.ClipLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:layout_margin="5dp"
+                app:lb="45"
+                app:lt="45"
+                app:rb="45"
+                app:rt="45">
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_gray"
+                    android:button="@null"
+                    android:checked="false"
+                    android:drawableStart="@drawable/clock_select"
+                    android:drawableLeft="@drawable/clock_select"
+                    android:padding="5dp"
+                    android:text="添加时间"
+                    android:textSize="@dimen/sp_12" />
+            </com.union.bangbang.zero.view.ClipLayout>
+
+            <com.union.bangbang.zero.view.ClipLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:layout_margin="5dp"
+                app:lb="45"
+                app:lt="45"
+                app:rb="45"
+                app:rt="45">
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_gray"
+                    android:button="@null"
+                    android:checked="false"
+                    android:drawableStart="@drawable/location_select"
+                    android:drawableLeft="@drawable/location_select"
+                    android:padding="5dp"
+                    android:text="添加地点"
+                    android:textSize="@dimen/sp_12" />
+            </com.union.bangbang.zero.view.ClipLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <com.union.bangbang.zero.view.ClipLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                app:lb="45"
+                app:lt="45">
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_gray"
+                    android:button="@null"
+                    android:checked="false"
+                    android:drawableStart="@drawable/global_select"
+                    android:drawableLeft="@drawable/global_select"
+                    android:padding="5dp"
+                    android:text="公开"
+                    android:textSize="@dimen/sp_12" />
+            </com.union.bangbang.zero.view.ClipLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
 </layout>

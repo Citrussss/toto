@@ -5,6 +5,7 @@ import com.union.bangbang.todokotlin.BuildConfig
 import com.union.bangbang.todokotlin.Constants
 import com.union.bangbang.todokotlin.base.data.model.DataService
 import com.union.bangbang.todokotlin.base.data.net.Api
+import com.union.bangbang.todokotlin.base.okhttp.HeaderInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -29,6 +30,7 @@ class DataModule {
                 .callFactory(httpClientBuilder.build())
                 .build()
     }
+
     //提供 PaoService 实例
     @Provides
     @Singleton
@@ -49,6 +51,7 @@ class DataModule {
         val builder = OkHttpClient.Builder()
                 .readTimeout(30, TimeUnit.SECONDS)
                 .build().newBuilder()
+        builder.addInterceptor(HeaderInterceptor())
         if (BuildConfig.DEBUG) {
             val loggingInterceptor = HttpLoggingInterceptor()
             loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY

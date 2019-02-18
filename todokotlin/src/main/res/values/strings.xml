@@ -5,5 +5,7 @@
     <string name="mobile_number">手机号</string>
     <string name="password">密码</string>
     <string name="password_tip">最多输入16位密码</string>
+    <string name="publish">发表</string>
+    <string name="record">记录</string>
 
 </resources>

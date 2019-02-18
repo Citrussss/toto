@@ -1,11 +1,9 @@
 package com.union.bangbang.todokotlin.dagger.module
 
-import com.union.bangbang.todokotlin.dagger.annotation.ActivityScope
 import com.union.bangbang.todokotlin.dagger.annotation.FragmentScope
-import com.union.bangbang.todokotlin.ui.home.mine.HomeMineFragment
+import com.union.bangbang.todokotlin.ui.home.surrounding.HomeSurroundingFragment
 import com.union.bangbang.todokotlin.ui.home.moment.HomeMomentFragment
 import com.union.bangbang.todokotlin.ui.home.page.HomePageFragment
-import com.union.bangbang.todokotlin.ui.startup.StartUpActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -33,5 +31,5 @@ abstract class FragmentModule {
 
     @FragmentScope
     @ContributesAndroidInjector
-    abstract fun bindHomeMineFrament(): HomeMineFragment
+    abstract fun bindHomeSurroundingFrament(): HomeSurroundingFragment
 }

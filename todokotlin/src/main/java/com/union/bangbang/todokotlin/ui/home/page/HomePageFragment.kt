@@ -4,9 +4,14 @@ import android.arch.lifecycle.AndroidViewModel
 import android.os.Bundle
 import com.union.bangbang.todokotlin.R
 import com.union.bangbang.todokotlin.base.fragment.BaseFragment
-import kotlinx.android.synthetic.main.fragment_home_moment.*
 import kotlinx.android.synthetic.main.fragment_home_page.*
+import org.greenrobot.eventbus.EventBus
 import javax.inject.Inject
+import android.databinding.adapters.TextViewBindingAdapter.setText
+import org.greenrobot.eventbus.ThreadMode
+import org.greenrobot.eventbus.Subscribe
+
+
 
 /**
 不乱于心，不困于情。不畏将来，不念过往。如此，安好!
@@ -29,10 +34,23 @@ class HomePageFragment : BaseFragment<com.union.bangbang.todokotlin.databinding.
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        EventBus.getDefault().register(this)
+
         recyclerView.adapter = viewModel.adapter
         recyclerView.layoutManager = viewModel.linearLayoutManager
         viewModel.refreshTip()
 //        val rxPermissions=RxPermissions(this)
 //        rxPermissions.ensureEach
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun Event(messageEvent: TipEntity) {
+        tool_bar.title=(messageEvent.position.toString())
+    }
+
+    override fun onStop() {
+        super.onStop()
+        if(EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this)
+        }
     }
 }

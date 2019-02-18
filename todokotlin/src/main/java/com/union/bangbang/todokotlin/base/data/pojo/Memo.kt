@@ -1,10 +1,9 @@
-package com.union.bangbang.todokotlin.ui.home.page
+package com.union.bangbang.todokotlin.base.data.pojo
 
 import android.databinding.ViewDataBinding
-import android.view.View
 import com.union.bangbang.todokotlin.R
 import com.union.bangbang.todokotlin.base.recycle.adapter.ViewSelectHelper
-import org.greenrobot.eventbus.EventBus
+import java.math.BigDecimal
 
 /**
 不乱于心，不困于情。不畏将来，不念过往。如此，安好!
@@ -17,15 +16,27 @@ import org.greenrobot.eventbus.EventBus
 
 无愧于天，无愧于地。无怍于人，无惧于鬼。这样，人生!
  */
-class TipEntity(var position: Int) : ViewSelectHelper<ViewDataBinding> {
+data class Memo constructor(var id: Long?,
+                            var createTime: Long?,
+                            var updateTime: Long?,
+                            var content: String?,
+                            var type: String?,
+                            var longitude: BigDecimal?,
+                            var latitude: BigDecimal?) : ViewSelectHelper<ViewDataBinding> {
+    constructor() : this(null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null)
+
     override var index: Int
         get() = 0
         set(value) {}
     override var layoutId: IntArray
-        get() = intArrayOf(R.layout.holder_tip)
+        get() = IntArray(R.layout.holder_tip)
         set(value) {}
 
-    fun onSelectClick(view: View) {
-        EventBus.getDefault().post(this)
-    }
 }
+

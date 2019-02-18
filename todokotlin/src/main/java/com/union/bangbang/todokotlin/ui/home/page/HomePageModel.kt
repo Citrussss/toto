@@ -21,8 +21,8 @@ import javax.inject.Inject
  */
 class HomePageModel @Inject constructor(val app:Application) :RecycleModel(app) {
     fun refreshTip() {
-        Observable.range(0,3)
-                .map { TipEntity() }
+        val subscribe = Observable.range(0, 3)
+                .map { TipEntity(it) }
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ adapter.addData(it) }, { Log.e("StartUpModel", it.message) })
