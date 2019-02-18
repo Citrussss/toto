@@ -1,5 +1,7 @@
 package com.union.bangbang.todokotlin.dagger.module
 
+import com.amap.api.location.AMapLocationClient
+import com.amap.api.location.AMapLocationListener
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.union.bangbang.todokotlin.BuildConfig
 import com.union.bangbang.todokotlin.Constants
@@ -60,4 +62,17 @@ class DataModule {
         return builder
     }
 
+    @Provides
+    @Singleton
+    fun amap() {
+
+////声明AMapLocationClient类对象
+//        var mLocationClient: AMapLocationClient? = null
+////声明定位回调监听器
+//        val mLocationListener = AMapLocationListener()
+////初始化定位
+//        mLocationClient = AMapLocationClient(getApplicationContext())
+////设置定位回调监听
+//        mLocationClient!!.setLocationListener(mLocationListener)
+    }
 }
