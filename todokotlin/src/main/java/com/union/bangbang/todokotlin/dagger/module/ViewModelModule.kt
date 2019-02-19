@@ -29,35 +29,35 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(StartUpModel::class)
-    abstract fun bind(viewModel: StartUpModel): ViewModel
+    abstract fun bindStartUpModel(viewModel: StartUpModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(UserListModel::class)
-    abstract fun bind(viewModel: UserListModel): ViewModel
+    abstract fun bindUserListModel(viewModel: UserListModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(LoginModel::class)
-    abstract fun bind(viewModel: LoginModel): ViewModel
+    abstract fun bindLoginModel(viewModel: LoginModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(HomeModel::class)
-    abstract fun bind(viewModel: HomeModel): ViewModel
+    abstract fun bindHomeModel(viewModel: HomeModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(HomePageModel::class)
-    abstract fun bind(viewModel: HomePageModel): ViewModel
+    abstract fun bindHomePageModel(viewModel: HomePageModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(HomeMomentModel::class)
-    abstract fun bind(viewModel: HomeMomentModel): ViewModel
+    abstract fun bindHomeMomentModel(viewModel: HomeMomentModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(HomeSurroundingModel::class)
-    abstract fun bind(viewModel: HomeSurroundingModel): ViewModel
+    abstract fun bindHomeSurroundingModel(viewModel: HomeSurroundingModel): ViewModel
 }

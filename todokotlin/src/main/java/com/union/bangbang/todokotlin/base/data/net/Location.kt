@@ -4,6 +4,7 @@ import android.content.Context
 import com.amap.api.location.AMapLocationClient
 import com.amap.api.location.AMapLocationClientOption
 import com.amap.api.location.AMapLocationListener
+import javax.inject.Inject
 
 
 /**
@@ -17,7 +18,7 @@ import com.amap.api.location.AMapLocationListener
 
 无愧于天，无愧于地。无怍于人，无惧于鬼。这样，人生!
  */
-class Location constructor(context: Context) {
+class Location @Inject constructor(context: Context) {
     lateinit var locationClient: AMapLocationClient
     lateinit var mLocationOption: AMapLocationClientOption
 

@@ -1,15 +1,18 @@
 package com.union.bangbang.todokotlin.dagger.module
 
+import android.app.Application
 import android.content.Context
 import com.amap.api.location.AMapLocationClient
 import com.amap.api.location.AMapLocationListener
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.union.bangbang.todokotlin.BuildConfig
 import com.union.bangbang.todokotlin.Constants
+import com.union.bangbang.todokotlin.TodoApplication
 import com.union.bangbang.todokotlin.base.data.model.DataService
 import com.union.bangbang.todokotlin.base.data.net.Api
 import com.union.bangbang.todokotlin.base.data.net.Location
 import com.union.bangbang.todokotlin.base.okhttp.HeaderInterceptor
+import com.union.bangbang.zero.AppUtil
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -18,6 +21,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -66,15 +70,5 @@ class DataModule {
 
     @Provides
     @Singleton
-    fun amap(context: Context):Location {
-        return Location(context)
-////声明AMapLocationClient类对象
-//        var mLocationClient: AMapLocationClient? = null
-////声明定位回调监听器
-//        val mLocationListener = AMapLocationListener()
-////初始化定位
-//        mLocationClient = AMapLocationClient(getApplicationContext())
-////设置定位回调监听
-//        mLocationClient!!.setLocationListener(mLocationListener)
-    }
+    fun amap(context: Context):Location = Location(context)
 }

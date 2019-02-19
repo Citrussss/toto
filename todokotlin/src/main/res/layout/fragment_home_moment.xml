@@ -93,7 +93,7 @@
                     android:drawableStart="@drawable/location_select"
                     android:drawableLeft="@drawable/location_select"
                     android:padding="5dp"
-                    android:text="添加地点"
+                    android:text="@{vm.locationOb}"
                     android:textSize="@dimen/sp_12" />
             </com.union.bangbang.zero.view.ClipLayout>
 

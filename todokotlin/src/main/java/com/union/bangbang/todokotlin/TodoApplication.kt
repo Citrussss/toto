@@ -6,6 +6,7 @@ import android.support.multidex.MultiDex
 import android.support.v4.app.Fragment
 import com.alibaba.android.arouter.launcher.ARouter
 import com.facebook.stetho.Stetho
+import com.union.bangbang.todokotlin.dagger.module.AppModule
 import com.union.bangbang.zero.AppUtil
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -42,7 +43,9 @@ class TodoApplication : Application(), HasActivityInjector, HasSupportFragmentIn
     override fun onCreate() {
         super.onCreate()
         MultiDex.install(this)
-        DaggerAppComponent.builder().application(this).build().inject(this)
+        DaggerAppComponent.builder().application(this)
+//                .appModule(AppModule(this))
+                .build().inject(this)
         appUtil.init(this)
         Stetho.initializeWithDefaults(this)
 
