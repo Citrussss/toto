@@ -1,5 +1,6 @@
 package com.union.bangbang.todokotlin.dagger.module
 
+import android.content.Context
 import com.amap.api.location.AMapLocationClient
 import com.amap.api.location.AMapLocationListener
 import com.facebook.stetho.okhttp3.StethoInterceptor
@@ -7,6 +8,7 @@ import com.union.bangbang.todokotlin.BuildConfig
 import com.union.bangbang.todokotlin.Constants
 import com.union.bangbang.todokotlin.base.data.model.DataService
 import com.union.bangbang.todokotlin.base.data.net.Api
+import com.union.bangbang.todokotlin.base.data.net.Location
 import com.union.bangbang.todokotlin.base.okhttp.HeaderInterceptor
 import dagger.Module
 import dagger.Provides
@@ -64,8 +66,8 @@ class DataModule {
 
     @Provides
     @Singleton
-    fun amap() {
-
+    fun amap(context: Context):Location {
+        return Location(context)
 ////声明AMapLocationClient类对象
 //        var mLocationClient: AMapLocationClient? = null
 ////声明定位回调监听器
