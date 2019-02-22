@@ -9,7 +9,6 @@ import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.util.Log
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.union.bangbang.rxpermissions2.RxPermissions
 import com.union.bangbang.todokotlin.BuildConfig
 import com.union.bangbang.todokotlin.Constants
 import com.union.bangbang.todokotlin.R

@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
+import android.support.v4.app.FragmentActivity;
 
 import java.util.Stack;
 
@@ -21,7 +22,7 @@ import java.util.Stack;
  */
 public class AppUtil implements Application.ActivityLifecycleCallbacks {
     private static final AppUtil manage = new AppUtil();
-    private static Stack<Activity> activityStack = new Stack<>();
+    private static Stack<FragmentActivity> activityStack = new Stack<>();
 
     private AppUtil() {
     }
@@ -34,14 +35,14 @@ public class AppUtil implements Application.ActivityLifecycleCallbacks {
         application.registerActivityLifecycleCallbacks(manage);
     }
 
-    public static Stack<Activity> getActivityStack() {
+    public static Stack<FragmentActivity> getActivityStack() {
         return activityStack;
     }
 
     /**
      * @return 返回栈顶的 @ Activity activity
      */
-    public static Activity peekActivity() {
+    public static FragmentActivity peekActivity() {
         try {
             return activityStack.peek();
         } catch (Exception e) {
@@ -51,7 +52,11 @@ public class AppUtil implements Application.ActivityLifecycleCallbacks {
 
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-        activityStack.add(activity);
+        if(activity instanceof FragmentActivity){
+            activityStack.add((FragmentActivity)activity);
+        }else {
+            throw new RuntimeException("请使用FragmentActivity进行项目搭建");
+        }
     }
 
     @Override
