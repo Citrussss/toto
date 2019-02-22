@@ -48,7 +48,7 @@
         <service android:name=".service.ClockService"
             android:process=":clock"
             />
-        <meta-data android:name="com.amap.api.v2.apikey" android:value="b15d7e17e9002ce217bb5cc64d9c0ab8"/>
+        <meta-data android:name="com.amap.api.v2.apikey" android:value="97172c64836712ea2902fdec9bd8b11e"/>
     </application>
 
 </manifest>
