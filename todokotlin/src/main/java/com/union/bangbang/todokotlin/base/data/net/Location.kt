@@ -1,9 +1,16 @@
 package com.union.bangbang.todokotlin.base.data.net
 
 import android.content.Context
+import com.amap.api.location.AMapLocation
 import com.amap.api.location.AMapLocationClient
 import com.amap.api.location.AMapLocationClientOption
 import com.amap.api.location.AMapLocationListener
+import com.amap.api.services.core.LatLonPoint
+import com.amap.api.services.geocoder.GeocodeResult
+import com.amap.api.services.geocoder.GeocodeSearch
+import com.amap.api.services.geocoder.RegeocodeQuery
+import com.amap.api.services.geocoder.RegeocodeResult
+import com.union.bangbang.todokotlin.base.utils.ToastUtil
 import javax.inject.Inject
 
 
@@ -19,8 +26,10 @@ import javax.inject.Inject
 无愧于天，无愧于地。无怍于人，无惧于鬼。这样，人生!
  */
 class Location @Inject constructor(context: Context) {
+
     lateinit var locationClient: AMapLocationClient
     lateinit var mLocationOption: AMapLocationClientOption
+    lateinit var geocoderSearch: GeocodeSearch
 
     init {
 //声明定位回调监听器
@@ -37,14 +46,40 @@ class Location @Inject constructor(context: Context) {
         mLocationOption.setLocationPurpose(AMapLocationClientOption.AMapLocationPurpose.SignIn);
         locationClient.stopLocation();
         locationClient.startLocation();
+        geocoderSearch = GeocodeSearch(context)
     }
-    fun start(listener: AMapLocationListener){
+
+    fun startLocation(listener: AMapLocationListener) {
         stop()
-        locationClient.setLocationListener(listener)
+        locationClient.setLocationListener {
+            run {
+                if (it.errorCode == 0) {
+//                    if (TextUtils.isEmpty(it.address)){
+//                        val latlon =LatLonPoint(it.latitude,it.longitude)
+//                        val query = RegeocodeQuery(latlon, 10F, GeocodeSearch.AMAP)
+//                        geocoderSearch.getFromLocationAsyn(query)
+//                    }
+                    listener.onLocationChanged(it)
+                } else {
+                    ToastUtil.error(it.errorInfo)
+                }
+                locationClient.stopLocation()
+            }
+        }
         locationClient.startLocation()
     }
-    fun stop(){
+
+    private fun stop() {
         locationClient.stopLocation()
         locationClient.setLocationListener(AMapLocationListener(function = {}))
+    }
+    fun regeocode(location: AMapLocation ,listener: GeocodeSearch.OnGeocodeSearchListener) {
+        val latlon =LatLonPoint(location.latitude,location.longitude)
+        regeocode(latlon,listener)
+    }
+    fun regeocode(latlon:LatLonPoint,listener : GeocodeSearch.OnGeocodeSearchListener) {
+        val query = RegeocodeQuery(latlon, 10F, GeocodeSearch.AMAP)
+        geocoderSearch.setOnGeocodeSearchListener(listener)
+        geocoderSearch.getFromLocationAsyn(query)
     }
 }

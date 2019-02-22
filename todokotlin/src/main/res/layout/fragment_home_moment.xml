@@ -31,8 +31,8 @@
                 android:layout_gravity="end|center_vertical"
                 android:layout_margin="5dp"
                 android:background="@color/colorPrimary"
-                android:text="@string/publish"
                 android:onClick="@{vm::onSendClick}"
+                android:text="@string/publish"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp_16" />
         </android.support.v7.widget.CardView>
@@ -55,6 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|center_vertical"
+                android:onClick="@{vm::onSelectTimeClick}"
                 android:layout_margin="5dp"
                 app:lb="45"
                 app:lt="45"
@@ -62,15 +63,17 @@
                 app:rt="45">
 
                 <CheckBox
+                    android:id="@+id/clock"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/bg_gray"
                     android:button="@null"
                     android:checked="false"
+                    android:clickable="false"
                     android:drawableStart="@drawable/clock_select"
                     android:drawableLeft="@drawable/clock_select"
                     android:padding="5dp"
-                    android:text="添加时间"
+                    android:text="@{vm.timeOb}"
                     android:textSize="@dimen/sp_12" />
             </com.union.bangbang.zero.view.ClipLayout>
 
@@ -78,6 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|center_vertical"
+                android:onClick="@{vm::onLocationClick}"
                 android:layout_margin="5dp"
                 app:lb="45"
                 app:lt="45"
@@ -85,12 +89,14 @@
                 app:rt="45">
 
                 <CheckBox
+                    android:id="@+id/location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/bg_gray"
                     android:button="@null"
                     android:checked="false"
                     android:drawableStart="@drawable/location_select"
+                    android:clickable="false"
                     android:drawableLeft="@drawable/location_select"
                     android:padding="5dp"
                     android:text="@{vm.locationOb}"

@@ -45,6 +45,10 @@
         <activity android:name=".ui.user.register.RegisterActivity" />
 
         <service android:name="com.amap.api.location.APSService"/>
+        <service android:name=".service.ClockService"
+            android:process=":clock"
+            />
+
         <meta-data android:name="com.amap.api.v2.apikey" android:value="b15d7e17e9002ce217bb5cc64d9c0ab8"/>
     </application>
 

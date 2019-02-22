@@ -43,4 +43,5 @@ class HomeModel @Inject constructor(private val dataService: DataService, privat
             else -> throw Exception("out of length!")
         }
     }
+    //TODO : JobScheduler 进程保活！
 }

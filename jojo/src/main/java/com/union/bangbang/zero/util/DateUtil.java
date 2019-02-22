@@ -1,6 +1,9 @@
 package com.union.bangbang.zero.util;
 
 import android.annotation.SuppressLint;
+import android.text.TextUtils;
+
+import org.apache.commons.lang3.time.DateFormatUtils;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -527,5 +530,8 @@ public class DateUtil {
     public static Date getDate(long timestamp){
         SimpleDateFormat sdf = new SimpleDateFormat("MM月dd日 HH:mm");
         return new Date(timestamp * 1000);
+    }
+    public static String format(Date date,String format){
+        return  DateFormatUtils.format(date,format);
     }
 }

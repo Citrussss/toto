@@ -27,8 +27,8 @@ class HomeSurroundingFragment : BaseFragment<FragmentHomeMomentBinding>() {
 
     @Inject lateinit var viewModel:HomeSurroundingModel;
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         recycle_view.layoutManager=viewModel.linearLayoutManager
         recycle_view.adapter=viewModel.adapter
     }
