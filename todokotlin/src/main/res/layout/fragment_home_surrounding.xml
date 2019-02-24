@@ -2,27 +2,29 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
         <variable
             name="vm"
-            type="com.union.bangbang.todokotlin.ui.home.surrounding.HomeSurroundingModel"/>
+            type="com.union.bangbang.todokotlin.ui.home.surrounding.HomeSurroundingModel" />
     </data>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycle_view"
-            android:visibility="invisible"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="180dp"
+            android:visibility="invisible" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="@{vm::onStartServiceClick}"
             android:text="开启服务" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

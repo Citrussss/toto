@@ -48,7 +48,20 @@
         <service android:name=".service.ClockService"
             android:process=":clock"
             />
+        <!--<service android:name=".service.DefendService"-->
+            <!--android:process=":defend"-->
+            <!--/>-->
+
         <meta-data android:name="com.amap.api.v2.apikey" android:value="97172c64836712ea2902fdec9bd8b11e"/>
+       <!-- <receiver
+            android:name=".service.ClockService"
+            android:enabled="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </receiver>-->
     </application>
 
 </manifest>

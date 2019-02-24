@@ -33,6 +33,6 @@ interface Api {
     fun addMemo(@Body memo: Memo): Observable<InfoEntity<Memo>>
 
     @GET("memo/findMemoByLocation")
-    fun findMemoByLocation(@Query("longitude") longitude: Float, @Query("latitude") latitude: Float, @Query("distance") distance: Float): Observable<InfoEntity<Memo>>
+    fun findMemoByLocation(@Query("longitude") longitude: Float, @Query("latitude") latitude: Float, @Query("distance") distance: Float): Observable<InfoEntity<List<Memo>>>
 
 }

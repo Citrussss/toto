@@ -39,6 +39,7 @@ class ClockService : Service() {
     override fun onCreate() {
         println("onCreate invoke")
         super.onCreate()
+//        startForeground()
     }
 
     /**
@@ -50,7 +51,7 @@ class ClockService : Service() {
      */
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
         println("onStartCommand invoke")
-        return super.onStartCommand(intent, flags, startId)
+        return START_STICKY
     }
 
     /**

@@ -67,7 +67,7 @@ class HomeMomentModel @Inject constructor(val app: Application, val dataService:
                             app.startActivity(getIntent())
                         }, null)
                     } else {
-                        service.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),  getPendingIntent())
+                        service.set(AlarmManager.RTC_WAKEUP, date.time, getPendingIntent())
                     }
                     timeOb.set(DateUtil.format(date, "yyyy年MM月dd日 HH:mm:ss"))
                 },
@@ -80,21 +80,21 @@ class HomeMomentModel @Inject constructor(val app: Application, val dataService:
         return PendingIntent.getActivity(app, 1, intent, 0)
     }
 
-   inline fun getIntent(): Intent {
+    inline fun getIntent(): Intent {
         val intent = Intent(app, LoginActivity::class.java);
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         return intent
     }
 
-  /*  @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    private fun doService() {
-        val jobScheduler = app.getSystemService(JOB_SCHEDULER_SERVICE) as JobScheduler?
-        val builder = JobInfo.Builder(1, ComponentName(AppUtil.peekActivity(), ClockService::class.java))  //指定哪个JobService执行操作
-        builder.setMinimumLatency(TimeUnit.MILLISECONDS.toMillis(10)) //执行的最小延迟时间
-        builder.setOverrideDeadline(TimeUnit.MILLISECONDS.toMillis(15))  //执行的最长延时时间
-        builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_NOT_ROAMING)  //非漫游网络状态
-        builder.setBackoffCriteria(TimeUnit.MINUTES.toMillis(10), JobInfo.BACKOFF_POLICY_LINEAR)  //线性重试方案
-        builder.setRequiresCharging(false) // 未充电状态
-        jobScheduler!!.schedule(builder.build())
-    }*/
+    /*  @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+      private fun doService() {
+          val jobScheduler = app.getSystemService(JOB_SCHEDULER_SERVICE) as JobScheduler?
+          val builder = JobInfo.Builder(1, ComponentName(AppUtil.peekActivity(), ClockService::class.java))  //指定哪个JobService执行操作
+          builder.setMinimumLatency(TimeUnit.MILLISECONDS.toMillis(10)) //执行的最小延迟时间
+          builder.setOverrideDeadline(TimeUnit.MILLISECONDS.toMillis(15))  //执行的最长延时时间
+          builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_NOT_ROAMING)  //非漫游网络状态
+          builder.setBackoffCriteria(TimeUnit.MINUTES.toMillis(10), JobInfo.BACKOFF_POLICY_LINEAR)  //线性重试方案
+          builder.setRequiresCharging(false) // 未充电状态
+          jobScheduler!!.schedule(builder.build())
+      }*/
 }

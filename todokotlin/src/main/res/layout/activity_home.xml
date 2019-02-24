@@ -52,7 +52,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:drawablePadding="4dp"
-                    android:text="我的" />
+                    android:text="发现" />
             </android.support.design.widget.TabLayout>
 
         </FrameLayout>

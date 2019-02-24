@@ -21,15 +21,17 @@ import javax.inject.Inject
  */
 class HomeSurroundingFragment : BaseFragment<FragmentHomeMomentBinding>() {
 
-    override fun initViewModel(): AndroidViewModel?=viewModel
+    override fun initViewModel(): AndroidViewModel? = viewModel
 
-    override fun getLayoutId(): Int =  R.layout.fragment_home_surrounding
+    override fun getLayoutId(): Int = R.layout.fragment_home_surrounding
 
-    @Inject lateinit var viewModel:HomeSurroundingModel;
+    @Inject
+    lateinit var viewModel: HomeSurroundingModel;
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        recycle_view.layoutManager=viewModel.linearLayoutManager
-        recycle_view.adapter=viewModel.adapter
+        recycle_view.layoutManager = viewModel.linearLayoutManager
+        recycle_view.adapter = viewModel.adapter
+        viewModel.refreshList()
     }
 }

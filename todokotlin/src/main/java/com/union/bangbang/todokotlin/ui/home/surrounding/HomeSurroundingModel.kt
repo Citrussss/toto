@@ -6,6 +6,10 @@ import com.union.bangbang.todokotlin.base.data.model.DataService
 import com.union.bangbang.todokotlin.base.model.RecycleModel
 import javax.inject.Inject
 import android.content.Intent
+import com.amap.api.location.AMapLocation
+import com.amap.api.location.AMapLocationListener
+import com.union.bangbang.todokotlin.base.data.net.Location
+import com.union.bangbang.todokotlin.base.utils.ToastUtil
 import com.union.bangbang.todokotlin.service.ClockService
 
 
@@ -20,14 +24,42 @@ import com.union.bangbang.todokotlin.service.ClockService
 
 无愧于天，无愧于地。无怍于人，无惧于鬼。这样，人生!
  */
-class HomeSurroundingModel @Inject constructor(val app: Application, val dataService: DataService) : RecycleModel(app) {
+class HomeSurroundingModel @Inject constructor(val app: Application, val dataService: DataService, val location: Location) : RecycleModel(app) {
+    lateinit var amapLocation: AMapLocation
+
+    init {
+        location()
+    }
 
     fun onStartServiceClick(view: View) {
         val it = Intent(app, ClockService::class.java)
         app.startService(it)
     }
-    fun onStopServiceClick(view: View){
+
+    fun onStopServiceClick(view: View) {
         val it = Intent(app, ClockService::class.java)
         app.startService(it)
+    }
+
+    inline fun location() {
+        location.startLocation(
+                AMapLocationListener {
+                    amapLocation = it
+                    if (it.errorCode == 0) {
+                        ToastUtil.success("更新地理位置成功")
+                    } else {
+                        ToastUtil.error(it.errorInfo)
+                    }
+                }
+        )
+    }
+
+    fun refreshList() {
+        amapLocation.let {
+            dataService.findMemoByLocation(it.longitude, it.latitude, 100.0)
+                    .subscribe{
+                        adapter.addData(it.data)
+                    }
+        }
     }
 }
