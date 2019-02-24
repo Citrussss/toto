@@ -24,6 +24,6 @@ class DataService @Inject constructor(private val net: Api) {
     fun login(user: UserEntity) = net.login(user).subscribeOn(Schedulers.io())
     fun register(user: UserEntity)=net.register(user).subscribeOn(Schedulers.io())
     fun addMemo(memo: Memo) = net.addMemo(memo).subscribeOn(Schedulers.io())
-    fun findMemoByLocation(longitude:Double,latitude:Double,distance:Double) = net.findMemoByLocation(15F,15F,100.0F).subscribeOn(Schedulers.io())
+    fun findMemoByLocation(longitude:Double,latitude:Double,distance:Double) = net.findMemoByLocation(longitude ,latitude,distance).subscribeOn(Schedulers.io())
 
 }

@@ -46,12 +46,18 @@ class HomeMomentModel @Inject constructor(val app: Application, val dataService:
                 location.regeocode(it, this)
             } else {
                 locationOb.set(it.address)
+                memo.longitude = it.longitude
+                memo.latitude = it.latitude
             }
         })
     }
 
     override fun onRegeocodeSearched(p0: RegeocodeResult?, p1: Int) {
-        p0?.let { it.regeocodeAddress?.let { locationOb.set(it.formatAddress) } }
+        p0?.let {
+            it.regeocodeAddress?.let {
+                locationOb.set(it.formatAddress)
+            }
+        }
     }
 
     override fun onGeocodeSearched(p0: GeocodeResult?, p1: Int) {
@@ -70,6 +76,7 @@ class HomeMomentModel @Inject constructor(val app: Application, val dataService:
                         service.set(AlarmManager.RTC_WAKEUP, date.time, getPendingIntent())
                     }
                     timeOb.set(DateUtil.format(date, "yyyy年MM月dd日 HH:mm:ss"))
+                    memo.updateTime=date.time
                 },
                 "",
                 false).show()

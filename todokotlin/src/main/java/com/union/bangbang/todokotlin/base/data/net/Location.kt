@@ -73,11 +73,13 @@ class Location @Inject constructor(context: Context) {
                 locationClient.stopLocation()
             }
         }
-        request(Consumer {
+        request(Manifest.permission.ACCESS_FINE_LOCATION).subscribe(Consumer {
             if (it.granted) locationClient.startLocation()
             else if (it.shouldShowRequestPermissionRationale) ToastUtil.error("请打开定位权限，否者无法获得定位信息")
             else ToastUtil.error("请手动打开定位权限，否者无法获得定位信息")
-        }, Manifest.permission.ACCESS_FINE_LOCATION)
+        }, Consumer {
+            ToastUtil.error(it.message.toString())
+        })
     }
 
     private fun stop() {

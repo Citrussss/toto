@@ -11,6 +11,7 @@ import com.amap.api.location.AMapLocationListener
 import com.union.bangbang.todokotlin.base.data.net.Location
 import com.union.bangbang.todokotlin.base.utils.ToastUtil
 import com.union.bangbang.todokotlin.service.ClockService
+import io.reactivex.android.schedulers.AndroidSchedulers
 
 
 /**
@@ -27,10 +28,6 @@ import com.union.bangbang.todokotlin.service.ClockService
 class HomeSurroundingModel @Inject constructor(val app: Application, val dataService: DataService, val location: Location) : RecycleModel(app) {
     lateinit var amapLocation: AMapLocation
 
-    init {
-        location()
-    }
-
     fun onStartServiceClick(view: View) {
         val it = Intent(app, ClockService::class.java)
         app.startService(it)
@@ -42,22 +39,23 @@ class HomeSurroundingModel @Inject constructor(val app: Application, val dataSer
     }
 
     inline fun location() {
-        location.startLocation(
-                AMapLocationListener {
-                    amapLocation = it
-                    if (it.errorCode == 0) {
-                        ToastUtil.success("更新地理位置成功")
-                    } else {
-                        ToastUtil.error(it.errorInfo)
-                    }
-                }
+        location.startLocation(AMapLocationListener {
+            amapLocation = it
+            if (it.errorCode == 0) {
+                ToastUtil.success("更新地理位置成功")
+                refreshList()
+            } else {
+                ToastUtil.error(it.errorInfo)
+            }
+        }
         )
     }
 
     fun refreshList() {
         amapLocation.let {
-            dataService.findMemoByLocation(it.longitude, it.latitude, 100.0)
-                    .subscribe{
+            dataService.findMemoByLocation(it.longitude, it.latitude, 1000.0)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe {
                         adapter.addData(it.data)
                     }
         }

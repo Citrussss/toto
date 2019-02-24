@@ -6,6 +6,7 @@ import android.support.multidex.MultiDex
 import android.support.v4.app.Fragment
 import com.alibaba.android.arouter.launcher.ARouter
 import com.facebook.stetho.Stetho
+import com.union.bangbang.todokotlin.base.data.net.Location
 import com.union.bangbang.todokotlin.dagger.module.AppModule
 import com.union.bangbang.zero.AppUtil
 import dagger.android.AndroidInjector

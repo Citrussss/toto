@@ -17,7 +17,7 @@
             android:id="@+id/recycle_view"
             android:layout_width="match_parent"
             android:layout_height="180dp"
-            android:visibility="invisible" />
+            android:visibility="visible" />
 
         <Button
             android:layout_width="wrap_content"

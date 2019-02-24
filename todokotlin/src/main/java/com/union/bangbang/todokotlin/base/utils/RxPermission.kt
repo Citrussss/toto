@@ -5,6 +5,7 @@ import com.tbruyelle.rxpermissions2.Permission
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.union.bangbang.todokotlin.base.data.net.Location
 import com.union.bangbang.zero.AppUtil
+import io.reactivex.Observable
 import io.reactivex.functions.Consumer
 
 /**
@@ -13,11 +14,10 @@ import io.reactivex.functions.Consumer
  * @time 2019/2/22 9:11 PM
  * 只有编译器可能不骗你。
  */
-fun Location.request(consumer: Consumer<Permission>, vararg permissions: String) {
+fun Location.request(vararg permissions: String):Observable<Permission> {
     val rxPermission = RxPermissions(AppUtil.peekActivity());
-    rxPermission
+    return rxPermission
             .requestEach(*permissions)
-            .subscribe(consumer);
 }
  fun FragmentActivity.request(consumer: Consumer<Permission>, vararg permissions: String) {
     val rxPermission = RxPermissions(this);

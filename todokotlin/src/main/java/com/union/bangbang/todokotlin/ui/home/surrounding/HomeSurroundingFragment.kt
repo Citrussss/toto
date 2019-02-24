@@ -5,6 +5,10 @@ import android.os.Bundle
 import com.union.bangbang.todokotlin.R
 import com.union.bangbang.todokotlin.base.fragment.BaseFragment
 import com.union.bangbang.todokotlin.databinding.FragmentHomeMomentBinding
+import io.reactivex.Observable
+import io.reactivex.Scheduler
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_home_surrounding.*
 import javax.inject.Inject
 
@@ -32,6 +36,15 @@ class HomeSurroundingFragment : BaseFragment<FragmentHomeMomentBinding>() {
         super.onActivityCreated(savedInstanceState)
         recycle_view.layoutManager = viewModel.linearLayoutManager
         recycle_view.adapter = viewModel.adapter
-        viewModel.refreshList()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Observable.just(1)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    viewModel.location()
+                })
     }
 }
