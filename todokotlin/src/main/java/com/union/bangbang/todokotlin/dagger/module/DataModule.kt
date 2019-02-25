@@ -5,6 +5,9 @@ import android.content.Context
 import com.amap.api.location.AMapLocationClient
 import com.amap.api.location.AMapLocationListener
 import com.facebook.stetho.okhttp3.StethoInterceptor
+import com.google.gson.FieldNamingPolicy
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.union.bangbang.todokotlin.BuildConfig
 import com.union.bangbang.todokotlin.Constants
 import com.union.bangbang.todokotlin.TodoApplication
@@ -30,13 +33,21 @@ class DataModule {
     //提供 Retrofit 实例
     @Provides
     @Singleton
-    fun provideRemoteClient(httpClientBuilder: OkHttpClient.Builder): Retrofit {
+    fun provideRemoteClient(httpClientBuilder: OkHttpClient.Builder, gson: Gson): Retrofit {
         return Retrofit.Builder()
                 .baseUrl(Constants.HOST_API)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .callFactory(httpClientBuilder.build())
                 .build()
+    }
+    //提供驼峰式转化的gson实体
+    @Provides
+    @Singleton
+    fun provideGson(): Gson {
+        var gsonBuilder = GsonBuilder();
+        gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
+        return gsonBuilder.create();
     }
 
     //提供 PaoService 实例
@@ -70,5 +81,5 @@ class DataModule {
 
     @Provides
     @Singleton
-    fun amap(context: Context):Location = Location(context)
+    fun amap(context: Context): Location = Location(context)
 }

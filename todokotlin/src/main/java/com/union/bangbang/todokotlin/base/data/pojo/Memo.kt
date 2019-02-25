@@ -22,14 +22,19 @@ data class Memo constructor(var id: Long?,
                             var content: String?,
                             var type: String?,
                             var longitude: Double?,
-                            var latitude: Double?) : ViewSelectHelper<ViewDataBinding> {
+                            var latitude: Double?,
+                            var createId: Long?,
+                            var createUserId: Long?,
+                            var createUserName: Long?
+
+) : ViewSelectHelper<ViewDataBinding> {
     constructor() : this(null,
             null,
             null,
             null,
             null,
             null,
-            null)
+            null, null, null, null)
 
     override var index: Int
         get() = 0
@@ -37,6 +42,5 @@ data class Memo constructor(var id: Long?,
     override var layoutId: IntArray
         get() = intArrayOf(R.layout.holder_list_memo)
         set(value) {}
-
 }
 

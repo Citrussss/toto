@@ -1,5 +1,7 @@
 package com.union.bangbang.todokotlin
 
+import com.google.gson.FieldNamingPolicy
+import com.google.gson.Gson
 import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.functions.Predicate
@@ -16,7 +18,10 @@ class AlgorithmProblem {
 
         var list:ArrayList<String> = ArrayList<String>()
         list.removeAt(1)
+
     }
 
 
 }
+
+
