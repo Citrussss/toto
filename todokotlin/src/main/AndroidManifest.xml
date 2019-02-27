@@ -43,6 +43,8 @@
         <activity android:name=".ui.user.login.LoginActivity" />
         <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.user.register.RegisterActivity" />
+        <activity android:name=".ui.user.password.EditPwdActivity" android:label="修改密码" />
+        <activity android:name=".ui.about.AboutActivity" android:label="关于" />
 
         <service android:name="com.amap.api.location.APSService"/>
         <service android:name=".service.ClockService"

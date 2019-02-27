@@ -35,4 +35,8 @@ interface Api {
     @GET("memo/findMemoByLocation")
     fun findMemoByLocation(@Query("longitude") longitude: Double, @Query("latitude") latitude: Double, @Query("distance") distance: Double): Observable<InfoEntity<List<Memo>>>
 
+    @POST("user/password")
+    fun editPwd(@Body user: UserEntity): Observable<InfoEntity<LoginEntity>>
+
+
 }

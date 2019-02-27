@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
 import java.util.Stack;
@@ -50,11 +51,17 @@ public class AppUtil implements Application.ActivityLifecycleCallbacks {
         }
     }
 
+    public static void finishAll() {
+        while (activityStack.peek() != null) {
+            activityStack.pop().finish();
+        }
+    }
+
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-        if(activity instanceof FragmentActivity){
-            activityStack.add((FragmentActivity)activity);
-        }else {
+        if (activity instanceof FragmentActivity) {
+            activityStack.add((FragmentActivity) activity);
+        } else {
             throw new RuntimeException("请使用FragmentActivity进行项目搭建");
         }
     }

@@ -1,11 +1,13 @@
 package com.union.bangbang.todokotlin.dagger.module
 
-import com.union.bangbang.todokotlin.BuildConfig
+import android.support.v7.widget.RecyclerView
 import com.union.bangbang.todokotlin.dagger.annotation.ActivityScope
+import com.union.bangbang.todokotlin.ui.about.AboutActivity
 import com.union.bangbang.todokotlin.ui.home.HomeActivity
 import com.union.bangbang.todokotlin.ui.startup.StartUpActivity
 import com.union.bangbang.todokotlin.ui.user.UserListActivity
 import com.union.bangbang.todokotlin.ui.user.login.LoginActivity
+import com.union.bangbang.todokotlin.ui.user.password.EditPwdActivity
 import com.union.bangbang.todokotlin.ui.user.register.RegisterActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -35,15 +37,25 @@ abstract class ActivityModule {
 
     @ActivityScope
     @ContributesAndroidInjector
-    abstract fun bindRegisterActivity() : RegisterActivity
+    abstract fun bindRegisterActivity(): RegisterActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector
+    abstract fun bindEditPwdActivity(): EditPwdActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector
+    abstract fun bindAboutActivity(): AboutActivity
     companion object {
-        const val app ="/todo/"
-        const val user = app+"user/"
-        const val home = app+"home/"
+        const val app = "/todo/"
+        const val user = app + "user/"
+        const val home = app + "home/"
+        const val about = app +"about"
 
-        const val user_login= app+"login"
-        const val user_register=app+"register"
+        const val user_login = user + "login"
+        const val user_register = user + "register"
+        const val user_pwd = user + "pwd"
 
-        const val home_page = home+"page"
+        const val home_page = home + "page"
     }
 }

@@ -32,10 +32,10 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:lb="90dp"
-                app:lt="90dp"
-                app:rb="90dp"
-                app:rt="90dp">
+                app:lb="90"
+                app:lt="90"
+                app:rb="90"
+                app:rt="90">
 
                 <ImageView
                     android:layout_width="60dp"
@@ -69,6 +69,7 @@
                 android:layout_height="52dp"
                 android:gravity="center_vertical"
                 android:padding="15dp"
+                android:onClick="@{vm::onEditPasswordClick}"
                 android:text="修改密码" />
 
             <TextView
@@ -77,6 +78,7 @@
                 android:layout_height="52dp"
                 android:gravity="center_vertical"
                 android:padding="15dp"
+                android:onClick="@{vm::onAboutClick}"
                 android:text="关于" />
         </android.support.v7.widget.LinearLayoutCompat>
     </LinearLayout>
