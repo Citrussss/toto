@@ -21,7 +21,8 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:background="@color/white"
-            android:text="@{vm.signature}" />
+            android:gravity="center"
+            android:text="@{vm.signature,default=1234}" />
 
         <Button
             style="@style/selectableItemBackground"
