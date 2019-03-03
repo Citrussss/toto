@@ -159,4 +159,7 @@ dependencies {
 
     //rxpermissions
     implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
+
+    //apache
+    implementation 'org.apache.commons:commons-lang3:3.6'
 }

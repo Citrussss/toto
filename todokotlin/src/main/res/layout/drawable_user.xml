@@ -1,85 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
-            name="vm"
-            type="com.union.bangbang.todokotlin.ui.home.HomeModel" />
+                name="vm"
+                type="com.union.bangbang.todokotlin.ui.home.HomeModel"/>
     </data>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@color/colorPrimary"
-        android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="@color/colorPrimary"
+            android:orientation="vertical">
 
         <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
 
             <com.union.bangbang.zero.view.ClipLayout
-                android:id="@+id/clipLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:lb="90"
-                app:lt="90"
-                app:rb="90"
-                app:rt="90">
+                    android:id="@+id/clipLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:lb="90"
+                    app:lt="90"
+                    app:rb="90"
+                    app:rt="90">
 
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:background="@color/white" />
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@color/white"/>
             </com.union.bangbang.zero.view.ClipLayout>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:text="123\\n123"
-                app:layout_constraintBottom_toBottomOf="@+id/clipLayout"
-                app:layout_constraintStart_toEndOf="@+id/clipLayout"
-                app:layout_constraintTop_toTopOf="@+id/clipLayout" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:text="123\\n123"
+                    app:layout_constraintBottom_toBottomOf="@+id/clipLayout"
+                    app:layout_constraintStart_toEndOf="@+id/clipLayout"
+                    app:layout_constraintTop_toTopOf="@+id/clipLayout"/>
         </android.support.constraint.ConstraintLayout>
 
         <android.support.v7.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="4"
-            android:background="@color/white"
-            android:orientation="vertical"
-            app:divider="@drawable/diver_normal_item_vertical"
-            app:showDividers="middle">
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="4"
+                android:background="@color/white"
+                android:orientation="vertical"
+                app:divider="@drawable/diver_normal_item_vertical"
+                app:showDividers="middle">
+            <TextView
+                    style="@style/selectableItemBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:gravity="center_vertical"
+                    android:padding="15dp"
+                    android:onClick="@{vm::onCollectListClick}"
+                    android:text="我的收藏"/>
 
             <TextView
-                style="@style/selectableItemBackground"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:gravity="center_vertical"
-                android:padding="15dp"
-                android:onClick="@{vm::onEditPasswordClick}"
-                android:text="修改密码" />
+                    style="@style/selectableItemBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:gravity="center_vertical"
+                    android:padding="15dp"
+                    android:onClick="@{vm::onEditPasswordClick}"
+                    android:text="修改密码"/>
 
             <TextView
-                style="@style/selectableItemBackground"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:gravity="center_vertical"
-                android:padding="15dp"
-                android:onClick="@{vm::onAboutClick}"
-                android:text="关于" />
+                    style="@style/selectableItemBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:gravity="center_vertical"
+                    android:padding="15dp"
+                    android:onClick="@{vm::onAboutClick}"
+                    android:text="关于"/>
         </android.support.v7.widget.LinearLayoutCompat>
     </LinearLayout>
 </layout>

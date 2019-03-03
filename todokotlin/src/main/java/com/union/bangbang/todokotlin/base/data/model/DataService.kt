@@ -6,7 +6,6 @@ import com.union.bangbang.todokotlin.base.data.pojo.Memo
 import com.union.bangbang.todokotlin.base.data.pojo.User
 import com.union.bangbang.todokotlin.base.data.pojo.UserEntity
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
@@ -26,4 +25,9 @@ class DataService @Inject constructor(private val net: Api) {
     fun addMemo(memo: Memo) = net.addMemo(memo).subscribeOn(Schedulers.io())
     fun findMemoByLocation(longitude:Double,latitude:Double,distance:Double) = net.findMemoByLocation(longitude ,latitude,distance).subscribeOn(Schedulers.io())
     fun editPwd(user:UserEntity) =net.editPwd(user).subscribeOn(Schedulers.io())
+
+    fun addCollect(vararg memoIds:Long) =net.addCollect(*memoIds).subscribeOn(Schedulers.io())
+    fun deleteCollect(vararg collectIds:Long) =net.deleteCollect(*collectIds).subscribeOn(Schedulers.io())
+    fun findAllCollect() =net.findAllCollect().subscribeOn(Schedulers.io())
+
 }

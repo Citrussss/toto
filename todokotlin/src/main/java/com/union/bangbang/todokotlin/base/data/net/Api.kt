@@ -38,5 +38,13 @@ interface Api {
     @POST("user/password")
     fun editPwd(@Body user: UserEntity): Observable<InfoEntity<LoginEntity>>
 
+    @POST("/collect/add")
+    fun addCollect(@Query("memoIds") vararg memoIds: Long): Observable<InfoEntity<Boolean>>
+
+    @GET("/collect/delete")
+    fun deleteCollect(@Query("collectionIds") vararg collectionIds: Long): Observable<InfoEntity<Boolean>>
+
+    @GET("/collect/findAll")
+    fun findAllCollect(): Observable<InfoEntity<Boolean>>
 
 }

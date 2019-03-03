@@ -1,9 +1,10 @@
 package com.union.bangbang.todokotlin.base.data.pojo
 
+import android.databinding.ObservableBoolean
 import android.databinding.ViewDataBinding
 import com.union.bangbang.todokotlin.R
 import com.union.bangbang.todokotlin.base.recycle.adapter.ViewSelectHelper
-import java.math.BigDecimal
+import com.union.bangbang.todokotlin.base.recycle.adapter.ViewSelectImp
 
 /**
 不乱于心，不困于情。不畏将来，不念过往。如此，安好!
@@ -25,9 +26,9 @@ data class Memo constructor(var id: Long?,
                             var latitude: Double?,
                             var createId: Long?,
                             var createUserId: Long?,
-                            var createUserName: Long?
+                            var createUserName: String?
 
-) : ViewSelectHelper<ViewDataBinding> {
+) : ViewSelectImp<ViewDataBinding>(){
     constructor() : this(null,
             null,
             null,
@@ -42,5 +43,7 @@ data class Memo constructor(var id: Long?,
     override var layoutId: IntArray
         get() = intArrayOf(R.layout.holder_list_memo)
         set(value) {}
+    public var isCollect: ObservableBoolean = ObservableBoolean(false)
+
 }
 

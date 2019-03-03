@@ -10,6 +10,7 @@ import com.union.bangbang.todokotlin.ui.home.page.HomePageModel
 import com.union.bangbang.todokotlin.ui.home.surrounding.HomeSurroundingModel
 import com.union.bangbang.todokotlin.ui.startup.StartUpModel
 import com.union.bangbang.todokotlin.ui.user.UserListModel
+import com.union.bangbang.todokotlin.ui.user.collect.CollectModel
 import com.union.bangbang.todokotlin.ui.user.login.LoginModel
 import dagger.Binds
 import dagger.Module
@@ -60,4 +61,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(HomeSurroundingModel::class)
     abstract fun bindHomeSurroundingModel(viewModel: HomeSurroundingModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(CollectModel::class)
+    abstract fun bindCollectModel(viewModel: CollectModel): ViewModel
 }

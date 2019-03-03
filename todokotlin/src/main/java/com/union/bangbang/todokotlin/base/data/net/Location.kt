@@ -15,7 +15,6 @@ import com.tbruyelle.rxpermissions2.Permission
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.union.bangbang.todokotlin.base.utils.ToastUtil
 import com.union.bangbang.todokotlin.base.utils.request
-import com.union.bangbang.todokotlin.dagger.module.ActivityModule.Companion.app
 import com.union.bangbang.zero.AppUtil
 import io.reactivex.functions.Consumer
 import javax.inject.Inject

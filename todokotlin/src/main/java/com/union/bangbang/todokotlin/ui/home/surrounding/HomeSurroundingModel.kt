@@ -1,17 +1,17 @@
 package com.union.bangbang.todokotlin.ui.home.surrounding
 
 import android.app.Application
-import android.view.View
-import com.union.bangbang.todokotlin.base.data.model.DataService
-import com.union.bangbang.todokotlin.base.model.RecycleModel
-import javax.inject.Inject
 import android.content.Intent
+import android.view.View
 import com.amap.api.location.AMapLocation
 import com.amap.api.location.AMapLocationListener
+import com.union.bangbang.todokotlin.base.data.model.DataService
 import com.union.bangbang.todokotlin.base.data.net.Location
+import com.union.bangbang.todokotlin.base.model.RecycleModel
 import com.union.bangbang.todokotlin.base.utils.ToastUtil
 import com.union.bangbang.todokotlin.service.ClockService
 import io.reactivex.android.schedulers.AndroidSchedulers
+import javax.inject.Inject
 
 
 /**
