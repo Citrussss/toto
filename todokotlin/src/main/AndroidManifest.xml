@@ -46,11 +46,13 @@
         <activity android:name=".ui.user.password.EditPwdActivity" android:label="修改密码" />
         <activity android:name=".ui.about.AboutActivity" android:label="关于" />
         <activity android:name=".ui.user.collect.list.CollectListActivity"/>
+        <activity android:name=".ui.test.MusicActivity" />
 
         <service android:name="com.amap.api.location.APSService"/>
         <service android:name=".service.ClockService"
             android:process=":clock"
             />
+        <service android:name=".service.MediaPlaybackService" />
         <!--<service android:name=".service.DefendService"-->
             <!--android:process=":defend"-->
             <!--/>-->

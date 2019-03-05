@@ -5,6 +5,7 @@ import com.union.bangbang.todokotlin.dagger.annotation.ActivityScope
 import com.union.bangbang.todokotlin.ui.about.AboutActivity
 import com.union.bangbang.todokotlin.ui.home.HomeActivity
 import com.union.bangbang.todokotlin.ui.startup.StartUpActivity
+import com.union.bangbang.todokotlin.ui.test.MusicActivity
 import com.union.bangbang.todokotlin.ui.user.UserListActivity
 import com.union.bangbang.todokotlin.ui.user.collect.list.CollectListActivity
 import com.union.bangbang.todokotlin.ui.user.login.LoginActivity
@@ -51,6 +52,10 @@ abstract class ActivityModule {
     @ActivityScope
     @ContributesAndroidInjector
     abstract fun bindCollectListActivity(): CollectListActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector
+    abstract fun bindMusicActivity(): MusicActivity
     companion object {
         private const val app = "/todo/"
         private const val user = app + "user/"
@@ -65,5 +70,6 @@ abstract class ActivityModule {
         const val home_page = home + "page"
 
         const val collect_list = collect +"list"
+        const val music  = app + "music"
     }
 }
