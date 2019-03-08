@@ -8,6 +8,7 @@ import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
@@ -28,6 +29,7 @@ public class ClipLayout extends FrameLayout {
     private RectF rectF = new RectF();
     private Paint paint = new Paint();
     private final String TAG = "ClipLayout";
+    private Drawable clipBgDrawable = null;
 
     public ClipLayout(Context context) {
         this(context, null);
@@ -71,7 +73,11 @@ public class ClipLayout extends FrameLayout {
             canvas.saveLayer(new RectF(0, 0, canvas.getWidth(), canvas.getHeight()), null, Canvas
                     .ALL_SAVE_FLAG);
         }
-        super.dispatchDraw(canvas);
+        if (getClipBgDrawable() != null) {
+            getClipBgDrawable().draw(canvas);
+        } else {
+            super.dispatchDraw(canvas);
+        }
         canvas.drawPath(path, paint);
         canvas.restore();
     }
@@ -87,4 +93,11 @@ public class ClipLayout extends FrameLayout {
     }
 
 
+    public Drawable getClipBgDrawable() {
+        return clipBgDrawable;
+    }
+
+    public void setClipBgDrawable(Drawable clipBgDrawable) {
+        this.clipBgDrawable = clipBgDrawable;
+    }
 }
