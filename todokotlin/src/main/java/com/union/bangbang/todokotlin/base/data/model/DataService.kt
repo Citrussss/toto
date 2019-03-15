@@ -2,11 +2,13 @@ package com.union.bangbang.todokotlin.base.data.model
 
 import com.union.bangbang.todokotlin.BuildConfig
 import com.union.bangbang.todokotlin.base.data.net.Api
+import com.union.bangbang.todokotlin.base.data.net.BingApi
 import com.union.bangbang.todokotlin.base.data.pojo.Memo
 import com.union.bangbang.todokotlin.base.data.pojo.User
 import com.union.bangbang.todokotlin.base.data.pojo.UserEntity
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
+import retrofit2.http.Query
 import javax.inject.Inject
 
 /**
@@ -15,7 +17,7 @@ import javax.inject.Inject
  * @time 2018/12/21 10:56 PM
  * 只有编译器可能不骗你。
  */
-class DataService @Inject constructor(private val net: Api) {
+class DataService @Inject constructor(private val net: Api,private val bingApi: BingApi) {
     fun tourist() = net.tourist()
     fun userList() = if (BuildConfig.DEBUG) getDefList() else net.userFindAll().map { it.data }
     fun getDefList() = Observable.range(0, 100).map { User(it, 17857025659,"tony") }
@@ -29,5 +31,6 @@ class DataService @Inject constructor(private val net: Api) {
     fun addCollect(vararg memoIds:Long) =net.addCollect(*memoIds).subscribeOn(Schedulers.io())
     fun deleteCollect(vararg collectIds:Long) =net.deleteCollect(*collectIds).subscribeOn(Schedulers.io())
     fun findAllCollect() =net.findAllCollect().subscribeOn(Schedulers.io())
+    fun getWallpaper(format: String, idx: Int, n: Int) =bingApi.getWallpaper(format,idx, n).subscribeOn(Schedulers.io())
 
 }

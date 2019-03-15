@@ -11,4 +11,6 @@ object Constants {
 //    const val HOST_API = "http://149.129.102.158:8080/"
 
     const val isLogin = "isLogin"
+    const val KEY_Bing = "http://cn.bing.com/"
+
 }

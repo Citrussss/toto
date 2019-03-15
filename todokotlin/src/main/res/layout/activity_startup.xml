@@ -17,56 +17,65 @@
         android:layout_height="match_parent"
         tools:context=".ui.startup.StartUpActivity">
 
-        <EditText
-            android:id="@+id/start_text"
+
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@={vm.text}"
-            android:textSize="@dimen/text_title"
-            android:visibility="@{vm.visible?View.VISIBLE:View.GONE}"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@{vm.urlOb}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <CheckBox
-            android:id="@+id/checkBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
+        <com.union.bangbang.zero.view.ClipLayout
+            android:layout_width="80dp"
+            android:layout_height="25dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:checked="@={vm.visible}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/start_text" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:lb="15"
+            app:lt="15"
+            app:rb="15"
+            app:rt="15">
 
-        <Button
-            android:id="@+id/net"
-            android:layout_width="match_parent"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bg_gray_33"
+                android:gravity="center"
+                android:text="@{vm.timeOb}"
+                android:textColor="@color/white" />
+
+        </com.union.bangbang.zero.view.ClipLayout>
+
+        <com.union.bangbang.zero.view.ClipLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:onClick="@{vm::onNetClick}"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox" />
-        <Button
-            android:id="@+id/next"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/net" />
+            app:lb="15"
+            app:lt="15"
+            app:rb="15"
+            app:rt="15">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/bg_gray_33"
+                android:padding="@dimen/sp_20"
+                android:text="@{vm.textOb,default=123456}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_20" />
+        </com.union.bangbang.zero.view.ClipLayout>
+
     </android.support.constraint.ConstraintLayout>
 </layout>

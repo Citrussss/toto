@@ -1,17 +1,19 @@
 package com.union.bangbang.todokotlin.ui.startup
 
 import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
-import android.databinding.ObservableBoolean
 import android.databinding.ObservableField
 import android.util.Log
 import android.view.View
+import com.union.bangbang.todokotlin.Constants
 import com.union.bangbang.todokotlin.base.data.model.DataService
+import com.union.bangbang.todokotlin.base.model.BaseModel
 import com.union.bangbang.todokotlin.base.utils.ArouterUtil
 import com.union.bangbang.todokotlin.dagger.module.ActivityModule
 import com.union.bangbang.todokotlin.ui.user.UserListActivity
-
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.Observable
+import io.reactivex.functions.Consumer
+import java.util.*
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 /**
@@ -19,20 +21,39 @@ import javax.inject.Inject
  * @param animal 数据源Model(MVVM 中的M),负责提供ViewModeeeeeeeeel中需要处理的数eee据
  * Created by ditclear on 2017/11/17.
  */
-class StartUpModel @Inject constructor(private val dataService: DataService,private val app:Application) : AndroidViewModel(app) {
-    var text: ObservableField<String> = ObservableField()
-    var visible: ObservableBoolean = ObservableBoolean()
-
-    fun setTourist() = dataService.tourist().subscribeOn(Schedulers.newThread()).observeOn(Schedulers.trampoline())
-            .subscribe({ text.set(it.data.token.token) }, { Log.e("StartUpModel", it.message) })
-
+class StartUpModel @Inject constructor(val dataService: DataService, app: Application) : BaseModel(app) {
+    var textOb: ObservableField<String> = ObservableField()
+    var urlOb = ObservableField<String>()
+    var timeOb = ObservableField<String>()
+    var time = 3L
     fun onNetClick(view: View) {
-        setTourist()
+        refresh()
     }
-    fun onNextClick(view :View){
+
+    fun refresh() {
+        addDisposable(dataService.getWallpaper(format = "js", idx = 0, n = 1).subscribe {
+            urlOb.set(Constants.KEY_Bing + it.images[0].url)
+            textOb.set(it.images[0].copyright)
+            Log.w("bing", urlOb.get())
+        })
+    }
+
+    fun startTiming(onNext: Consumer<Boolean>) {
+        addDisposable(Observable.interval(0, 1000, TimeUnit.MILLISECONDS).take(time + 1)
+                .subscribe {
+                    timeOb.set(String.format(Locale.CHINESE, "等待跳过%1sS", (time - it)))
+                    if (time == it) {
+                        timeOb.set("结束")
+                        onNext.accept(true)
+                    }
+                })
+    }
+
+    fun onNextClick(view: View) {
         UserListActivity.onStartActivity(getApplication())
     }
-    fun goHome()={
+
+    fun goHome() = {
         ArouterUtil.navigation(ActivityModule.home_page)
     }
 }

@@ -18,5 +18,4 @@ import es.dmoral.toasty.Toasty
 object ToastUtil {
     fun success(message: CharSequence) = Toasty.success(AppUtil.peekActivity(), message, Toast.LENGTH_SHORT, true).show()
     fun error(message: CharSequence) = Toasty.error(AppUtil.peekActivity(), message, Toast.LENGTH_SHORT, true).show()
-
 }

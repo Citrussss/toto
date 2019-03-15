@@ -13,6 +13,7 @@ import com.union.bangbang.todokotlin.Constants
 import com.union.bangbang.todokotlin.TodoApplication
 import com.union.bangbang.todokotlin.base.data.model.DataService
 import com.union.bangbang.todokotlin.base.data.net.Api
+import com.union.bangbang.todokotlin.base.data.net.BingApi
 import com.union.bangbang.todokotlin.base.data.net.Location
 import com.union.bangbang.todokotlin.base.okhttp.HeaderInterceptor
 import com.union.bangbang.zero.AppUtil
@@ -50,10 +51,23 @@ class DataModule {
         return gsonBuilder.create();
     }
 
-    //提供 PaoService 实例
+
+    //提供 后台接口 实例
     @Provides
     @Singleton
     fun providePaoService(client: Retrofit): Api = client.create(Api::class.java)
+
+    @Provides
+    @Singleton
+    fun bingApi():BingApi{
+        val builder =  okhttpBuilder()
+      return  Retrofit.Builder()
+                .baseUrl(Constants.KEY_Bing)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(Gson()))
+                .callFactory(builder.build())
+                .build().create(BingApi::class.java)
+    }
 
 //    //提供 数据库 实例
 //    @Provides @Singleton
@@ -62,7 +76,7 @@ class DataModule {
     //提供PaoDao 实例
     @Provides
     @Singleton
-    fun dataService(api: Api) = DataService(api)
+    fun dataService(api: Api,bingApi: BingApi) = DataService(api,bingApi)
 
     @Provides
     @Singleton

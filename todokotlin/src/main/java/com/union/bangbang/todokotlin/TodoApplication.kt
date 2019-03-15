@@ -29,7 +29,6 @@ import javax.inject.Inject
  */
 class TodoApplication : Application(), HasActivityInjector, HasSupportFragmentInjector {
 
-
     @Inject
     lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
     @Inject
@@ -41,6 +40,7 @@ class TodoApplication : Application(), HasActivityInjector, HasSupportFragmentIn
 
 
     val appUtil = AppUtil.getInstance()
+
     override fun onCreate() {
         super.onCreate()
         MultiDex.install(this)
@@ -55,5 +55,6 @@ class TodoApplication : Application(), HasActivityInjector, HasSupportFragmentIn
             ARouter.openDebug()  // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
         }
         ARouter.init(this) // 尽可能早，推荐在Application中初始化
+
     }
 }
