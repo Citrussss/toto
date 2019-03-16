@@ -8,6 +8,7 @@ import com.union.bangbang.todokotlin.ui.home.HomeModel
 import com.union.bangbang.todokotlin.ui.home.moment.HomeMomentModel
 import com.union.bangbang.todokotlin.ui.home.page.HomePageModel
 import com.union.bangbang.todokotlin.ui.home.surrounding.HomeSurroundingModel
+import com.union.bangbang.todokotlin.ui.memo.info.MemoInfoModel
 import com.union.bangbang.todokotlin.ui.startup.StartUpModel
 import com.union.bangbang.todokotlin.ui.user.UserListModel
 import com.union.bangbang.todokotlin.ui.user.collect.CollectModel
@@ -66,4 +67,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(CollectModel::class)
     abstract fun bindCollectModel(viewModel: CollectModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MemoInfoModel::class)
+    abstract fun bindMemoInfoModel(viewModel: MemoInfoModel): ViewModel
 }

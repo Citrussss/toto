@@ -2,9 +2,9 @@ package com.union.bangbang.todokotlin.base.model
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
-import io.reactivex.disposables.Disposable
 import android.arch.lifecycle.MutableLiveData
-
+import android.os.Bundle
+import io.reactivex.disposables.Disposable
 
 
 /**
@@ -20,19 +20,26 @@ import android.arch.lifecycle.MutableLiveData
  */
 open class BaseModel constructor(app: Application) : AndroidViewModel(app) {
     private val rxList: ArrayList<Disposable> = ArrayList()
-    public val shouldFinish: MutableLiveData<Boolean> = MutableLiveData()
+    val shouldFinish: MutableLiveData<Boolean> = MutableLiveData()
+    val shouldRefreshModel:MutableLiveData<Int> = MutableLiveData()
+    var refreshCount = 0
+    open fun attachData(bundle: Bundle) {
+
+    }
 
     fun addDisposable(disposable: Disposable) {
         rxList.add(disposable)
     }
 
     fun stopAllDisposable() {
-        rxList.forEach({ it.dispose() })
+        rxList.forEach { it.dispose() }
     }
 
     override fun onCleared() {
         stopAllDisposable()
         super.onCleared()
     }
-    open fun finish()=shouldFinish.postValue(true)
+
+    open fun finish() = shouldFinish.postValue(true)
+    open fun refreshModel() = shouldRefreshModel.postValue(refreshCount++)
 }

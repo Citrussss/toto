@@ -18,13 +18,14 @@ class StartUpActivity : BaseActivity<ActivityStartupBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setImmersive()
         viewModel.refresh()
         viewModel.startTiming(Consumer {
             if (it) {
                 ArouterUtil.navigation(home_page)
                 finish()
             }
-        })
+        }, time = 1000)
     }
 
     override fun getLayoutId(): Int = R.layout.activity_startup

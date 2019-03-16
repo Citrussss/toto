@@ -4,6 +4,10 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
+
+    androidExtensions {
+        experimental = true
+    }
     signingConfigs {
         config {
             keyAlias 'todo'
@@ -153,6 +157,7 @@ dependencies {
     //高德地图
     implementation 'com.amap.api:location:4.3.0'
     implementation 'com.amap.api:search:5.0.0'
+    implementation 'com.amap.api:map2d:5.2.0'
 
     //时间选择器
     implementation 'com.contrarywind:Android-PickerView:4.1.6'
@@ -164,6 +169,6 @@ dependencies {
     implementation 'org.apache.commons:commons-lang3:3.6'
 
     //图片加载框架
-    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
 
 }

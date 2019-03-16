@@ -5,9 +5,12 @@ import android.content.Context
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.view.WindowManager
 import android.widget.TextView
 import com.union.bangbang.todokotlin.BR
 import com.union.bangbang.todokotlin.R
@@ -27,7 +30,7 @@ abstract class BaseActivity<Binding : ViewDataBinding> : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
-        initViewDataBinding()
+        initViewDataBinding(savedInstanceState)
     }
 
     companion object Route {
@@ -37,16 +40,26 @@ abstract class BaseActivity<Binding : ViewDataBinding> : AppCompatActivity() {
         }
     }
 
-    fun initViewDataBinding() {
+    fun initViewDataBinding(bundle: Bundle?) {
         binding = DataBindingUtil.setContentView(this, getLayoutId())
         val viewModel = initViewModel()
-        viewModel?.let { it.shouldFinish.observe(this, Observer { t -> if (t == true) finish() }) }
+        viewModel?.let {
+            it.shouldFinish.observe(this, Observer { t -> if (t == true) finish() })
+            bundle?.let { viewModel.attachData(it) }
+        }
         binding.setVariable(BR.vm, viewModel)
         initToolbar()
     }
 
     abstract fun getLayoutId(): Int
+    /**
+     * 同时Activity 如果要使用@Inject的话 请去下面这个地方注册
+     * @see com.union.bangbang.todokotlin.dagger.module.ActivityModule
+     * 如果要使用ViewModel， 请去下面这个地方注册
+     * @see com.union.bangbang.todokotlin.dagger.module.ViewModelModule
+     */
     abstract fun initViewModel(): BaseModel?
+
     fun addDisposable(disposable: Disposable) {
         rxList.add(disposable)
     }
@@ -68,7 +81,7 @@ abstract class BaseActivity<Binding : ViewDataBinding> : AppCompatActivity() {
         }
     }
 
-//    open fun Toolbar.setTitleCenter() {
+    //    open fun Toolbar.setTitleCenter() {
 //        childCount
 //        for (index in 0..childCount) {
 //            val view = getChildAt(index)
@@ -83,5 +96,27 @@ abstract class BaseActivity<Binding : ViewDataBinding> : AppCompatActivity() {
 //            }
 //        }
 //    }
+    /**
+     * 开启沉浸式
+     */
+    fun setImmersive() {
+        //显示的优先级可以调整，显示的顺序可以查看WindowManagerPolicy中getWindowLayerFromTypeLw函数中的返回值
+        val lp = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            WindowManager.LayoutParams(WindowManager.LayoutParams.TYPE_ACCESSIBILITY_OVERLAY)
+        } else {
+            WindowManager.LayoutParams(WindowManager.LayoutParams.TYPE_SYSTEM_ERROR)
+        };
 
+        val flag = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
+                View.SYSTEM_UI_FLAG_FULLSCREEN or
+                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        window.decorView.systemUiVisibility = flag
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            this.window.navigationBarColor = Color.TRANSPARENT;
+            this.window.statusBarColor = Color.TRANSPARENT
+        };
+    }
 }

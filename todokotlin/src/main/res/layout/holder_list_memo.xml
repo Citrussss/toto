@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
-                name="vm"
-                type="com.union.bangbang.todokotlin.base.data.pojo.Memo"/>
+            name="vm"
+            type="com.union.bangbang.todokotlin.base.data.pojo.Memo" />
 
-        <import type="java.lang.String"/>
+        <import type="java.lang.String" />
 
-        <import type="org.apache.commons.lang3.time.DateFormatUtils"/>
+        <import type="org.apache.commons.lang3.time.DateFormatUtils" />
     </data>
 
     <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{vm::onDetailClick}"
+        android:orientation="vertical">
 
         <include
-                app:vm="@{vm}"
-                layout="@layout/holder_memo_content"
-        />
+            layout="@layout/holder_memo_content"
+            app:vm="@{vm}" />
 
         <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <CheckBox
-                    style="@style/selectableItemBackground"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:button="@drawable/collect_select"
-                    android:checked="@{vm.isCollect}"
-                    android:padding="15dp"/>
+                style="@style/selectableItemBackground"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:button="@drawable/collect_select"
+                android:checked="@{vm.isCollect}"
+                android:padding="15dp" />
         </FrameLayout>
     </LinearLayout>
 </layout>

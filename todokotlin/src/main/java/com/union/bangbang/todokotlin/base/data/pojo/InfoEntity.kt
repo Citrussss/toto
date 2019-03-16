@@ -17,7 +17,8 @@ import com.union.bangbang.todokotlin.base.recycle.adapter.ViewSelectHelper
  */
 data class InfoEntity<T>(
         val code: Int,
-        val data: T
+        val data: T,
+        val msg:String
 )
 
 data class TouristEntity(

@@ -12,15 +12,14 @@
         <import type="android.view.View" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.startup.StartUpActivity">
-
+        android:layout_height="match_parent">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:fitsSystemWindows="false"
             android:scaleType="centerCrop"
             android:src="@{vm.urlOb}"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -28,54 +27,66 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.union.bangbang.zero.view.ClipLayout
-            android:layout_width="80dp"
-            android:layout_height="25dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:lb="15"
-            app:lt="15"
-            app:rb="15"
-            app:rt="15">
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:onClick="@{vm::onUnderstandMoreClick}"
+            tools:context=".ui.startup.StartUpActivity">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/bg_gray_33"
-                android:gravity="center"
-                android:text="@{vm.timeOb}"
-                android:textColor="@color/white" />
+            <com.union.bangbang.zero.view.ClipLayout
+                android:layout_width="80dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:fitsSystemWindows="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lb="15"
+                app:lt="15"
+                app:rb="15"
+                app:rt="15">
 
-        </com.union.bangbang.zero.view.ClipLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/bg_gray_33"
+                    android:fitsSystemWindows="true"
+                    android:gravity="center"
+                    android:onClick="@{vm::onSkipClick}"
+                    android:text="@{vm.timeOb}"
+                    android:textColor="@color/white" />
 
-        <com.union.bangbang.zero.view.ClipLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:lb="15"
-            app:lt="15"
-            app:rb="15"
-            app:rt="15">
+            </com.union.bangbang.zero.view.ClipLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <com.union.bangbang.zero.view.ClipLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@color/bg_gray_33"
-                android:padding="@dimen/sp_20"
-                android:text="@{vm.textOb,default=123456}"
-                android:textColor="@color/white"
-                android:textSize="@dimen/sp_20" />
-        </com.union.bangbang.zero.view.ClipLayout>
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:lb="15"
+                app:lt="15"
+                app:rb="15"
+                app:rt="15">
 
-    </android.support.constraint.ConstraintLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_gray_33"
+                    android:padding="@dimen/sp_20"
+                    android:text="@{vm.textOb,default=123456}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_20" />
+            </com.union.bangbang.zero.view.ClipLayout>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </FrameLayout>
 </layout>

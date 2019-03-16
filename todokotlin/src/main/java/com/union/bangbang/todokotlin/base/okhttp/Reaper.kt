@@ -1,7 +1,6 @@
 package com.union.bangbang.todokotlin.base.okhttp
 
-import android.app.Activity
-import com.union.bangbang.todokotlin.TodoApplication
+import android.util.Log
 import com.union.bangbang.todokotlin.base.model.BaseModel
 import com.union.bangbang.todokotlin.base.utils.ToastUtil
 import io.reactivex.Observer
@@ -16,15 +15,20 @@ import java.lang.ref.WeakReference
  * @time 2019/3/15 10:37 PM
  * 只有编译器可能不骗你。
  */
-abstract class Reaper<T> public constructor(
-        val weekActivity: WeakReference<Activity>,
-        val onNext: Consumer<T>,
+class Reaper<T>(
+        model: BaseModel,
+        val onNext: Consumer<T> = Consumer { Log.v(this.TAG, it.toString()) },
         val onError: Consumer<Throwable> = Consumer { it?.message?.let { ToastUtil::error } }
 ) : Observer<T> {
     lateinit var d: Disposable
+    lateinit var weekModel: WeakReference<BaseModel>
+
+    companion object {
+        val TAG = "Reaper"
+    }
 
     init {
-        TODO("注册生命周期方法")
+        weekModel=WeakReference(model)
     }
 
     /**
@@ -34,6 +38,7 @@ abstract class Reaper<T> public constructor(
      * The [Observable] will not call this method if it calls [.onError].
      */
     override fun onComplete() {
+        Log.v(TAG, "onComplete")
 
     }
 
@@ -46,7 +51,8 @@ abstract class Reaper<T> public constructor(
      * @since 2.0
      */
     override fun onSubscribe(d: Disposable) {
-        this.d = d
+        weekModel.get()?.addDisposable(d)
+        Log.v(TAG, "onSubscribe")
     }
 
     /**

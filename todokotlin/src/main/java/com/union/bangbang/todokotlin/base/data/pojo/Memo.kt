@@ -2,9 +2,15 @@ package com.union.bangbang.todokotlin.base.data.pojo
 
 import android.databinding.ObservableBoolean
 import android.databinding.ViewDataBinding
+import android.os.Bundle
+import android.os.Parcelable
+import android.view.View
+import com.union.bangbang.todokotlin.Constants
 import com.union.bangbang.todokotlin.R
-import com.union.bangbang.todokotlin.base.recycle.adapter.ViewSelectHelper
 import com.union.bangbang.todokotlin.base.recycle.adapter.ViewSelectImp
+import com.union.bangbang.todokotlin.base.utils.ArouterUtil
+import com.union.bangbang.todokotlin.dagger.module.ActivityModule.Companion.memo_info
+import kotlinx.android.parcel.Parcelize
 
 /**
 不乱于心，不困于情。不畏将来，不念过往。如此，安好!
@@ -17,6 +23,7 @@ import com.union.bangbang.todokotlin.base.recycle.adapter.ViewSelectImp
 
 无愧于天，无愧于地。无怍于人，无惧于鬼。这样，人生!
  */
+@Parcelize
 data class Memo constructor(var id: Long?,
                             var createTime: Long?,
                             var updateTime: Long?,
@@ -28,7 +35,7 @@ data class Memo constructor(var id: Long?,
                             var createUserId: Long?,
                             var createUserName: String?
 
-) : ViewSelectImp<ViewDataBinding>(){
+) : ViewSelectImp<ViewDataBinding>(), Parcelable {
     constructor() : this(null,
             null,
             null,
@@ -43,7 +50,11 @@ data class Memo constructor(var id: Long?,
     override var layoutId: IntArray
         get() = intArrayOf(R.layout.holder_list_memo)
         set(value) {}
-    public var isCollect: ObservableBoolean = ObservableBoolean(false)
-
+    var isCollect: ObservableBoolean = ObservableBoolean(false)
+    fun onDetailClick(view: View) {
+        val bundle =Bundle();
+        bundle.putParcelable(Constants.Bundle.Memo,this)
+        ArouterUtil.navigation(memo_info,bundle)
+    }
 }
 
