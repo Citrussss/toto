@@ -10,12 +10,26 @@
         <item name="android:textStyle">bold</item>
         <item name="android:windowContentTransitions" tools:targetApi="lollipop">true</item>
     </style>
+
+    <style name="NightTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimaryNight</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkNight</item>
+        <item name="colorAccent">@color/colorAccentNight</item>
+        <item name="android:textColor">#C4C4C4</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:windowContentTransitions" tools:targetApi="lollipop">true</item>
+    </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
     <style name="style_normal_toolbar">
         <item name="android:gravity">center_vertical</item>
         <item name="android:layout_gravity">center</item>
@@ -24,7 +38,8 @@
 
     <style name="selectableItemBackground">
         <item name="android:background">?android:attr/selectableItemBackground</item>
-        <item name="android:colorControlHighlight" tools:targetApi="lollipop">@color/colorPrimary</item>
+        <item name="android:colorControlHighlight" tools:targetApi="lollipop">@color/colorPrimary
+        </item>
     </style>
 
 </resources>

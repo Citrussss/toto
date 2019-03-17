@@ -17,5 +17,5 @@ object Constants {
 
     const val isLogin = "isLogin"
     const val KEY_Bing = "http://cn.bing.com/"
-
+    const val Transition_Type ="TransitionType"
 }

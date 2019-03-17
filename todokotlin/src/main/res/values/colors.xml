@@ -8,4 +8,7 @@
     <color name="bg_gray">#EBEBEB</color>
     <color name="bg_gray_33">#33EBEBEB</color>
     <color name="pink_light">#33ff80ab</color>
+    <color name="colorPrimaryNight">#536DFE</color>
+    <color name="colorPrimaryDarkNight">#304FFE</color>
+    <color name="colorAccentNight">#536DFE</color>
 </resources>

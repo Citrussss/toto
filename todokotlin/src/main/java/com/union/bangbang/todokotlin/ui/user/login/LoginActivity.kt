@@ -1,8 +1,7 @@
 package com.union.bangbang.todokotlin.ui.user.login
 
-import android.os.Build
 import android.os.Bundle
-import android.transition.Explode
+import android.view.Gravity
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.union.bangbang.todokotlin.R
 import com.union.bangbang.todokotlin.base.activity.BaseActivity
@@ -18,6 +17,8 @@ import javax.inject.Inject
  */
 @Route(path = user_login)
 class LoginActivity : BaseActivity<ActivityLoginBinding>() {
+
+
     @Inject
     lateinit var viewModel: LoginModel
 
@@ -27,6 +28,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        slidingDirection = Gravity.BOTTOM
         super.onCreate(savedInstanceState)
     }
 }

@@ -5,6 +5,7 @@ import com.union.bangbang.todokotlin.R
 import com.union.bangbang.todokotlin.base.activity.BaseActivity
 import com.union.bangbang.todokotlin.base.model.BaseModel
 import com.union.bangbang.todokotlin.base.utils.ArouterUtil
+import com.union.bangbang.todokotlin.base.utils.TransitionTypeValue
 import com.union.bangbang.todokotlin.dagger.module.ActivityModule.Companion.home_page
 import com.union.bangbang.todokotlin.databinding.ActivityStartupBinding
 import io.reactivex.functions.Consumer
@@ -22,8 +23,10 @@ class StartUpActivity : BaseActivity<ActivityStartupBinding>() {
         viewModel.refresh()
         viewModel.startTiming(Consumer {
             if (it) {
-                ArouterUtil.navigation(home_page)
-                finish()
+                ArouterUtil.navigation(home_page,transitionType= TransitionTypeValue.fade)
+                window.decorView.postDelayed({
+                    finish()
+                }, 333)
             }
         }, time = 1000)
     }

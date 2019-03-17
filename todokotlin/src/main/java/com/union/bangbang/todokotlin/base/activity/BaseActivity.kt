@@ -9,14 +9,24 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.transition.Explode
+import android.transition.Fade
+import android.transition.Slide
+import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
 import android.widget.TextView
 import com.union.bangbang.todokotlin.BR
+import com.union.bangbang.todokotlin.Constants
 import com.union.bangbang.todokotlin.R
 import com.union.bangbang.todokotlin.base.model.BaseModel
+import com.union.bangbang.todokotlin.base.utils.TransitionTypeValue
+import com.union.bangbang.todokotlin.base.utils.TransitionTypeValue.explode
+import com.union.bangbang.todokotlin.base.utils.TransitionTypeValue.fade
+import com.union.bangbang.todokotlin.base.utils.TransitionTypeValue.slide
 import dagger.android.AndroidInjection
 import io.reactivex.disposables.Disposable
+
 
 /**
  * @name toto
@@ -27,8 +37,19 @@ import io.reactivex.disposables.Disposable
 abstract class BaseActivity<Binding : ViewDataBinding> : AppCompatActivity() {
     lateinit var binding: Binding
     private val rxList: ArrayList<Disposable> = ArrayList()
+    protected var slidingDirection = Gravity.END
+    protected var transitionType = TransitionTypeValue.slide
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            intent.extras?.getString(Constants.Transition_Type, transitionType)?.let { transitionType = it }
+            window.enterTransition = when (transitionType) {
+                explode -> Explode()
+                fade -> Fade()
+                slide -> Slide(slidingDirection)
+                else -> Fade()
+            }
+        }
         super.onCreate(savedInstanceState)
         initViewDataBinding(savedInstanceState)
     }
