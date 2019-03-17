@@ -20,11 +20,13 @@ import com.union.bangbang.todokotlin.base.data.model.DataService
 import com.union.bangbang.todokotlin.base.data.net.Location
 import com.union.bangbang.todokotlin.base.data.pojo.Memo
 import com.union.bangbang.todokotlin.base.model.BaseModel
+import com.union.bangbang.todokotlin.base.okhttp.Reaper
 import com.union.bangbang.todokotlin.base.utils.ToastUtil
 import com.union.bangbang.todokotlin.ui.user.login.LoginActivity
 import com.union.bangbang.zero.util.DateUtil
 import com.union.bangbang.zero.util.photo.TimePickerHelper
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.functions.Consumer
 import javax.inject.Inject
 
 
@@ -35,9 +37,9 @@ class HomeMomentModel @Inject constructor(val app: Application, val dataService:
     val locationOb: ObservableField<String> = ObservableField(app.getString(R.string.add_place))
     val timeOb: ObservableField<String> = ObservableField(app.getString(R.string.select_time))
     fun onSendClick(view: View) {
-        addDisposable(dataService.addMemo(memo).observeOn(AndroidSchedulers.mainThread()).observeOn(AndroidSchedulers.mainThread())
+        dataService.addMemo(memo).observeOn(AndroidSchedulers.mainThread()).observeOn(AndroidSchedulers.mainThread())
                 .map { it.toString() }
-                .subscribe { ToastUtil.success(it) })
+                .subscribe(Reaper(this, Consumer { ToastUtil.success(it) }))
     }
 
     fun onLocationClick(view: View) {
@@ -76,7 +78,7 @@ class HomeMomentModel @Inject constructor(val app: Application, val dataService:
                         service.set(AlarmManager.RTC_WAKEUP, date.time, getPendingIntent())
                     }
                     timeOb.set(DateUtil.format(date, "yyyy年MM月dd日 HH:mm:ss"))
-                    memo.updateTime=date.time
+                    memo.updateTime = date.time
                 },
                 "",
                 false).show()

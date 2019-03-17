@@ -6,4 +6,5 @@ package com.union.bangbang.todokotlin.base.okhttp
  * @time 2019/3/16 4:22 PM
  * 只有编译器可能不骗你。
  */
-class ApiException(val code: Int,val  msg: String) : Exception()
+class ApiException(val code: Int, msg: String) : Exception(msg) {
+}

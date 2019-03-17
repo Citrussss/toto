@@ -7,15 +7,10 @@ import com.amap.api.location.AMapLocationClient
 import com.amap.api.location.AMapLocationClientOption
 import com.amap.api.location.AMapLocationListener
 import com.amap.api.services.core.LatLonPoint
-import com.amap.api.services.geocoder.GeocodeResult
 import com.amap.api.services.geocoder.GeocodeSearch
 import com.amap.api.services.geocoder.RegeocodeQuery
-import com.amap.api.services.geocoder.RegeocodeResult
-import com.tbruyelle.rxpermissions2.Permission
-import com.tbruyelle.rxpermissions2.RxPermissions
 import com.union.bangbang.todokotlin.base.utils.ToastUtil
 import com.union.bangbang.todokotlin.base.utils.request
-import com.union.bangbang.zero.AppUtil
 import io.reactivex.functions.Consumer
 import javax.inject.Inject
 
@@ -36,6 +31,7 @@ class Location @Inject constructor(context: Context) {
     lateinit var locationClient: AMapLocationClient
     lateinit var mLocationOption: AMapLocationClientOption
     lateinit var geocoderSearch: GeocodeSearch
+    var locationListener: AMapLocationListener? = null
 
     init {
 //声明定位回调监听器
@@ -57,25 +53,24 @@ class Location @Inject constructor(context: Context) {
 
     fun startLocation(listener: AMapLocationListener) {
         stop()
-        locationClient.setLocationListener {
-            run {
-                if (it.errorCode == 0) {
-//                    if (TextUtils.isEmpty(it.address)){
-//                        val latlon =LatLonPoint(it.latitude,it.longitude)
-//                        val query = RegeocodeQuery(latlon, 10F, GeocodeSearch.AMAP)
-//                        geocoderSearch.getFromLocationAsyn(query)
-//                    }
-                    listener.onLocationChanged(it)
-                } else {
-                    ToastUtil.error(it.errorInfo)
-                }
-                locationClient.stopLocation()
-            }
+        locationListener?.let {
+            locationClient.unRegisterLocationListener(it)
         }
+        locationListener = AMapLocationListener {
+            if (it.errorCode == 0) {
+                listener.onLocationChanged(it)
+            } else {
+                ToastUtil.error(it.errorInfo)
+            }
+            locationClient.stopLocation()
+        }
+        locationClient.setLocationListener(locationListener)
         request(Manifest.permission.ACCESS_FINE_LOCATION).subscribe(Consumer {
-            if (it.granted) locationClient.startLocation()
-            else if (it.shouldShowRequestPermissionRationale) ToastUtil.error("请打开定位权限，否者无法获得定位信息")
-            else ToastUtil.error("请手动打开定位权限，否者无法获得定位信息")
+            when {
+                it.granted -> locationClient.startLocation()
+                it.shouldShowRequestPermissionRationale -> ToastUtil.error("请打开定位权限，否者无法获得定位信息")
+                else -> ToastUtil.error("请手动打开定位权限，否者无法获得定位信息")
+            }
         }, Consumer {
             ToastUtil.error(it.message.toString())
         })

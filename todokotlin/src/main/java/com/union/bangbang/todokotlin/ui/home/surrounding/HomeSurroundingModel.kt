@@ -8,9 +8,11 @@ import com.amap.api.location.AMapLocationListener
 import com.union.bangbang.todokotlin.base.data.model.DataService
 import com.union.bangbang.todokotlin.base.data.net.Location
 import com.union.bangbang.todokotlin.base.model.RecycleModel
+import com.union.bangbang.todokotlin.base.okhttp.Reaper
 import com.union.bangbang.todokotlin.base.utils.ToastUtil
 import com.union.bangbang.todokotlin.service.ClockService
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.functions.Consumer
 import javax.inject.Inject
 
 
@@ -55,9 +57,11 @@ class HomeSurroundingModel @Inject constructor(val app: Application, val dataSer
         amapLocation.let {
             dataService.findMemoByLocation(it.longitude, it.latitude, 1000.0)
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe {
-                        adapter.addData(it.data)
-                    }
+                    .subscribe(
+                            Reaper(this, Consumer {
+                                adapter.addData(it.data)
+                            }))
+
         }
     }
 }

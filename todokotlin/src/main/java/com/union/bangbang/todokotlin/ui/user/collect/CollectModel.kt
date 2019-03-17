@@ -3,7 +3,9 @@ package com.union.bangbang.todokotlin.ui.user.collect
 import android.app.Application
 import com.union.bangbang.todokotlin.base.data.model.DataService
 import com.union.bangbang.todokotlin.base.model.RecycleModel
+import com.union.bangbang.todokotlin.base.okhttp.Reaper
 import com.union.bangbang.todokotlin.base.utils.ToastUtil
+import io.reactivex.functions.Consumer
 import javax.inject.Inject
 
 /**
@@ -15,10 +17,9 @@ import javax.inject.Inject
 class CollectModel @Inject constructor(val app: Application, val dataService: DataService) : RecycleModel(app) {
 
     fun refreshList() {
-        addDisposable(dataService.findAllCollect().subscribe({
-            //            adapter.addData(it.data)
-        }, { ToastUtil::error }))
+        dataService.findAllCollect().subscribe(
+                Reaper(this, Consumer {}, Consumer { ToastUtil::error })
+                //            adapter.addData(it.data)
+        )
     }
-
-
 }

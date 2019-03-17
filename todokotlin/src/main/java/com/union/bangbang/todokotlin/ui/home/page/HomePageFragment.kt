@@ -8,6 +8,7 @@ import kotlinx.android.synthetic.main.fragment_home_page.*
 import org.greenrobot.eventbus.EventBus
 import javax.inject.Inject
 import android.databinding.adapters.TextViewBindingAdapter.setText
+import kotlinx.android.synthetic.main.toolbar_none_back.*
 import org.greenrobot.eventbus.ThreadMode
 import org.greenrobot.eventbus.Subscribe
 
@@ -34,7 +35,7 @@ class HomePageFragment : BaseFragment<com.union.bangbang.todokotlin.databinding.
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        EventBus.getDefault().register(this)
+//        EventBus.getDefault().register(this)
 
         recyclerView.adapter = viewModel.adapter
         recyclerView.layoutManager = viewModel.linearLayoutManager
@@ -42,10 +43,10 @@ class HomePageFragment : BaseFragment<com.union.bangbang.todokotlin.databinding.
 //        val rxPermissions=RxPermissions(this)
 //        rxPermissions.ensureEach
     }
-    @Subscribe(threadMode = ThreadMode.MAIN)
+ /* @Subscribe(threadMode = ThreadMode.MAIN)
     fun Event(messageEvent: TipEntity) {
         tool_bar.title=(messageEvent.position.toString())
-    }
+    }*/
 
     override fun onStop() {
         super.onStop()

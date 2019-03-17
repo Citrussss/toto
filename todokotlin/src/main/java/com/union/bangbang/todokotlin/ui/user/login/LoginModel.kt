@@ -9,9 +9,9 @@ import android.widget.Toast
 import com.union.bangbang.todokotlin.base.data.model.DataService
 import com.union.bangbang.todokotlin.base.data.pojo.UserEntity
 import com.union.bangbang.todokotlin.base.model.BaseModel
+import com.union.bangbang.todokotlin.base.okhttp.Reaper
 import com.union.bangbang.todokotlin.base.utils.ArouterUtil
 import com.union.bangbang.todokotlin.base.utils.ToastUtil
-import com.union.bangbang.todokotlin.base.utils.UserUtil.getToken
 import com.union.bangbang.todokotlin.base.utils.UserUtil.setToken
 import com.union.bangbang.todokotlin.dagger.module.ActivityModule.Companion.home_page
 import com.union.bangbang.todokotlin.dagger.module.ActivityModule.Companion.user_login
@@ -19,6 +19,7 @@ import com.union.bangbang.todokotlin.dagger.module.ActivityModule.Companion.user
 import com.union.bangbang.zero.AppUtil
 import es.dmoral.toasty.Toasty
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.functions.Consumer
 import javax.inject.Inject
 
 
@@ -36,8 +37,8 @@ class LoginModel @Inject constructor(private val dataService: DataService, val a
     fun onLoginClick(view: View) {
         if (!TextUtils.isEmpty(mobile.get()) && !TextUtils.isEmpty(password.get())) {
             val user = UserEntity(null, mobile.get()!!, password.get()!!)
-            addDisposable(dataService.login(user).observeOn(AndroidSchedulers.mainThread()).subscribe(
-                    {
+            dataService.login(user).observeOn(AndroidSchedulers.mainThread()).subscribe(
+                    Reaper(this, Consumer {
                         if (it.code == 0) {
                             setToken(app, it.data.token.token)
                             Toasty.success(getApplication(), "登录成功", Toast.LENGTH_SHORT, true).show()
@@ -47,10 +48,10 @@ class LoginModel @Inject constructor(private val dataService: DataService, val a
 //                            finish()
                         } else Toasty.error(getApplication(), it.toString(), Toast.LENGTH_SHORT, true).show()
                     },
-                    {
-                        Log.e("LoginModel", it.message)
-                    }
-            ))
+                            Consumer {
+                                Log.e("LoginModel", it.message)
+                            })
+            )
         }
     }
 
@@ -61,14 +62,14 @@ class LoginModel @Inject constructor(private val dataService: DataService, val a
     fun onRegisterClick(view: View) {
         if (!TextUtils.isEmpty(mobile.get()) && !TextUtils.isEmpty(password.get())) {
             val user = UserEntity(0, mobile.get()!!, password.get()!!)
-            addDisposable(dataService.register(user).subscribe(
-                    {
+            dataService.register(user).subscribe(
+                    Reaper(this, Consumer {
                         Toasty.success(getApplication(), it.toString(), Toast.LENGTH_SHORT, true).show();
                     },
-                    {
-                        Log.e("LoginModel", it.message)
-                    }
-            ))
+                            Consumer {
+                                Log.e("LoginModel", it.message)
+                            })
+            )
         }
     }
 
@@ -79,13 +80,13 @@ class LoginModel @Inject constructor(private val dataService: DataService, val a
     fun onEditPwdClick(view: View) {
         if (!TextUtils.isEmpty(mobile.get()) && !TextUtils.isEmpty(password.get())) {
             var user = UserEntity(null, mobile.get()!!, password.get()!!)
-            addDisposable(dataService.editPwd(user).observeOn(AndroidSchedulers.mainThread()).subscribe(
-                    {
+            dataService.editPwd(user).observeOn(AndroidSchedulers.mainThread()).subscribe(
+                    Reaper(this, Consumer {
                         setToken(app, it.data.token.token)
                         ToastUtil.success("修改成功")
                         finish()
-                    }, { ToastUtil::error }
-            ))
+                    }, Consumer { ToastUtil::error })
+            )
         }
     }
 
@@ -93,7 +94,7 @@ class LoginModel @Inject constructor(private val dataService: DataService, val a
         setToken(app, "")
         ArouterUtil.navigation(user_login)
         for (activity in AppUtil.getActivityStack()) {
-            if (activity !is LoginActivity)activity.finish()
+            if (activity !is LoginActivity) activity.finish()
         }
     }
 }

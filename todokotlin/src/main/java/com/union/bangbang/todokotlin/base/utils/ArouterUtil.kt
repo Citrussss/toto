@@ -1,10 +1,9 @@
 package com.union.bangbang.todokotlin.base.utils
 
 import android.os.Bundle
-import com.alibaba.android.arouter.facade.Postcard
+import android.support.v4.app.ActivityOptionsCompat
 import com.alibaba.android.arouter.launcher.ARouter
 import com.union.bangbang.todokotlin.R
-import com.union.bangbang.zero.AppUtil
 
 /**
  * Rabies
@@ -12,18 +11,15 @@ import com.union.bangbang.zero.AppUtil
  * Date:   2019-01-21
  * Time:   14:20
  */
-object  ArouterUtil {
-    private fun build(url: String, bundle: Bundle?): Postcard {
-        return ARouter.getInstance()
+object ArouterUtil {
+    fun navigation(url: String, bundle: Bundle? = null, enterAnim: Int = R.anim.push_right_in, exitAnim: Int = R.anim.push_left_out, compat: ActivityOptionsCompat? = null) {
+        ARouter.getInstance()
                 .build(url)
-                .withTransition(R.anim.push_right_in, R.anim.push_right_out)
-                .with(bundle)
+                .withTransition(enterAnim, exitAnim)
+                .withOptionsCompat(compat)
+                .with(bundle).navigation()
     }
-
-    fun navigation(url: String, bundle: Bundle) {
-        build(url, bundle).navigation()
-    }
-    fun navigation(url: String) {
-        build(url, null).navigation(AppUtil.peekActivity())
-    }
+    /*   fun navigation(url: String) {
+           build(url, null).navigation(AppUtil.peekActivity())
+       }*/
 }

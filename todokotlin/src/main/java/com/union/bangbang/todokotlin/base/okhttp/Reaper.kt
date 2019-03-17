@@ -2,7 +2,9 @@ package com.union.bangbang.todokotlin.base.okhttp
 
 import android.util.Log
 import com.union.bangbang.todokotlin.base.model.BaseModel
+import com.union.bangbang.todokotlin.base.utils.ArouterUtil
 import com.union.bangbang.todokotlin.base.utils.ToastUtil
+import com.union.bangbang.todokotlin.dagger.module.ActivityModule.Companion.user_login
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Consumer
@@ -18,17 +20,23 @@ import java.lang.ref.WeakReference
 class Reaper<T>(
         model: BaseModel,
         val onNext: Consumer<T> = Consumer { Log.v(this.TAG, it.toString()) },
-        val onError: Consumer<Throwable> = Consumer { it?.message?.let { ToastUtil::error } }
+        val onError: Consumer<Throwable> = Consumer {
+            it?.let { throwable ->
+                throwable.message?.let { message -> ToastUtil.error(message) }
+                if (throwable is ApiException) {
+                    when (throwable.code) {
+                        403 -> {
+                            ArouterUtil.navigation(user_login)
+                        }
+                    }
+                }
+            }
+        }
 ) : Observer<T> {
-    lateinit var d: Disposable
-    lateinit var weekModel: WeakReference<BaseModel>
+    var weekModel: WeakReference<BaseModel> = WeakReference(model)
 
     companion object {
         val TAG = "Reaper"
-    }
-
-    init {
-        weekModel=WeakReference(model)
     }
 
     /**

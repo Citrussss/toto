@@ -1,15 +1,11 @@
 package com.union.bangbang.todokotlin.ui.user.login
 
-import android.arch.lifecycle.AndroidViewModel
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
-import android.text.TextUtils
-import android.util.Log
-import android.view.View
+import android.os.Build
+import android.os.Bundle
+import android.transition.Explode
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.union.bangbang.todokotlin.R
 import com.union.bangbang.todokotlin.base.activity.BaseActivity
-import com.union.bangbang.todokotlin.base.data.pojo.UserEntity
 import com.union.bangbang.todokotlin.dagger.module.ActivityModule.Companion.user_login
 import com.union.bangbang.todokotlin.databinding.ActivityLoginBinding
 import javax.inject.Inject
@@ -24,9 +20,13 @@ import javax.inject.Inject
 class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     @Inject
     lateinit var viewModel: LoginModel
+
     override fun getLayoutId(): Int = R.layout.activity_login
     override fun initViewModel(): LoginModel {
         return viewModel
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 }
