@@ -12,7 +12,7 @@ import com.union.bangbang.todokotlin.base.model.BaseModel
 import com.union.bangbang.todokotlin.base.okhttp.Reaper
 import com.union.bangbang.todokotlin.base.utils.ArouterUtil
 import com.union.bangbang.todokotlin.base.utils.ToastUtil
-import com.union.bangbang.todokotlin.base.utils.UserUtil.setToken
+import com.union.bangbang.todokotlin.base.utils.Configuration.setToken
 import com.union.bangbang.todokotlin.dagger.module.ActivityModule.Companion.home_page
 import com.union.bangbang.todokotlin.dagger.module.ActivityModule.Companion.user_login
 import com.union.bangbang.todokotlin.dagger.module.ActivityModule.Companion.user_register

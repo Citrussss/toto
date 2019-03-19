@@ -8,7 +8,7 @@ import com.union.bangbang.todokotlin.base.data.model.DataService
 import com.union.bangbang.todokotlin.base.fragment.BaseFragment
 import com.union.bangbang.todokotlin.base.model.BaseModel
 import com.union.bangbang.todokotlin.base.utils.ArouterUtil
-import com.union.bangbang.todokotlin.base.utils.UserUtil.getToken
+import com.union.bangbang.todokotlin.base.utils.Configuration.getToken
 import com.union.bangbang.todokotlin.dagger.module.ActivityModule.Companion.about
 import com.union.bangbang.todokotlin.dagger.module.ActivityModule.Companion.collect_list
 import com.union.bangbang.todokotlin.dagger.module.ActivityModule.Companion.user_login

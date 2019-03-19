@@ -1,6 +1,6 @@
 package com.union.bangbang.todokotlin.base.okhttp
 
-import com.union.bangbang.todokotlin.base.utils.UserUtil.getToken
+import com.union.bangbang.todokotlin.base.utils.Configuration.getToken
 import com.union.bangbang.zero.AppUtil
 import okhttp3.Interceptor
 import okhttp3.Response
