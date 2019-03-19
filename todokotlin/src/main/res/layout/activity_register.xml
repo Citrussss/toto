@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:gravity="center"
-            android:text="logo"
+            android:text="@string/logo"
             android:textSize="@dimen/sp_16" />
 
         <com.union.bangbang.zero.view.ClipLayout
