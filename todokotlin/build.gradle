@@ -12,7 +12,7 @@ android {
         config {
             keyAlias 'todo'
             keyPassword 'todo123456'
-            storeFile file('/Users/bangbang/StudioProjects/toto/todo.jks')
+            storeFile file('../todo.jks')
             storePassword 'todo123456'
         }
     }

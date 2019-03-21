@@ -42,7 +42,7 @@
                     android:layout_height="wrap_content"
                     android:drawablePadding="8dp"
                     android:paddingTop="10dp"
-                    android:text="首页" />
+                    android:text="@string/home" />
 
                 <android.support.design.widget.TabItem
                     android:layout_width="100dp"
@@ -56,7 +56,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:drawablePadding="4dp"
-                    android:text="发现" />
+                    android:text="@string/discovery" />
             </android.support.design.widget.TabLayout>
 
         </LinearLayout>

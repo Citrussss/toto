@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:text="@{String.format(&quot;用户名:%1s&quot;,vm.createUserName)}"
+            android:text="@{@string/user_name_format(vm.createUserName)}"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="@+id/imageView" />
@@ -48,7 +48,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:minWidth="128dp"
-            android:text="@{String.format(&quot;发送时间:%1s&quot;,DateFormatUtils.format(vm.createTime,&quot;yyyy.MM.dd - HH:mm&quot;))}"
+            android:text="@{@string/send_time_format(DateFormatUtils.format(vm.createTime,&quot;yyyy.MM.dd - HH:mm&quot;))}"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView"
             app:layout_constraintEnd_toEndOf="parent" />
 

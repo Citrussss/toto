@@ -43,7 +43,7 @@
             android:layout_height="156dp"
             android:background="@color/white"
             android:gravity="top"
-            android:hint="记录下你此时的事情"
+            android:hint="@string/record_what_you_are_doing_at_this_time"
             android:padding="15dp"
             android:text="@={vm.memo.content}" />
 
@@ -125,7 +125,7 @@
                     android:drawableStart="@drawable/global_select"
                     android:drawableLeft="@drawable/global_select"
                     android:padding="5dp"
-                    android:text="公开"
+                    android:text="@string/open"
                     android:textSize="@dimen/sp_12" />
             </com.union.bangbang.zero.view.ClipLayout>
 
