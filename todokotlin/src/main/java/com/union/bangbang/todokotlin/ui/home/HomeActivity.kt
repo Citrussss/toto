@@ -1,24 +1,15 @@
 package com.union.bangbang.todokotlin.ui.home
 
-import android.arch.lifecycle.AndroidViewModel
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
-import android.content.Context
 import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.util.Log
-import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.union.bangbang.todokotlin.BuildConfig
-import com.union.bangbang.todokotlin.Constants
 import com.union.bangbang.todokotlin.R
 import com.union.bangbang.todokotlin.base.activity.BaseActivity
-import com.union.bangbang.todokotlin.base.data.net.Api
 import com.union.bangbang.todokotlin.base.fragment.BaseFragment
-import com.union.bangbang.todokotlin.base.utils.ArouterUtil
+import com.union.bangbang.todokotlin.base.okhttp.ApiException
 import com.union.bangbang.todokotlin.dagger.module.ActivityModule.Companion.home_page
-import com.union.bangbang.todokotlin.dagger.module.ActivityModule.Companion.user_login
 import com.union.bangbang.todokotlin.databinding.ActivityHomeBinding
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -70,6 +61,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
                 (p0?.let { checkFragment(it.position) })
             }
         })
+        throw ApiException(10, "爆炸了")
     }
 
     private fun checkFragment(position: Int?) {
