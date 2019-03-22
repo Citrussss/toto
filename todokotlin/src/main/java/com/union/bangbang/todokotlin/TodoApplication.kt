@@ -7,12 +7,14 @@ import android.support.multidex.MultiDex
 import android.support.v4.app.Fragment
 import com.alibaba.android.arouter.launcher.ARouter
 import com.facebook.stetho.Stetho
-import com.union.bangbang.todokotlin.base.interceptor.CrashHelper
+import com.union.bangbang.todokotlin.base.utils.crash.CrashHelper
+import com.union.bangbang.todokotlin.base.utils.email.MailSender
 import com.union.bangbang.zero.AppUtil
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import dagger.android.support.HasSupportFragmentInjector
+import java.lang.Exception
 import javax.inject.Inject
 
 
@@ -54,9 +56,11 @@ class TodoApplication : Application(), HasActivityInjector, HasSupportFragmentIn
             ARouter.openDebug()  // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
         }
         ARouter.init(this) // 尽可能早，推荐在Application中初始化
-        CrashHelper.register(this)
-        CrashHelper.register(this)
-        CrashHelper.register(this)
-        CrashHelper.register(this)
+        CrashHelper.init(this)
+        Thread {
+            throw RuntimeException("这是一个错奥")
+        }.start()
+
+//        throw RuntimeException("${this}好惨啊")
     }
 }
