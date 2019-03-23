@@ -27,9 +27,9 @@ class MailSender(
         val sport: String = "465",
         val from: String = "lonely292837678@qq.com",
         val to: List<String> = Arrays.asList("lonely292837678@qq.com"),
-        val password: String = "password!") : Authenticator() {
+        val password: String = "XXX") : Authenticator() {
 
-    fun send(title: String, file: File) {
+    fun send(title: String, file: File, delete: Boolean = true) {
         val props = setProperties()
         val session = Session.getInstance(props, this)
         session.debug = debuggable
@@ -56,6 +56,9 @@ class MailSender(
 
         ts.sendMessage(msg, msg.allRecipients)
         ts.close()
+        if (delete) {
+            file.delete()
+        }
     }
 
     fun send(title: String, content: String) {

@@ -23,12 +23,13 @@ class StartUpActivity : BaseActivity<ActivityStartupBinding>() {
         viewModel.refresh()
         viewModel.startTiming(Consumer {
             if (it) {
-                ArouterUtil.navigation(home_page,transitionType= TransitionTypeValue.fade)
+                ArouterUtil.navigation(home_page, transitionType = TransitionTypeValue.fade)
+                viewModel.stopAllDisposable()
                 window.decorView.postDelayed({
                     finish()
                 }, 333)
             }
-        }, time = 1000)
+        }, time = 5)
     }
 
     override fun getLayoutId(): Int = R.layout.activity_startup

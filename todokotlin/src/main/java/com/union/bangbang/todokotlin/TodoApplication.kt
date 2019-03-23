@@ -57,10 +57,6 @@ class TodoApplication : Application(), HasActivityInjector, HasSupportFragmentIn
         }
         ARouter.init(this) // 尽可能早，推荐在Application中初始化
         CrashHelper.init(this)
-        Thread {
-            throw RuntimeException("这是一个错奥")
-        }.start()
-
 //        throw RuntimeException("${this}好惨啊")
     }
 }

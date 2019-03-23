@@ -6,7 +6,6 @@ import com.union.bangbang.todokotlin.R
 import com.union.bangbang.todokotlin.base.fragment.BaseFragment
 import com.union.bangbang.todokotlin.databinding.FragmentHomeMomentBinding
 import io.reactivex.Observable
-import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_home_surrounding.*
@@ -40,11 +39,6 @@ class HomeSurroundingFragment : BaseFragment<FragmentHomeMomentBinding>() {
 
     override fun onResume() {
         super.onResume()
-        Observable.just(1)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    viewModel.location()
-                })
+        viewModel.location()
     }
 }

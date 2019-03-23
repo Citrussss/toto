@@ -4,7 +4,8 @@ import android.content.Context
 import android.os.Build
 import android.os.Environment
 import android.util.Log
-import com.union.bangbang.todokotlin.base.utils.email.MailSender
+import com.union.bangbang.todokotlin.service.MailService
+import org.apache.commons.lang3.time.DateFormatUtils
 import java.io.File
 import java.io.PrintWriter
 
@@ -17,8 +18,12 @@ import java.io.PrintWriter
 class CrashHelper : Thread.UncaughtExceptionHandler {
     lateinit var defaultUncaughtExceptionHandler: Thread.UncaughtExceptionHandler
     lateinit var context: Context
+    val path: String by lazy {
+        "${context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)}/"
+    }
+
     override fun uncaughtException(t: Thread, e: Throwable) {
-        val file = File("${context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)}/${System.currentTimeMillis()}.log")
+        val file = File(path + "${System.currentTimeMillis()}.log")
 //        file.mkdir()
         val pw = PrintWriter(file)
         try {
@@ -26,25 +31,35 @@ class CrashHelper : Thread.UncaughtExceptionHandler {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        pw.println("品牌：${Build.BRAND} 型号：${Build.MODEL} SDK: ${Build.VERSION.SDK_INT} OS:${Build.VERSION.RELEASE}")
+        pw.println("品牌：${Build.BRAND} 型号：${Build.MODEL} SDK: ${Build.VERSION.SDK_INT} OS:${Build.VERSION.RELEASE} 错误时间：${DateFormatUtils.format(System.currentTimeMillis(),"yyyy.MM.dd - HH:mm")}" )
         e.printStackTrace(pw)
         pw.flush()
         pw.close()
-        MailSender().send(context.packageName, file)
-
 //        Log.getStackTraceString(e)
         //在此处进行异常的保存或者提交，例如蒲公英
         defaultUncaughtExceptionHandler.uncaughtException(t, e)
     }
 
     companion object {
-        private val TAG = "CrashHelper"
+        private const val TAG = "CrashHelper"
         private val instance: CrashHelper by lazy { CrashHelper() }
         @Synchronized
         fun init(context: Context) {
             instance.defaultUncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler()
             instance.context = context
+            upload()
             Thread.setDefaultUncaughtExceptionHandler(instance)
+        }
+
+        private fun upload() {
+            val fileDir = File(instance.path)
+            fileDir.isDirectory.let {
+                fileDir.list().forEach {
+                    MailService.start(instance.context, "报错日志", path = fileDir.absolutePath+"/"+it)
+                }
+            }
+//
+
         }
 //        @Synchronized
 //        fun register(context: Context) {

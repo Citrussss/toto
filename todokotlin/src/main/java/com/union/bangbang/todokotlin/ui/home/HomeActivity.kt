@@ -61,7 +61,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
                 (p0?.let { checkFragment(it.position) })
             }
         })
-        throw ApiException(10, "爆炸了")
+//        throw ApiException(10, "爆炸了")
     }
 
     private fun checkFragment(position: Int?) {

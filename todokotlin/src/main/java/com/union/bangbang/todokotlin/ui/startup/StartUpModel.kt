@@ -16,6 +16,7 @@ import com.union.bangbang.todokotlin.base.utils.ArouterUtil
 import com.union.bangbang.todokotlin.dagger.module.ActivityModule
 import com.union.bangbang.todokotlin.ui.user.UserListActivity
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Consumer
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -56,7 +57,7 @@ class StartUpModel @Inject constructor(val dataService: DataService, app: Applic
     fun startTiming(onNext: Consumer<Boolean>,time :Long=3) {
         this.onNext = onNext
         addDisposable(Observable.interval(0, 1000, TimeUnit.MILLISECONDS).take(time + 1)
-                .subscribe {
+                .observeOn(AndroidSchedulers.mainThread()).subscribe {
                     timeOb.set(String.format(Locale.CHINESE, "等待跳过%1sS", (time - it)))
                     if (time == it) {
                         timeOb.set("结束")
