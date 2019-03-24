@@ -8,6 +8,7 @@ import com.union.bangbang.todokotlin.base.utils.ArouterUtil
 import com.union.bangbang.todokotlin.base.utils.TransitionTypeValue
 import com.union.bangbang.todokotlin.dagger.module.ActivityModule.Companion.home_page
 import com.union.bangbang.todokotlin.databinding.ActivityStartupBinding
+import com.union.bangbang.todokotlin.ui.user.login.LoginModel
 import io.reactivex.functions.Consumer
 import javax.inject.Inject
 
@@ -23,6 +24,7 @@ class StartUpActivity : BaseActivity<ActivityStartupBinding>() {
         viewModel.refresh()
         viewModel.startTiming(Consumer {
             if (it) {
+                LoginModel.background = viewModel.urlOb.get()
                 ArouterUtil.navigation(home_page, transitionType = TransitionTypeValue.fade)
                 viewModel.stopAllDisposable()
                 window.decorView.postDelayed({

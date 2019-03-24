@@ -51,7 +51,7 @@ abstract class BaseActivity<Binding : ViewDataBinding> : AppCompatActivity() {
             }
         }
         super.onCreate(savedInstanceState)
-        initViewDataBinding(savedInstanceState)
+        initViewDataBinding(intent.extras)
     }
 
     companion object Route {

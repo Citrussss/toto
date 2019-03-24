@@ -1,6 +1,7 @@
 package com.union.bangbang.todokotlin.ui.user.register
 
 import android.arch.lifecycle.AndroidViewModel
+import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.union.bangbang.todokotlin.R
 import com.union.bangbang.todokotlin.base.activity.BaseActivity
@@ -28,4 +29,8 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
 
     override fun getLayoutId(): Int = R.layout.activity_register
     override fun initViewModel(): BaseModel? = viewModel
+    override fun onCreate(savedInstanceState: Bundle?) {
+        setImmersive()
+        super.onCreate(savedInstanceState)
+    }
 }

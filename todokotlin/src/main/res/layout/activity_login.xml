@@ -12,21 +12,20 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
         android:orientation="vertical">
 
-        <TextView
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:gravity="center"
-            android:text="logo"
-            android:textSize="@dimen/sp_16" />
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:scaleType="centerCrop"
+            android:src="@{vm.background}" />
 
         <com.union.bangbang.zero.view.ClipLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="250dp"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorPrimaryDark99"
             android:padding="7.5dp"
             app:lb="15"
             app:lt="15"
@@ -36,7 +35,7 @@
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/white">
+                android:background="@color/colorPrimaryDark33">
 
                 <EditText
                     android:id="@+id/editText"
@@ -51,6 +50,8 @@
                     android:inputType="phone"
                     android:maxLength="11"
                     android:text="@={vm.mobile}"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -68,6 +69,8 @@
                     android:inputType="textPassword"
                     android:maxLength="16"
                     android:text="@={vm.password}"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -77,8 +80,10 @@
                     android:id="@+id/button"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/def_height"
+                    android:background="@color/colorPrimaryDark33"
                     android:onClick="@{vm::onLoginClick}"
                     android:text="@string/login"
+                    android:textColor="@color/colorPrimary"
                     app:layout_constraintEnd_toStartOf="@+id/button2"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -90,8 +95,10 @@
                     android:layout_height="@dimen/def_height"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
+                    android:background="@color/colorPrimaryDark33"
                     android:onClick="@{vm::onGoRegisterClick}"
                     android:text="@string/register"
+                    android:textColor="@color/colorPrimary"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/button"

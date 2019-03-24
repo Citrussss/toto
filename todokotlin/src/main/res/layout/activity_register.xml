@@ -15,10 +15,12 @@
         android:background="@color/white"
         android:orientation="vertical">
 
-        <TextView
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="match_parent"
             android:gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@{vm.background}"
             android:text="@string/logo"
             android:textSize="@dimen/sp_16" />
 
@@ -26,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="250dp"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorPrimaryDark99"
             android:padding="7.5dp"
             app:lb="15"
             app:lt="15"
@@ -36,7 +38,7 @@
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/white">
+                android:background="@color/colorPrimaryDark33">
 
                 <EditText
                     android:id="@+id/editText"
@@ -51,6 +53,8 @@
                     android:inputType="phone"
                     android:maxLength="11"
                     android:text="@={vm.mobile}"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -68,6 +72,8 @@
                     android:inputType="textPassword"
                     android:maxLength="16"
                     android:text="@={vm.password}"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -81,8 +87,10 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
+                    android:background="@color/colorPrimaryDark99"
                     android:onClick="@{vm::onRegisterClick}"
                     android:text="注册"
+                    android:textColor="@color/colorPrimary"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/editText2" />

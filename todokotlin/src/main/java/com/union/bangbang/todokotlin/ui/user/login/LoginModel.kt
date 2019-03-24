@@ -2,10 +2,12 @@ package com.union.bangbang.todokotlin.ui.user.login
 
 import android.app.Application
 import android.databinding.ObservableField
+import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.union.bangbang.todokotlin.Constants
 import com.union.bangbang.todokotlin.base.data.model.DataService
 import com.union.bangbang.todokotlin.base.data.pojo.UserEntity
 import com.union.bangbang.todokotlin.base.model.BaseModel
@@ -34,6 +36,7 @@ class LoginModel @Inject constructor(private val dataService: DataService, val a
     var mobile = ObservableField<String>()
     var password = ObservableField<String>()
     var signature = "本App设计于2019—2-27\n通信154\n金帮裕"
+    var background = ObservableField<String>(Companion.background)
     fun onLoginClick(view: View) {
         if (!TextUtils.isEmpty(mobile.get()) && !TextUtils.isEmpty(password.get())) {
             val user = UserEntity(null, mobile.get()!!, password.get()!!)
@@ -96,5 +99,14 @@ class LoginModel @Inject constructor(private val dataService: DataService, val a
         for (activity in AppUtil.getActivityStack()) {
             if (activity !is LoginActivity) activity.finish()
         }
+    }
+
+    override fun attachData(bundle: Bundle) {
+        super.attachData(bundle)
+            background.set(Companion.background)
+    }
+
+    companion object {
+        var background: String? = ""
     }
 }

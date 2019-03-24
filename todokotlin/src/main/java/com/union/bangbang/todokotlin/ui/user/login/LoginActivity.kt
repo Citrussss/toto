@@ -28,6 +28,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setImmersive()
         slidingDirection = Gravity.BOTTOM
         super.onCreate(savedInstanceState)
     }
