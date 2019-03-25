@@ -54,7 +54,7 @@ class StartUpModel @Inject constructor(val dataService: DataService, app: Applic
         )
     }
 
-    fun startTiming(onNext: Consumer<Boolean>,time :Long=3) {
+    fun startTiming(onNext: Consumer<Boolean>, time: Long = 3) {
         this.onNext = onNext
         addDisposable(Observable.interval(0, 1000, TimeUnit.MILLISECONDS).take(time + 1)
                 .observeOn(AndroidSchedulers.mainThread()).subscribe {

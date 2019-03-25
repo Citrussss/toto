@@ -45,10 +45,7 @@ class LoginModel @Inject constructor(private val dataService: DataService, val a
                         if (it.code == 0) {
                             setToken(app, it.data.token.token)
                             Toasty.success(getApplication(), "登录成功", Toast.LENGTH_SHORT, true).show()
-//                            val intent = Intent(app, HomeActivity::class.java)
-//                            AppUtil.peekActivity().startActivity(intent)
                             ArouterUtil.navigation(home_page)
-//                            finish()
                         } else Toasty.error(getApplication(), it.toString(), Toast.LENGTH_SHORT, true).show()
                     },
                             Consumer {
