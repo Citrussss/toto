@@ -4,6 +4,8 @@ import com.union.bangbang.todokotlin.base.data.pojo.InfoEntity
 import io.reactivex.Observable
 import io.reactivex.ObservableSource
 import io.reactivex.ObservableTransformer
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import org.json.JSONException
 import retrofit2.HttpException
 import java.util.*
@@ -26,7 +28,8 @@ class ErrorTransform<Body> : ObservableTransformer<Body, Body> {
                 .onErrorResumeNext(this::onThrowable)
                 .doOnNext {
                     if (it is InfoEntity<*> && it.code != 0) throw ApiException(it.code, it.msg)
-                }
+                }.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
     }
 
     private fun onThrowable(throwable: Throwable): Observable<Body> {

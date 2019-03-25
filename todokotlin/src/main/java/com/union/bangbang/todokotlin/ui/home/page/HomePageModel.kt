@@ -1,11 +1,11 @@
 package com.union.bangbang.todokotlin.ui.home.page
 
 import android.app.Application
-import android.util.Log
+import com.union.bangbang.todokotlin.base.data.model.DataService
 import com.union.bangbang.todokotlin.base.model.RecycleModel
+import com.union.bangbang.todokotlin.base.okhttp.Reaper
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.functions.Consumer
 import javax.inject.Inject
 
 /**
@@ -19,12 +19,12 @@ import javax.inject.Inject
 
 无愧于天，无愧于地。无怍于人，无惧于鬼。这样，人生!
  */
-class HomePageModel @Inject constructor(val app:Application) :RecycleModel(app) {
-    fun refreshTip() {
-        val subscribe = Observable.range(0, 3)
-                .map { TipEntity(it) }
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ adapter.addData(it) }, { Log.e("StartUpModel", it.message) })
+class HomePageModel @Inject constructor(val app: Application, val dataService: DataService) : RecycleModel(app) {
+    fun refreshData(startTime: Long = 0, endTime: Long = 0) {
+        dataService.getMyMemo(startTime, endTime)
+                .concatMap { Observable.fromIterable(it.data) }
+                .doOnNext { it.index = 1 }
+                .toList().toObservable()
+                .subscribe(Reaper(this, Consumer { adapter.replaceData(it) }))
     }
 }

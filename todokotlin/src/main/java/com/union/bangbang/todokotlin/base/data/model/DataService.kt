@@ -31,5 +31,5 @@ class DataService @Inject constructor(private val net: Api, private val bingApi:
     fun deleteCollect(vararg collectIds: Long) = net.deleteCollect(*collectIds).subscribeOn(Schedulers.io()).compose(ErrorTransform<InfoEntity<Boolean>>())
     fun findAllCollect() = net.findAllCollect().subscribeOn(Schedulers.io()).compose(ErrorTransform<InfoEntity<Boolean>>())
     fun getWallpaper(format: String, idx: Int, n: Int) = bingApi.getWallpaper(format, idx, n).subscribeOn(Schedulers.io())
-
+    fun getMyMemo(startTime: Long = 0, endTime: Long = 0) = net.findMyMemo(startTime, endTime).compose(ErrorTransform<InfoEntity<List<Memo>>>())
 }

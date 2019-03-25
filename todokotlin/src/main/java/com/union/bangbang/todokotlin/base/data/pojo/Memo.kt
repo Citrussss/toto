@@ -48,13 +48,16 @@ data class Memo constructor(var id: Long?,
         get() = 0
         set(value) {}
     override var layoutId: IntArray
-        get() = intArrayOf(R.layout.holder_list_memo)
+        get() = intArrayOf(
+                R.layout.holder_list_memo,
+                R.layout.holder_list_my_memo
+        )
         set(value) {}
     var isCollect: ObservableBoolean = ObservableBoolean(false)
     fun onDetailClick(view: View) {
-        val bundle =Bundle();
-        bundle.putParcelable(Constants.Bundle.Memo,this)
-        ArouterUtil.navigation(memo_info,bundle)
+        val bundle = Bundle();
+        bundle.putParcelable(Constants.Bundle.Memo, this)
+        ArouterUtil.navigation(memo_info, bundle)
     }
 }
 
