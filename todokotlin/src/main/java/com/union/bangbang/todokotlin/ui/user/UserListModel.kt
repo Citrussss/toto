@@ -21,8 +21,8 @@ import javax.inject.Inject
  * 只有编译器可能不骗你。
  */
 class UserListModel @Inject constructor(private val dataService: DataService, app: Application) : RecycleModel(app) {
-    fun getUserList() = dataService.userList()
+  /*  fun getUserList() = dataService.userList()
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ adapter.addData(it) }, { Log.e("StartUpModel", it.message) })
+            .subscribe({ adapter.addData(it) }, { Log.e("StartUpModel", it.message) })*/
 }

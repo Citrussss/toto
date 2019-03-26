@@ -2,12 +2,10 @@ package com.union.bangbang.todokotlin.ui.home.surrounding
 
 import android.arch.lifecycle.AndroidViewModel
 import android.os.Bundle
+import android.os.Handler
 import com.union.bangbang.todokotlin.R
 import com.union.bangbang.todokotlin.base.fragment.BaseFragment
 import com.union.bangbang.todokotlin.databinding.FragmentHomeMomentBinding
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_home_surrounding.*
 import javax.inject.Inject
 
@@ -27,7 +25,7 @@ class HomeSurroundingFragment : BaseFragment<FragmentHomeMomentBinding>() {
     override fun initViewModel(): AndroidViewModel? = viewModel
 
     override fun getLayoutId(): Int = R.layout.fragment_home_surrounding
-
+    val handle: Handler = Handler()
     @Inject
     lateinit var viewModel: HomeSurroundingModel;
 
@@ -39,6 +37,7 @@ class HomeSurroundingFragment : BaseFragment<FragmentHomeMomentBinding>() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.location()
+        handle.post { viewModel.location() }
     }
+
 }

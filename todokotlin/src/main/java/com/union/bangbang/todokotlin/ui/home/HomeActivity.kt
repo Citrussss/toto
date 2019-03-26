@@ -8,7 +8,6 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.union.bangbang.todokotlin.R
 import com.union.bangbang.todokotlin.base.activity.BaseActivity
 import com.union.bangbang.todokotlin.base.fragment.BaseFragment
-import com.union.bangbang.todokotlin.base.okhttp.ApiException
 import com.union.bangbang.todokotlin.dagger.module.ActivityModule.Companion.home_page
 import com.union.bangbang.todokotlin.databinding.ActivityHomeBinding
 import io.reactivex.Observable
@@ -67,21 +66,19 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     private fun checkFragment(position: Int?) {
         val ft = supportFragmentManager.beginTransaction()
         if (currentTab >= 0) {
-            val beforeFragment = fragments.get(currentTab)
+            val beforeFragment = fragments[currentTab]
             beforeFragment.onPause()
             ft.remove(beforeFragment)
         }
-        val fragment = fragments.get(position!!)
+        val fragment = fragments[position!!]
         for (i in 0 until fragment_content.childCount - fragments.size)
             fragment_content.removeView(fragment_content.getChildAt(i))
         if (fragment.isAdded)
             fragment.onResume()
         else
             ft.add(R.id.fragment_content, fragment)
-        Log.e("HomeActivity", "checkFragment")
-
         ft.show(fragment)
-        ft.commitAllowingStateLoss()
+        ft.commitNow()
         currentTab = position
     }
 }

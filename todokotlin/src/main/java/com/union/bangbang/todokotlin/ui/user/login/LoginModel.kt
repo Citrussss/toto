@@ -43,7 +43,7 @@ class LoginModel @Inject constructor(private val dataService: DataService, val a
             dataService.login(user).observeOn(AndroidSchedulers.mainThread()).subscribe(
                     Reaper(this, Consumer {
                         if (it.code == 0) {
-                            setToken(app, it.data.token.token)
+                            setToken(app, it.data.token)
                             Toasty.success(getApplication(), "登录成功", Toast.LENGTH_SHORT, true).show()
                             ArouterUtil.navigation(home_page)
                         } else Toasty.error(getApplication(), it.toString(), Toast.LENGTH_SHORT, true).show()
@@ -82,7 +82,7 @@ class LoginModel @Inject constructor(private val dataService: DataService, val a
             var user = UserEntity(null, mobile.get()!!, password.get()!!)
             dataService.editPwd(user).observeOn(AndroidSchedulers.mainThread()).subscribe(
                     Reaper(this, Consumer {
-                        setToken(app, it.data.token.token)
+                        setToken(app, it.data.token)
                         ToastUtil.success("修改成功")
                         finish()
                     }, Consumer { ToastUtil::error })

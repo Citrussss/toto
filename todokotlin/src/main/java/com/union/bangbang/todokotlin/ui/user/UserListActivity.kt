@@ -22,7 +22,7 @@ class UserListActivity : BaseActivity<ActivityUserListBinding>() {
     override fun initViewModel(): BaseModel {
         recycle_view.adapter = viewModel.adapter
         recycle_view.layoutManager = viewModel.linearLayoutManager
-        viewModel.getUserList()
+//        viewModel.getUserList()
         return viewModel
     }
 

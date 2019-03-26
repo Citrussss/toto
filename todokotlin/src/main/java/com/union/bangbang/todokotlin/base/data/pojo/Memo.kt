@@ -5,11 +5,13 @@ import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.View
+import com.google.gson.annotations.Expose
 import com.union.bangbang.todokotlin.Constants
 import com.union.bangbang.todokotlin.R
 import com.union.bangbang.todokotlin.base.recycle.adapter.ViewSelectImp
 import com.union.bangbang.todokotlin.base.utils.ArouterUtil
 import com.union.bangbang.todokotlin.dagger.module.ActivityModule.Companion.memo_info
+import kotlinx.android.parcel.IgnoredOnParcel
 import kotlinx.android.parcel.Parcelize
 
 /**
@@ -53,7 +55,8 @@ data class Memo constructor(var id: Long?,
                 R.layout.holder_list_my_memo
         )
         set(value) {}
-    var isCollect: ObservableBoolean = ObservableBoolean(false)
+    @IgnoredOnParcel
+    @Expose val isCollect: ObservableBoolean = ObservableBoolean(false)
     fun onDetailClick(view: View) {
         val bundle = Bundle();
         bundle.putParcelable(Constants.Bundle.Memo, this)

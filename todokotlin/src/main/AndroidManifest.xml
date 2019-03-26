@@ -40,7 +40,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.user.UserListActivity" />
-        <activity android:name=".ui.user.login.LoginActivity" />
+        <activity android:name=".ui.user.login.LoginActivity" android:launchMode="singleTask" />
         <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.user.register.RegisterActivity" />
         <activity android:name=".ui.user.password.EditPwdActivity" android:label="修改密码" />

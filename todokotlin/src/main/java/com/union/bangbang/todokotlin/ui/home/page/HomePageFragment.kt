@@ -61,7 +61,7 @@ class HomePageFragment : BaseFragment<com.union.bangbang.todokotlin.databinding.
         recyclerView.adapter = viewModel.adapter
         recyclerView.layoutManager = viewModel.linearLayoutManager
         calendarView.setOnCalendarSelectListener(this)
-        viewModel.refreshData()
+//        viewModel.refreshData()
 //        val rxPermissions=RxPermissions(this)
 //        rxPermissions.ensureEach
     }

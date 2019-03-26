@@ -109,27 +109,27 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
-            <com.union.bangbang.zero.view.ClipLayout
+        </LinearLayout>
+
+        <com.union.bangbang.zero.view.ClipLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            app:rb="45"
+            app:rt="45">
+
+            <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end|center_vertical"
-                app:lb="45"
-                app:lt="45">
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/bg_gray"
-                    android:button="@null"
-                    android:checked="false"
-                    android:drawableStart="@drawable/global_select"
-                    android:drawableLeft="@drawable/global_select"
-                    android:padding="5dp"
-                    android:text="@string/open"
-                    android:textSize="@dimen/sp_12" />
-            </com.union.bangbang.zero.view.ClipLayout>
-
-        </LinearLayout>
+                android:background="@color/bg_gray"
+                android:button="@null"
+                android:checked="false"
+                android:drawableStart="@drawable/global_select"
+                android:drawableLeft="@drawable/global_select"
+                android:padding="5dp"
+                android:text="@string/open"
+                android:textSize="@dimen/sp_12" />
+        </com.union.bangbang.zero.view.ClipLayout>
     </LinearLayout>
 
 </layout>

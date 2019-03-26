@@ -44,8 +44,8 @@ class Location @Inject constructor(context: Context) {
 
 //初始化AMapLocationClientOption对象
         mLocationOption = AMapLocationClientOption()
-        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
-        mLocationOption.setLocationPurpose(AMapLocationClientOption.AMapLocationPurpose.SignIn);
+        mLocationOption.locationMode = AMapLocationClientOption.AMapLocationMode.Hight_Accuracy;
+        mLocationOption.locationPurpose = AMapLocationClientOption.AMapLocationPurpose.SignIn;
         locationClient.stopLocation();
         locationClient.startLocation();
         geocoderSearch = GeocodeSearch(context)

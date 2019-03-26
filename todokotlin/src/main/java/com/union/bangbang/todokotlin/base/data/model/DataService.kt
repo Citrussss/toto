@@ -17,9 +17,9 @@ import javax.inject.Inject
  */
 class DataService @Inject constructor(private val net: Api, private val bingApi: BingApi) {
     fun tourist() = net.tourist()
-    fun userList() = if (BuildConfig.DEBUG) getDefList() else net.userFindAll().map { it.data }
-    fun getDefList() = Observable.range(0, 100).map { User(it, 17857025659, "tony") }
-            .toList().toObservable()
+//    fun userList() = if (BuildConfig.DEBUG) getDefList() else net.userFindAll().map { it.data }
+//    fun getDefList() = Observable.range(0, 100).map { User(it, 17857025659, "tony") }
+//            .toList().toObservable()
 
     fun login(user: UserEntity) = net.login(user).subscribeOn(Schedulers.io()).compose(ErrorTransform<InfoEntity<LoginEntity>>())
     fun register(user: UserEntity) = net.register(user).subscribeOn(Schedulers.io()).compose(ErrorTransform<InfoEntity<String>>())
