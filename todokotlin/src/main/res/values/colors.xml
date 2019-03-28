@@ -14,4 +14,11 @@
     <color name="colorPrimaryNight">#536DFE</color>
     <color name="colorPrimaryDarkNight">#304FFE</color>
     <color name="colorAccentNight">#536DFE</color>
+
+    <color name="red">#FE5353</color>
+    <color name="yellow">#FEE253</color>
+    <color name="blue">#53C8FE</color>
+    <color name="green">#59FE53</color>
+    <color name="pink">#D053FE</color>
+
 </resources>

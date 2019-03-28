@@ -33,11 +33,11 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".ui.startup.StartUpActivity">
-            <intent-filter>
+           <!-- <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
         <activity android:name=".ui.user.UserListActivity" />
         <activity android:name=".ui.user.login.LoginActivity" android:launchMode="singleTask" />
@@ -47,6 +47,13 @@
         <activity android:name=".ui.about.AboutActivity" android:label="关于" />
         <activity android:name=".ui.user.collect.list.CollectListActivity"/>
         <activity android:name=".ui.memo.info.MemoInfoActivity" />
+        <activity android:name=".ui.clock.alarm.AlarmClockActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <service android:name="com.amap.api.location.APSService"/>
         <service android:name=".service.ClockService"

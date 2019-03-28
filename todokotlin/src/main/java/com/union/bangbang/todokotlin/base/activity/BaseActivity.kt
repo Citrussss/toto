@@ -74,7 +74,7 @@ abstract class BaseActivity<Binding : ViewDataBinding> : AppCompatActivity() {
 
     abstract fun getLayoutId(): Int
     /**
-     * 同时Activity 如果要使用@Inject的话 请去下面这个地方注册
+     * 同时Activity 如果要提供当前的话Activity作为Dagger的注入素材时 请去下面这个地方注册
      * @see com.union.bangbang.todokotlin.dagger.module.ActivityModule
      * 如果要使用ViewModel， 请去下面这个地方注册
      * @see com.union.bangbang.todokotlin.dagger.module.ViewModelModule

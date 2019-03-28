@@ -2,6 +2,7 @@ package com.union.bangbang.todokotlin.dagger.module
 
 import com.union.bangbang.todokotlin.dagger.annotation.ActivityScope
 import com.union.bangbang.todokotlin.ui.about.AboutActivity
+import com.union.bangbang.todokotlin.ui.clock.alarm.AlarmClockActivity
 import com.union.bangbang.todokotlin.ui.home.HomeActivity
 import com.union.bangbang.todokotlin.ui.memo.info.MemoInfoActivity
 import com.union.bangbang.todokotlin.ui.startup.StartUpActivity
@@ -55,6 +56,10 @@ abstract class ActivityModule {
     @ActivityScope
     @ContributesAndroidInjector
     abstract fun bindMemoInfoActivity(): MemoInfoActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector
+    abstract fun bindAlarmClockActivity(): AlarmClockActivity
 
     companion object {
         private const val app = "/todo/"
