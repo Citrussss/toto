@@ -2,7 +2,8 @@ package com.union.bangbang.todokotlin.base.utils
 
 import android.os.Environment
 import android.util.Log
-import java.io.*
+import java.io.File
+import java.util.regex.Pattern
 
 /**
  * @name bysj
@@ -11,6 +12,7 @@ import java.io.*
  * 只有编译器可能不骗你。
  */
 object FileUtil {
+    val httpPattern = Pattern.compile("^([hH][tT]{2}[pP]://|[hH][tT]{2}[pP][sS]://)(([A-Za-z0-9-~]+).)+([A-Za-z0-9-~/])+$")
 
     /*
         storage/emulated/0
@@ -25,28 +27,30 @@ object FileUtil {
         }
     }
 
-   /* fun fileTobyte(file: File): ByteArray? {
-        var buffer: ByteArray? = null
-        try {
-            val fis = FileInputStream(file)
-            val bos = ByteArrayOutputStream()
-            val b = ByteArray(1024)
-            var n: Int
+    fun isWebUrl(s: String) = httpPattern.matcher(s).matches()
 
-            while ((n=fis.read(b))!=-1) {
-                bos.write(b, 0, n)
-            }
+    /* fun fileTobyte(file: File): ByteArray? {
+         var buffer: ByteArray? = null
+         try {
+             val fis = FileInputStream(file)
+             val bos = ByteArrayOutputStream()
+             val b = ByteArray(1024)
+             var n: Int
 
-            fis.close()
-            bos.close()
-            buffer = bos.toByteArray()
-        } catch (e: FileNotFoundException) {
-            e.printStackTrace()
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
+             while ((n=fis.read(b))!=-1) {
+                 bos.write(b, 0, n)
+             }
 
-        return buffer
-    }
-*/
+             fis.close()
+             bos.close()
+             buffer = bos.toByteArray()
+         } catch (e: FileNotFoundException) {
+             e.printStackTrace()
+         } catch (e: IOException) {
+             e.printStackTrace()
+         }
+
+         return buffer
+     }
+ */
 }

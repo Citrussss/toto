@@ -10,6 +10,7 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_clock_alarm.*
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 /**
  * @name bysj
@@ -22,6 +23,9 @@ class AlarmClockActivity : BaseActivity<com.union.bangbang.todokotlin.databindin
         return R.layout.activity_clock_alarm
     }
 
+    @Inject
+    lateinit var model: AlarmClockModel
+
     /**
      * 同时Activity 如果要使用@Inject的话 请去下面这个地方注册
      * @see com.union.bangbang.todokotlin.dagger.module.ActivityModule
@@ -29,7 +33,7 @@ class AlarmClockActivity : BaseActivity<com.union.bangbang.todokotlin.databindin
      * @see com.union.bangbang.todokotlin.dagger.module.ViewModelModule
      */
     override fun initViewModel(): BaseModel? {
-        return null
+        return model
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,8 +46,7 @@ class AlarmClockActivity : BaseActivity<com.union.bangbang.todokotlin.databindin
         ripple_view.addPop(RippleView.CircleEntity(300F, window.decorView.getColor(R.color.white), 255))
 
         ripple_view.addPop(RippleView.CircleEntity(400F, window.decorView.getColor(R.color.white), 255))
-
-        Observable.interval(0, 1, TimeUnit.SECONDS).take(Long.MAX_VALUE)
+        addDisposable(Observable.interval(0, 750, TimeUnit.MILLISECONDS).take(Long.MAX_VALUE)
                 .observeOn(AndroidSchedulers.mainThread()).subscribe {
                     ripple_view.setTime(System.currentTimeMillis() + 1000 * 60 * it)
                     when (it % 5) {
@@ -54,7 +57,7 @@ class AlarmClockActivity : BaseActivity<com.union.bangbang.todokotlin.databindin
                         4L -> ripple_view.addPop(-1F, window.decorView.getColor(R.color.pink), 255)
 
                     }
-                }
+                })
         seek_bar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
 
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -69,5 +72,6 @@ class AlarmClockActivity : BaseActivity<com.union.bangbang.todokotlin.databindin
             }
 
         })
+        model.startMusic(model.musicUrl!!)
     }
 }

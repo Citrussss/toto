@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.union.bangbang.todokotlin.base.model.ViewModelFactory
 import com.union.bangbang.todokotlin.dagger.ViewModelKey
+import com.union.bangbang.todokotlin.ui.clock.alarm.AlarmClockModel
 import com.union.bangbang.todokotlin.ui.home.HomeModel
 import com.union.bangbang.todokotlin.ui.home.moment.HomeMomentModel
 import com.union.bangbang.todokotlin.ui.home.page.HomePageModel
@@ -72,4 +73,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MemoInfoModel::class)
     abstract fun bindMemoInfoModel(viewModel: MemoInfoModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(AlarmClockModel::class)
+    abstract fun bindAlarmClockModel(viewModel: AlarmClockModel): ViewModel
 }

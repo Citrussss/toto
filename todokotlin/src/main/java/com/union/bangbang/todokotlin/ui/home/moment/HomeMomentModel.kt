@@ -7,7 +7,6 @@ import android.app.DatePickerDialog
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.databinding.ObservableBoolean
 import android.databinding.ObservableField
 import android.os.Build
 import android.text.TextUtils
@@ -23,7 +22,7 @@ import com.union.bangbang.todokotlin.base.data.pojo.Memo
 import com.union.bangbang.todokotlin.base.model.BaseModel
 import com.union.bangbang.todokotlin.base.okhttp.Reaper
 import com.union.bangbang.todokotlin.base.utils.ToastUtil
-import com.union.bangbang.todokotlin.ui.user.login.LoginActivity
+import com.union.bangbang.todokotlin.ui.clock.alarm.AlarmClockActivity
 import com.union.bangbang.zero.util.DateUtil
 import com.union.bangbang.zero.util.photo.TimePickerHelper
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -91,7 +90,7 @@ class HomeMomentModel @Inject constructor(val app: Application, val dataService:
     }
 
     inline fun getIntent(): Intent {
-        val intent = Intent(app, LoginActivity::class.java);
+        val intent = Intent(app, AlarmClockActivity::class.java);
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         return intent
     }

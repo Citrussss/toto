@@ -32,7 +32,7 @@ import static com.union.bangbang.zero.AppUtil.peekActivity;
 /**
  * @author USER
  */
-public class FileViewManager extends Activity {
+public class FileViewManager extends FragmentActivity {
     private static Consumer<File> consumer;
     private static @FileType
     String type;
@@ -69,7 +69,7 @@ public class FileViewManager extends Activity {
         } else {
             photoFile = takePhoto();
         }
-        setContentView(null);
+//        setContentView(null);
     }
 
     public void openFileManager(@FileType String type) {
