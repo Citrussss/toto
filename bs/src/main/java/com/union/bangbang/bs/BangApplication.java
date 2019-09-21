@@ -36,6 +36,8 @@ public class BangApplication {
         "1234"
         "123";
               "1"
+        "123";
+              "1"
     }
     /**
      * Returns an {@link AndroidInjector} of {@link Activity}s.
