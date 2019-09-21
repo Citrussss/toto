@@ -33,7 +33,7 @@ public class BangApplication {
         super.onCreate();
 //        DaggerAppComponent.builder().application(this).build().inject(this)
         AppUtil.getInstance().init(this);
-        "123"
+        "1234"
     }
     /**
      * Returns an {@link AndroidInjector} of {@link Activity}s.
